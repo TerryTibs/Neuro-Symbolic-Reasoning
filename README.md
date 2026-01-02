@@ -861,3 +861,47 @@ Graph sparse.
 
 Generated: That which is like to that which is like to that which is like to that which is like to that which is
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+SACRSNv2
+
+Ep 0000 | Loss 1130.275 | Avg steps 7.60
+Ep 0020 | Loss 862.329 | Avg steps 4.44
+Ep 0040 | Loss 813.315 | Avg steps 3.18
+Ep 0060 | Loss 824.550 | Avg steps 2.69
+Ep 0080 | Loss 813.131 | Avg steps 2.54
+Ep 0100 | Loss 765.027 | Avg steps 2.44
+Ep 0120 | Loss 760.687 | Avg steps 2.32
+Ep 0140 | Loss 800.243 | Avg steps 2.33
+Ep 0160 | Loss 754.261 | Avg steps 2.31
+Ep 0180 | Loss 732.511 | Avg steps 2.17
+Ep 0200 | Loss 799.604 | Avg steps 2.35
+Ep 0220 | Loss 779.110 | Avg steps 2.26
+Ep 0240 | Loss 773.682 | Avg steps 2.14
+Ep 0260 | Loss 723.674 | Avg steps 2.04
+Ep 0280 | Loss 730.683 | Avg steps 2.00
+Ep 0300 | Loss 695.840 | Avg steps 2.00
+Ep 0320 | Loss 700.684 | Avg steps 1.99
+Ep 0340 | Loss 728.172 | Avg steps 1.97
+Ep 0360 | Loss 606.033 | Avg steps 1.93
+Ep 0380 | Loss 586.759 | Avg steps 1.78
+Ep 0400 | Loss 619.481 | Avg steps 1.73
+Ep 0420 | Loss 530.730 | Avg steps 1.74
+Ep 0440 | Loss 492.575 | Avg steps 1.77
+Ep 0460 | Loss 477.985 | Avg steps 1.71
+Ep 0480 | Loss 412.097 | Avg steps 1.56
+Ep 0500 | Loss 384.170 | Avg steps 1.60
+Ep 0520 | Loss 333.306 | Avg steps 1.42
+Ep 0540 | Loss 327.590 | Avg steps 1.40
+Ep 0560 | Loss 273.014 | Avg steps 1.33
+Ep 0580 | Loss 251.833 | Avg steps 1.29
+
+--- Symbolic Graph ---
+Graph still sparse.
+
+Generated:
+Tr above.
+The fant wion is below is below is below is below is below is above.
+Th is below is below is above.
+Th is below is orthich is below is like i
+
