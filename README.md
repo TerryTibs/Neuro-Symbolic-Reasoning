@@ -512,7 +512,6 @@ Generated: That which is below is he is hich is above.
 The is like to that which is above.
 The in the is like to
 
-<img width="690" height="803" alt="Figure_4" src="https://github.com/user-attachments/assets/396b4ef5-b730-4835-87a7-c3dbb1eb7007" />
 
 WITH CONFIG
 
