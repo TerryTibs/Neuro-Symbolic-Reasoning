@@ -1,4 +1,5 @@
 **SACRSN BEFORE FINE TUNING**
+SACRSN-SAVE-ROUND1.py
 1000 EPISODES
 
 Ep 0000 | Loss: 4.2455 | Avg Thinking Steps: 7.81
@@ -117,6 +118,7 @@ Its force ole  that which is
 <img width="690" height="803" alt="Figure_1" src="https://github.com/user-attachments/assets/71cfa4ae-5127-4be7-95cc-8c22cea8dcf2" />
 
 **SACRSN AFTER FINE TUNING**
+SACRSN-FINETUNE-ROUND2.py
 +500 MORE
 
 Ep 1000 | Loss: 0.1332 | Avg Steps: 1.35
