@@ -511,3 +511,24 @@ Graph sparse.
 Generated: That which is below is he is hich is above.
 The is like to that which is above.
 The in the is like to
+
+<img width="690" height="803" alt="Figure_4" src="https://github.com/user-attachments/assets/396b4ef5-b730-4835-87a7-c3dbb1eb7007" />
+
+WITH CONFIG
+
+    "seq_len": 32,
+    "embedding_dim": 64,
+    "max_recursion_depth": 8,
+    "act_threshold": 0.9999,
+    "ponder_penalty": 0.0001,  
+    
+    "n_symbols": 64,
+    "n_concepts": 8,
+    "commitment_cost": 0.25,
+    "graph_bias_scale": 0.5, 
+    
+    "epochs": 3000,
+    "learning_rate": 0.001,   
+    "grad_clip": 0.5,         
+    "device": "cuda" if torch.cuda.is_available() else "cpu",
+    "eps": 1e-6
