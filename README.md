@@ -4,6 +4,18 @@
 
 To scale it up it will need Holographic Associative Memory
 
+Needed to make it work better.
+
+Explicit graph learning objective
+
+Symbol entropy regularization
+
+Introspection / diagnostics
+
+Training phase schedule
+
+Rule-level abstraction (future)
+
 SACRSN-SAVE-ROUND1.py
 
 1000 EPISODES
