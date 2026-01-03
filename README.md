@@ -1078,3 +1078,66 @@ S_27   -> S_27   | 100    | 1.77
 S_45   -> S_45   | 81     | 1.85
 S_45   -> S_27   | 46     | 1.80
 S_27   -> S_45   | 45     | 1.62
+
+----------------------------------------------------------------------------------------------------------------------------
+
+SACRSNv11
+
+Ep 0000 | Loss: 4.3681 | Steps: 7.67 | LR: 0.001000
+Ep 0050 | Loss: 3.2900 | Steps: 4.79 | LR: 0.000997
+Ep 0100 | Loss: 3.1286 | Steps: 4.21 | LR: 0.000989
+Ep 0150 | Loss: 3.1984 | Steps: 3.91 | LR: 0.000975
+Ep 0200 | Loss: 3.1793 | Steps: 5.16 | LR: 0.000957
+Ep 0250 | Loss: 3.0110 | Steps: 4.60 | LR: 0.000933
+Ep 0300 | Loss: 2.2537 | Steps: 3.72 | LR: 0.000905
+Ep 0350 | Loss: 1.3957 | Steps: 2.52 | LR: 0.000872
+Ep 0400 | Loss: 0.9289 | Steps: 1.97 | LR: 0.000835
+Ep 0450 | Loss: 0.6270 | Steps: 1.96 | LR: 0.000795
+Ep 0500 | Loss: 0.7609 | Steps: 1.75 | LR: 0.000752
+Ep 0550 | Loss: 0.4330 | Steps: 1.72 | LR: 0.000705
+Ep 0600 | Loss: 0.3764 | Steps: 1.73 | LR: 0.000657
+Ep 0650 | Loss: 0.3396 | Steps: 1.70 | LR: 0.000607
+Ep 0700 | Loss: 0.3139 | Steps: 1.69 | LR: 0.000556
+Ep 0750 | Loss: 0.2809 | Steps: 1.64 | LR: 0.000504
+Ep 0800 | Loss: 0.2822 | Steps: 1.64 | LR: 0.000452
+Ep 0850 | Loss: 0.2071 | Steps: 1.64 | LR: 0.000401
+Ep 0900 | Loss: 0.2578 | Steps: 1.61 | LR: 0.000351
+Ep 0950 | Loss: 0.2563 | Steps: 1.64 | LR: 0.000303
+Ep 1000 | Loss: 0.1787 | Steps: 1.71 | LR: 0.000257
+Ep 1050 | Loss: 0.1865 | Steps: 1.69 | LR: 0.000213
+Ep 1100 | Loss: 0.2009 | Steps: 1.72 | LR: 0.000173
+Ep 1150 | Loss: 0.1751 | Steps: 1.71 | LR: 0.000136
+Ep 1200 | Loss: 0.1300 | Steps: 1.70 | LR: 0.000104
+Ep 1250 | Loss: 0.2245 | Steps: 1.71 | LR: 0.000076
+Ep 1300 | Loss: 0.1450 | Steps: 1.71 | LR: 0.000052
+Ep 1350 | Loss: 0.1377 | Steps: 1.72 | LR: 0.000034
+Ep 1400 | Loss: 0.1154 | Steps: 1.71 | LR: 0.000021
+Ep 1450 | Loss: 0.1404 | Steps: 1.71 | LR: 0.000013
+
+--- Saving Model to crsn_ultimate_final.pth ---
+Saved.
+
+--- Visualizing Learned Symbolic Graph ---
+Active Symbols: 64 / 64
+
+<img width="950" height="966" alt="download" src="https://github.com/user-attachments/assets/400e684a-ef22-42aa-9120-6ecbf89886ba" />
+
+
+Generated: Tr tre.
+Its force or is like to that which is like to that which is below is above.
+The fals tire to that which is below is below is like to that which is below is like to that which is like to that wh
+
+
+--- Extracting Explicit Logic Rules ---
+
+FROM   | TO     | COUNT  | AVG THINKING STEPS
+---------------------------------------------
+S_27   -> S_45   | 55     | 1.56
+S_37   -> S_27   | 52     | 1.44
+S_27   -> S_27   | 40     | 1.40
+S_45   -> S_37   | 34     | 1.97
+S_45   -> S_27   | 31     | 1.81
+S_27   -> S_37   | 28     | 1.43
+S_45   -> S_45   | 17     | 1.76
+S_37   -> S_45   | 10     | 3.40
+S_37   -> S_37   | 3      | 2.00
