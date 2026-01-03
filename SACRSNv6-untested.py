@@ -27,7 +27,7 @@ CONFIG = {
     "graph_bias_scale": 0.5,  # Balanced: Logic + Phase Rotation
     
     # --- REGULARIZATION ---
-    "symbol_consistency_weight": 0.01, # Weight for both static and temporal consistency
+    "symbol_consistency_weight": 0.01, # Forces sharp graph transitions
     
     # --- TRAINING ---
     "epochs": 3000,           # Long run for perfect convergence
@@ -62,6 +62,7 @@ class ComplexLayerNorm(nn.Module):
         self.shift = nn.Parameter(torch.zeros(dim))
         
     def forward(self, z):
+        # Robust magnitude calculation to prevent NaNs
         mag = torch.abs(z) + CONFIG["eps"]
         mean = mag.mean(dim=-1, keepdim=True)
         var = mag.var(dim=-1, keepdim=True)
@@ -85,6 +86,7 @@ class ComplexLinear(nn.Module):
         super().__init__()
         self.fc_real = nn.Linear(dim, dim, bias=False)
         self.fc_imag = nn.Linear(dim, dim, bias=False)
+        # Xavier initialization for complex domain
         nn.init.xavier_uniform_(self.fc_real.weight)
         nn.init.xavier_uniform_(self.fc_imag.weight)
 
@@ -104,6 +106,7 @@ class AdaptiveRecursiveCell(nn.Module):
         self.norm = ComplexLayerNorm(dim) 
         self.act = ModReLU(dim)
         self.halt_linear = nn.Linear(dim * 2, 1)
+        # Bias negative to encourage initial thinking
         nn.init.constant_(self.halt_linear.bias, -2.0) 
 
     def forward(self, z):
@@ -126,10 +129,12 @@ class GraphMemoryVQ(nn.Module):
     def forward(self, z, prev_symbol_idx=None):
         z_flat = torch.cat([z.real, z.imag], dim=-1)
         
+        # Euclidean Distance
         d = torch.sum(z_flat**2, dim=-1, keepdim=True) + \
             torch.sum(self.codebook**2, dim=-1) - \
             2 * torch.matmul(z_flat, self.codebook.t())
         
+        # Apply Graph Bias (Topological Constraint)
         if prev_symbol_idx is not None:
             graph_prior = self.adjacency[prev_symbol_idx]
             bias = CONFIG["graph_bias_scale"] * torch.sigmoid(graph_prior)
@@ -141,6 +146,7 @@ class GraphMemoryVQ(nn.Module):
         loss_vq = F.mse_loss(z_q, z_flat.detach())
         loss_commit = F.mse_loss(z_q.detach(), z_flat)
         
+        # Straight-Through Estimator
         z_q = z_flat + (z_q - z_flat).detach()
         
         half = z_q.shape[-1] // 2
@@ -149,7 +155,7 @@ class GraphMemoryVQ(nn.Module):
         return z_complex, loss_vq + loss_commit * CONFIG["commitment_cost"], min_indices
 
 # ==========================================
-# 5. The Master Model (FIXED & IMPROVED)
+# 5. The Master Model (With Buffer Fix)
 # ==========================================
 class AdvancedCRSN(nn.Module):
     def __init__(self, vocab_size, dim):
@@ -158,12 +164,13 @@ class AdvancedCRSN(nn.Module):
         self.emb_mag = nn.Embedding(vocab_size, dim)
         self.emb_phase = nn.Parameter(torch.randn(vocab_size, dim))
         self.cell = AdaptiveRecursiveCell(dim)
-        # FIX 1: Consistent naming (vq_layer)
-        self.vq_layer = GraphMemoryVQ(dim, CONFIG["n_symbols"]) 
+        
+        # [FIX] Rename to vq_layer to match training loop usage
+        self.vq_layer = GraphMemoryVQ(dim, CONFIG["n_symbols"])
+        
         self.decoder = nn.Linear(dim*2, vocab_size)
         
-        # FIX 2: Register buffer for Temporal Consistency
-        # This tracks the "moving average" of symbol usage to prevent erratic jumping
+        # [FIX] Register Buffer for Temporal Consistency
         self.register_buffer("prev_sym_soft", torch.zeros(CONFIG["n_symbols"]))
 
     def embed(self, idx):
@@ -187,6 +194,7 @@ class AdvancedCRSN(nn.Module):
         current_sym = prev_sym
         vq_loss_total = 0
         
+        # --- Adaptive Recursion Loop ---
         for t in range(CONFIG["max_recursion_depth"]):
             act_step += 1
             
@@ -194,6 +202,7 @@ class AdvancedCRSN(nn.Module):
             z_sym, vq_loss, sym_idx = self.vq_layer(z, current_sym)
             current_sym = sym_idx
             
+            # Weighted Skip Connection (The "Ring" Logic)
             z = 0.7*z + 0.3*z_sym
             
             still_running = (halting_probability < CONFIG["act_threshold"]).float()
@@ -211,10 +220,11 @@ class AdvancedCRSN(nn.Module):
         features = torch.cat([z_weighted.real, z_weighted.imag], dim=-1)
         logits = self.decoder(features)
         
+        # Return 6 values including act_step
         return logits, z_weighted, current_sym, ponder_cost, vq_loss_total, act_step
 
 # ==========================================
-# 6. Training Engine (Ultimate Edition)
+# 6. Training Engine (With In-Place Update)
 # ==========================================
 def train():
     model = AdvancedCRSN(vocab_size, CONFIG["embedding_dim"]).to(CONFIG["device"])
@@ -224,7 +234,7 @@ def train():
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=CONFIG["epochs"], eta_min=1e-5)
     
     print(f"--- Training Master CRSN ({CONFIG['embedding_dim']}D) ---")
-    print(f"--- Features: Graph Bias | ACT | Consistency (Static+Temporal) | Scheduler ---")
+    print(f"--- Features: Graph Bias | ACT | Consistency | Scheduler ---")
     print(f"--- Press Ctrl+C to Stop & Visualize ---")
     
     try:
@@ -235,7 +245,7 @@ def train():
             total_ponder = 0
             window = 16 
             
-            # Entropy Weight Decay
+            # Entropy Weight Decay: Encourage exploration early, exploitation late
             entropy_weight = 0.01 * (1 - epoch / CONFIG["epochs"])
             
             for i in range(0, len(data_tensor) - 1):
@@ -263,22 +273,19 @@ def train():
                 row_entropy = -(adj_sig * torch.log(adj_sig + CONFIG["eps"])).sum(dim=-1).mean()
                 loss_static_consistency = CONFIG["symbol_consistency_weight"] * row_entropy
                 
-                # --- FIX 3: True Temporal Consistency (Momentum Stability) ---
-                # Convert current symbol selection to one-hot (float)
+                # --- [FIX] Temporal Consistency with In-Place Update ---
                 current_sym_onehot = F.one_hot(sym_idx, CONFIG["n_symbols"]).float()
-                if current_sym_onehot.dim() == 1: # Handle batch size 1 vs N
-                     current_sym_onehot = current_sym_onehot.squeeze()
-                elif current_sym_onehot.dim() > 1:
-                     current_sym_onehot = current_sym_onehot.view(-1)
+                if current_sym_onehot.dim() > 1: current_sym_onehot = current_sym_onehot.view(-1)
 
-                # Loss: Force current choice to align with history
+                # 1. Calculate Loss against the OLD buffer state
                 loss_temporal = CONFIG["symbol_consistency_weight"] * F.mse_loss(
                     current_sym_onehot,
-                    model.prev_sym_soft.detach()
+                    model.prev_sym_soft.detach() # Detach history
                 )
                 
-                # Update Buffer (Exponential Moving Average)
-                model.prev_sym_soft = 0.9 * model.prev_sym_soft + 0.1 * current_sym_onehot
+                # 2. Update Buffer In-Place (Efficient)
+                # New = 0.9 * Old + 0.1 * Current
+                model.prev_sym_soft.mul_(0.9).add_(current_sym_onehot * 0.1)
                 
                 # --- Total Loss ---
                 loss = (loss_pred + 
@@ -322,7 +329,7 @@ def train():
     return model
 
 # ==========================================
-# 7. Visualization & Diagnostics
+# 7. Smart Visualization
 # ==========================================
 def visualize_brain(model):
     print("\n--- Visualizing Learned Symbolic Graph ---")
@@ -357,8 +364,9 @@ def visualize_brain(model):
         plt.axis('off')
         plt.show()
     else:
-        print("Graph is sparse.")
+        print("Graph is sparse (Weights too low).")
 
+    # Generate Text
     model.eval()
     start_char = "T"
     x = torch.tensor([[char_to_ix[start_char]]], device=CONFIG["device"])
@@ -375,6 +383,9 @@ def visualize_brain(model):
             x = next_ix
     print("\n")
 
+# ==========================================
+# 8. Logic Rule Extractor (Diagnostics)
+# ==========================================
 def extract_logic_rules(model, data_tensor):
     print("\n--- Extracting Explicit Logic Rules ---")
     model.eval()
@@ -385,6 +396,7 @@ def extract_logic_rules(model, data_tensor):
     with torch.no_grad():
         for i in range(len(data_tensor) - 1):
             x = data_tensor[i].view(1, 1)
+            # Unpack 6 values
             logits, hidden, sym_idx, ponder, _, _ = model(x, hidden, prev_sym)
             if prev_sym is not None:
                 src = prev_sym.item()
@@ -402,7 +414,7 @@ def extract_logic_rules(model, data_tensor):
             print(f"S_{src:<4} -> S_{dst:<4} | {count:<6} | {avg_steps:.2f}")
 
 # ==========================================
-# 8. Main Execution
+# 9. Main Execution
 # ==========================================
 if __name__ == "__main__":
     FILENAME = "crsn_master_final.pth"
