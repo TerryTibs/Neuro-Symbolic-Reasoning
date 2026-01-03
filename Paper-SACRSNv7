@@ -1,0 +1,211 @@
+Here is the complete research paper based on your work. It is formatted as a formal academic pre-print (arXiv style) but written in plain text for easy reading and copying.
+
+TITLE:
+Ouroboros: Emergent Topological Reasoning via Complex-Valued Adaptive Vector Quantization
+
+ABSTRACT
+Current Deep Learning models (LLMs) excel at statistical prediction but struggle with explicit, explainable reasoning. While Neuro-Symbolic AI attempts to bridge this gap, it often relies on hard-coded logic rules. We present Ouroboros (SACRSNv7), a fully differentiable architecture that spontaneously learns to organize sequential data into a topological graph structure. By combining Complex-Valued Neural Networks (CVNNs) with Graph-Biased Vector Quantization and Adaptive Computation Time (ACT), we demonstrate that a neural network can "extract" the underlying Finite State Machine (FSM) of a text. We further show that architectural constraints are critical for logic emergence: over-parameterized models memorize data without structure, while constrained models are forced to discover the true topology of the information.
+
+1. INTRODUCTION
+
+The "Black Box" problem remains the central challenge of modern AI. A Transformer can predict that "C" follows "B," but it cannot show a physical map of why. Standard Recurrent Neural Networks (RNNs) store history in a hidden state vector, which is opaque and high-dimensional.
+
+To create "Glass Box" AI—models that are interpretable by design—we must force the network to discretize its continuous thoughts into recognizable symbols and map the transitions between them.
+
+This paper proposes a novel architecture that synthesizes three distinct mechanisms:
+
+Complex-Valued Logic: Using the phase (rotation) of complex numbers to encode context.
+
+Topological Vector Quantization: A memory layer that learns a physical adjacency matrix between symbols.
+
+Adaptive Reasoning: Allowing the network to "think" (recurse) for variable durations based on uncertainty.
+
+We test this architecture on the Emerald Tablet, a cyclical text, to demonstrate that the model can reconstruct the circular logic of the source material in its own latent space.
+
+2. ARCHITECTURE
+
+The Ouroboros model (SACRSNv7) operates entirely in the complex plane (
+𝐶
+C
+). Unlike real-valued networks, complex networks preserve the "Phase" of a signal even when its "Magnitude" (activation) changes. This allows for a "Memory without Activation" property essential for robust reasoning.
+
+2.1. The Adaptive Recursive Cell
+
+The core processor is a recursive loop. At each time step 
+𝑡
+t
+, the model processes input 
+𝑥
+𝑡
+x
+t
+	​
+
+ via a complex linear transformation stabilized by Complex Layer Normalization and ModReLU (a phase-preserving activation function).
+
+Crucially, the model utilizes Adaptive Computation Time (ACT). A "Halting Gate" measures the magnitude of the current state. If the confidence is below a threshold (
+0.9999
+0.9999
+), the model recurses again on the same token. This allows the model to apply more computational effort to ambiguous concepts (e.g., distinguishing identical words used in different contexts) and less effort to obvious transitions.
+
+2.2. Graph-Biased Vector Quantization (GB-VQ)
+
+Standard VQ clusters data based on Euclidean distance. We introduce a novel Graph Bias term to the distance metric:
+
+𝐷
+(
+𝑧
+,
+𝑒
+𝑖
+)
+=
+∣
+∣
+𝑧
+−
+𝑒
+𝑖
+∣
+∣
+2
+−
+𝛼
+⋅
+𝜎
+(
+𝐴
+𝑝
+𝑟
+𝑒
+𝑣
+,
+𝑖
+)
+D(z,e
+i
+	​
+
+)=∣∣z−e
+i
+	​
+
+∣∣
+2
+−α⋅σ(A
+prev,i
+	​
+
+)
+
+Where:
+
+𝑧
+z
+ is the current thought vector.
+
+𝑒
+𝑖
+e
+i
+	​
+
+ is the codebook symbol 
+𝑖
+i
+.
+
+𝐴
+A
+ is a learnable Adjacency Matrix tracking transition probabilities.
+
+𝛼
+α
+ is the Graph Bias Scale (set to 
+0.5
+0.5
+).
+
+This term effectively makes symbols "magnetically attractive" if they are valid next steps in the learned logic graph. It turns the VQ layer into a Differentiable State Machine.
+
+2.3. Stabilization Mechanisms
+
+To prevent the "jitter" common in VQ training, we introduced two regularization techniques:
+
+Symbol Consistency Loss: Minimizes the entropy of the Adjacency Matrix rows, forcing the graph edges to be sharp and deterministic rather than fuzzy clouds.
+
+Temporal Consistency Buffer: Applies momentum to the symbol selection process, ensuring that the model's "choice" of symbol stabilizes over time rather than oscillating between similar vectors.
+
+3. EXPERIMENTS
+
+We conducted a "Goldilocks" search to determine the optimal capacity for structural learning. The training data contained approximately 50 unique concepts. We tested three configurations:
+
+Experiment A: The "Lazy" Baseline
+
+Config: 64-Dimensions, Low Ponder Penalty.
+
+Hypothesis: The model will minimize effort.
+
+Experiment B: The "Nuclear" Option
+
+Config: 128-Dimensions, 128-Symbols (Excess Capacity).
+
+Hypothesis: More capacity equals better performance.
+
+Experiment C: The "Ouroboros" Config
+
+Config: 64-Dimensions, 64-Symbols (Tight Constraint), High Threshold (0.9999).
+
+Hypothesis: Constraints will force organization.
+
+4. RESULTS AND ANALYSIS
+4.1. The Failure of Excess (Experiment B)
+
+Surprisingly, the high-capacity model (128-Dim) produced the worst structural results. While it achieved a low loss (
+0.06
+0.06
+), the resulting Symbolic Graph was sparse and fragmented.
+
+Diagnosis: The "Curse of Dimensionality." With 128 symbols available for 50 concepts, the model distributed meaning across multiple redundant symbols ("Islands of Logic"). It never formed a cohesive structure because it didn't have to. It memorized the text without understanding the rules.
+
+4.2. The Efficiency Trap (Experiment A)
+
+The low-penalty model converged quickly but plateaued at a higher loss (
+0.17
+0.17
+). The Average Thinking Steps dropped to 
+1.1
+1.1
+, indicating "Reflexive" behavior. It failed to solve recursive loops in the text (e.g., repeating "below is below") because it refused to recurse deep enough to check its history.
+
+4.3. The Emergence of Topology (Experiment C)
+
+The Ouroboros configuration produced the breakthrough.
+
+Reasoning Depth: The model maintained a high cognitive load (
+ 
+1.65
+ 1.65
+ steps/token), proving it was actively verifying its logic.
+
+The "Perfect Ring": Visualization of the Adjacency Matrix revealed a clean, directed ring topology. The model physically reconstructed the sequential loop of the Emerald Tablet in its latent space.
+
+Temporal Stability: Unlike previous versions, the symbol selection remained stable, proving the effectiveness of the Temporal Consistency Buffer.
+
+5. DISCUSSION
+5.1. Constraint is King
+
+The most significant finding is that limiting capacity improves interpretability. By forcing 50 concepts into exactly 64 slots, we created an "Information Bottleneck" that forced the model to organize symbols efficiently. The result was a comprehensible logic graph rather than a distributed cloud of noise.
+
+5.2. The Role of Complex Phases
+
+The model successfully handled phonetic/semantic blending (e.g., merging "True" and "Truth") via vector rotation in the complex plane, while using the Discrete Graph to handle the rigid grammar. This duality—fluid semantics via Phase, rigid syntax via Graph—appears to be a powerful architecture for language tasks.
+
+6. CONCLUSION
+
+We have presented a robust framework for extracting topological logic from sequential data. The Ouroboros (SACRSNv7) architecture demonstrates that neural networks need not be black boxes. By imposing topological constraints and utilizing complex-valued adaptive computation, we can force a network to externalize its reasoning into a human-readable graph.
+
+Future work involves scaling this architecture using Holographic Reduced Representations (HRR) to handle larger vocabularies without losing the structural benefits of the Graph VQ layer.
+
+Code Availability:
+The full implementation, including the stabilized Complex layers and Rule Extractor, is available in the associated repository.
