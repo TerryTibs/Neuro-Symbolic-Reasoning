@@ -22,17 +22,17 @@ CONFIG = {
     "act_threshold": 0.9999,  # High standard for perfection
     "ponder_penalty": 0.0001, # Low penalty allows deep thought
     
-    # --- MEMORY ---
+    # --- MEMORY & TOPOLOGY ---
     "commitment_cost": 0.25,
-    "graph_bias_scale": 0.5,
+    "graph_bias_scale": 0.5,  # Balanced: Logic + Phase Rotation
     
-    # --- NEW: SYMBOLIC REGULARIZATION ---
-    "symbol_consistency_weight": 0.01, # Forces sharp graph transitions
+    # --- REGULARIZATION ---
+    "symbol_consistency_weight": 0.01, # Forces sharp graph transitions (v4 feature)
     
     # --- TRAINING ---
-    "epochs": 3000,
-    "learning_rate": 0.001,
-    "grad_clip": 0.5,
+    "epochs": 3000,           # Long run for perfect convergence
+    "learning_rate": 0.001,   # Starting High
+    "grad_clip": 0.5,         
     "device": "cuda" if torch.cuda.is_available() else "cpu",
     "eps": 1e-6
 }
@@ -50,13 +50,10 @@ chars = sorted(list(set(TEXT_DATA)))
 vocab_size = len(chars)
 char_to_ix = {ch: i for i, ch in enumerate(chars)}
 ix_to_char = {i: ch for i, ch in enumerate(chars)}
-data_tensor = torch.tensor(
-    [char_to_ix[c] for c in TEXT_DATA],
-    dtype=torch.long
-).to(CONFIG["device"])
+data_tensor = torch.tensor([char_to_ix[c] for c in TEXT_DATA], dtype=torch.long).to(CONFIG["device"])
 
 # ==========================================
-# 3. Stabilized Complex Primitives
+# 3. Stabilized Complex Primitives (v2)
 # ==========================================
 class ComplexLayerNorm(nn.Module):
     def __init__(self, dim):
@@ -65,6 +62,7 @@ class ComplexLayerNorm(nn.Module):
         self.shift = nn.Parameter(torch.zeros(dim))
         
     def forward(self, z):
+        # Robust magnitude calculation to prevent NaNs
         mag = torch.abs(z) + CONFIG["eps"]
         mean = mag.mean(dim=-1, keepdim=True)
         var = mag.var(dim=-1, keepdim=True)
@@ -88,15 +86,15 @@ class ComplexLinear(nn.Module):
         super().__init__()
         self.fc_real = nn.Linear(dim, dim, bias=False)
         self.fc_imag = nn.Linear(dim, dim, bias=False)
+        # Xavier initialization for complex domain
         nn.init.xavier_uniform_(self.fc_real.weight)
         nn.init.xavier_uniform_(self.fc_imag.weight)
 
     def forward(self, z):
         r, i = z.real, z.imag
-        return torch.complex(
-            self.fc_real(r) - self.fc_imag(i),
-            self.fc_real(i) + self.fc_imag(r)
-        )
+        out_r = self.fc_real(r) - self.fc_imag(i)
+        out_i = self.fc_real(i) + self.fc_imag(r)
+        return torch.complex(out_r, out_i)
 
 # ==========================================
 # 4. Adaptive & Symbolic Modules
@@ -108,13 +106,18 @@ class AdaptiveRecursiveCell(nn.Module):
         self.norm = ComplexLayerNorm(dim) 
         self.act = ModReLU(dim)
         self.halt_linear = nn.Linear(dim * 2, 1)
+        # Bias negative to encourage initial thinking
         nn.init.constant_(self.halt_linear.bias, -2.0) 
 
     def forward(self, z):
-        z = self.act(self.norm(self.linear(z)))
-        z_flat = torch.cat([z.real, z.imag], dim=-1)
+        z_new = self.linear(z)
+        z_norm = self.norm(z_new) 
+        z_out = self.act(z_norm)
+        
+        z_flat = torch.cat([z_out.real, z_out.imag], dim=-1)
         halt_prob = torch.sigmoid(self.halt_linear(z_flat))
-        return z, halt_prob
+        
+        return z_out, halt_prob
 
 class GraphMemoryVQ(nn.Module):
     def __init__(self, latent_dim, n_symbols):
@@ -131,9 +134,8 @@ class GraphMemoryVQ(nn.Module):
             torch.sum(self.codebook**2, dim=-1) - \
             2 * torch.matmul(z_flat, self.codebook.t())
         
-        # Apply Graph Bias
+        # Apply Graph Bias (Topological Constraint)
         if prev_symbol_idx is not None:
-            # Use adjacency matrix to bias distance
             graph_prior = self.adjacency[prev_symbol_idx]
             bias = CONFIG["graph_bias_scale"] * torch.sigmoid(graph_prior)
             d = d - bias
@@ -162,7 +164,7 @@ class AdvancedCRSN(nn.Module):
         self.emb_mag = nn.Embedding(vocab_size, dim)
         self.emb_phase = nn.Parameter(torch.randn(vocab_size, dim))
         self.cell = AdaptiveRecursiveCell(dim)
-        self.vq = GraphMemoryVQ(dim, CONFIG["n_symbols"])
+        self.vq_layer = GraphMemoryVQ(dim, CONFIG["n_symbols"])
         self.decoder = nn.Linear(dim*2, vocab_size)
 
     def embed(self, idx):
@@ -212,16 +214,17 @@ class AdvancedCRSN(nn.Module):
         features = torch.cat([z_weighted.real, z_weighted.imag], dim=-1)
         logits = self.decoder(features)
         
-        return logits, z_weighted, current_sym, ponder_cost, vq_loss_total
+        # Return 6 values to match the Training Loop unpacking
+        return logits, z_weighted, current_sym, ponder_cost, vq_loss_total, act_step
 
 # ==========================================
-# 6. Training Engine (Robust + Consistency)
+# 6. Training Engine (Robust + Consistency + Scheduler)
 # ==========================================
 def train():
     model = AdvancedCRSN(vocab_size, CONFIG["embedding_dim"]).to(CONFIG["device"])
     opt = torch.optim.AdamW(model.parameters(), lr=CONFIG["learning_rate"], weight_decay=1e-5)
     
-    # Scheduler: High LR start -> Low LR end
+    # [UPGRADE] Cosine Schedule: High LR start -> Low LR end
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=CONFIG["epochs"], eta_min=1e-5)
     
     print(f"--- Training Master CRSN ({CONFIG['embedding_dim']}D) ---")
@@ -236,14 +239,15 @@ def train():
             total_ponder = 0
             window = 16 
             
-            # Entropy Weight Decay: Encourage exploration early
+            # Entropy Weight Decay: Encourage exploration early, exploitation late
             entropy_weight = 0.01 * (1 - epoch / CONFIG["epochs"])
             
             for i in range(0, len(data_tensor) - 1):
                 x = data_tensor[i].view(1, 1)
                 y = data_tensor[i+1].view(1)
                 
-                logits, hidden, sym_idx, ponder, vq_loss = model(x, hidden, prev_sym)
+                # Unpack all 6 values
+                logits, hidden, sym_idx, ponder, vq_loss, steps = model(x, hidden, prev_sym)
                 
                 hidden = hidden.detach()
                 prev_sym = sym_idx.detach()
@@ -259,9 +263,8 @@ def train():
                 loss_entropy = -entropy_weight * entropy
                 
                 # 2. [NEW] Symbol Consistency (Graph Entropy)
-                # Minimize entropy of adjacency rows -> Force sharp decisions
+                # Minimize entropy of adjacency rows -> Force sharp decisions (A->B, not A->Cloud)
                 adj_sig = torch.sigmoid(model.vq_layer.adjacency)
-                # Add epsilon for log stability
                 row_entropy = -(adj_sig * torch.log(adj_sig + CONFIG["eps"])).sum(dim=-1).mean()
                 loss_consistency = CONFIG["symbol_consistency_weight"] * row_entropy
                 
@@ -327,8 +330,7 @@ def visualize_brain(model):
     
     if active_nodes > 0:
         plt.figure(figsize=(12, 12))
-        # Spring layout works best for detecting Rings vs Islands
-        pos = nx.spring_layout(G, k=0.5, iterations=50)
+        pos = nx.circular_layout(G) # Ring layout
         edges, weights = zip(*nx.get_edge_attributes(G,'weight').items())
         
         nx.draw_networkx_nodes(G, pos, node_color='#a0cbe2', node_size=600)
@@ -350,7 +352,7 @@ def visualize_brain(model):
     print("\nGenerated: T", end="")
     for _ in range(200):
         with torch.no_grad():
-            logits, hidden, prev_sym, ponder, _ = model(x, hidden, prev_sym)
+            logits, hidden, prev_sym, _, _, steps = model(x, hidden, prev_sym)
             probs = F.softmax(logits, dim=-1)
             next_ix = torch.multinomial(probs, 1)
             print(ix_to_char[next_ix.item()], end="")
@@ -370,7 +372,8 @@ def extract_logic_rules(model, data_tensor):
     with torch.no_grad():
         for i in range(len(data_tensor) - 1):
             x = data_tensor[i].view(1, 1)
-            logits, hidden, sym_idx, ponder, _ = model(x, hidden, prev_sym)
+            # Unpack 6 values to match the new forward signature
+            logits, hidden, sym_idx, ponder, _, _ = model(x, hidden, prev_sym)
             if prev_sym is not None:
                 src = prev_sym.item()
                 dst = sym_idx.item()
