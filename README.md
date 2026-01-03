@@ -988,4 +988,39 @@ S_60   -> S_51   | 35     | 1.91
 S_51   -> S_60   | 34     | 1.47
 S_51   -> S_51   | 15     | 1.87
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SACRSNv10
+
+Ep 0000 | Loss: 4.3712 | Steps: 7.81 | LR: 0.001000
+Ep 0050 | Loss: 3.3877 | Steps: 3.35 | LR: 0.000994
+Ep 0100 | Loss: 3.0533 | Steps: 3.28 | LR: 0.000975
+Ep 0150 | Loss: 3.1049 | Steps: 4.04 | LR: 0.000945
+Ep 0200 | Loss: 3.3860 | Steps: 3.76 | LR: 0.000905
+Ep 0250 | Loss: 3.3857 | Steps: 3.28 | LR: 0.000854
+Ep 0300 | Loss: 3.1808 | Steps: 3.68 | LR: 0.000795
+Ep 0350 | Loss: 3.1181 | Steps: 3.77 | LR: 0.000728
+Ep 0400 | Loss: 3.0057 | Steps: 3.67 | LR: 0.000656
+Ep 0450 | Loss: 2.9156 | Steps: 3.09 | LR: 0.000581
+Ep 0500 | Loss: 2.7262 | Steps: 3.65 | LR: 0.000503
+Ep 0550 | Loss: 2.5114 | Steps: 3.29 | LR: 0.000426
+Ep 0600 | Loss: 1.5972 | Steps: 2.24 | LR: 0.000351
+Ep 0650 | Loss: 1.3326 | Steps: 2.20 | LR: 0.000279
+Ep 0700 | Loss: 1.0680 | Steps: 2.02 | LR: 0.000213
+Ep 0750 | Loss: 0.8797 | Steps: 1.92 | LR: 0.000154
+Ep 0800 | Loss: 0.7921 | Steps: 1.89 | LR: 0.000104
+Ep 0850 | Loss: 0.6617 | Steps: 1.80 | LR: 0.000063
+Ep 0900 | Loss: 0.6557 | Steps: 1.79 | LR: 0.000034
+Ep 0950 | Loss: 0.6815 | Steps: 1.76 | LR: 0.000016
+
+--- Saving Model to crsn_ultimate_final.pth ---
+Saved.
+
+--- Visualizing Learned Symbolic Graph ---
+Active Symbols: 64 / 64
+
+Generated: Tre is above.
+The is like is below is fo thout is force on it below ents fthove is force of it belowenk ittionerted is like to ther of all pe the conhither of above.
+Thich is force of fald 
+and is belo
 
