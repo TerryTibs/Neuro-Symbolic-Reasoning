@@ -1,46 +1,17 @@
+Here is the updated paper with the version number adjusted to v26.
 
-🔍 Peer Review / Audit Notes
-
-The "Ethical" Layer (Verified):
-
-Code: F.cross_entropy(row_logits, curr_sym) where row_logits comes from adjacency[prev_sym].
-
-Verification: This is mathematically sound. It treats the Adjacency Matrix row as a probability distribution (logits) and penalizes the model if the current symbol transition doesn't match the "law" established by the graph. The paper correctly identifies this as "Normative" constraint.
-
-Complex Activation (Clarification):
-
-Code: ModReLU is implemented as z * (ReLU(|z| + b) / |z|).
-
-Paper Adjustment: I have updated the formula in the paper to match this exactly. It effectively scales the magnitude without touching the phase.
-
-Autograd Safety (Verified):
-
-Code: with torch.no_grad(): model.prev_sym_soft.copy_(...).
-
-Verification: This correctly fixes the "In-place operation" error common in PyTorch when using momentum buffers. The paper discussion on this is accurate.
-
-Dream Mode (Nuance):
-
-Code: Uses model.decoder(z_flat) directly on the codebook vectors.
-
-Verification: This confirms the paper's claim that the logic is stored in the discrete graph, as the Dream Mode bypasses the encoder/input entirely.
-
-Hyperparameters:
-
-The paper stated act_threshold was 0.99. The code is 0.9999. I have corrected this precision in the paper.
-
-SACRSN v21: Enforcing Normative Logic in Neuro-Symbolic Networks via Complex-Valued Topological Constraints
+SACRSN v26: Enforcing Normative Logic in Neuro-Symbolic Networks via Complex-Valued Topological Constraints
 
 Abstract
-Standard Recurrent Neural Networks (RNNs) and Transformers operate as probabilistic "black boxes," often failing to adhere to strict logical or structural rules. We present SACRSN v21, a neuro-symbolic architecture designed to learn and enforce a "Normative Topology"—a rigid set of transition rules derived from data. By integrating a Differentiable Stack for persistent memory, Complex-Valued Neural Networks (CVNNs) for phase-based context, and a novel Ethical Constraint Layer, we demonstrate a model that not only predicts text but actively detects deviations from its learned logic. We validate this on the Emerald Tablet dataset, showing that the model successfully reconstructs the cyclical logic of the text and quantifies "hallucinations" via topological stress.
+Standard Recurrent Neural Networks (RNNs) and Transformers operate as probabilistic "black boxes," often failing to adhere to strict logical or structural rules. We present SACRSN v26, a neuro-symbolic architecture designed to learn and enforce a "Normative Topology"—a rigid set of transition rules derived from data. By integrating a Differentiable Stack for persistent memory, Complex-Valued Neural Networks (CVNNs) for phase-based context, and a novel Ethical Constraint Layer, we demonstrate a model that not only predicts text but actively detects deviations from its learned logic. We validate this on the Emerald Tablet dataset, showing that the model successfully reconstructs the cyclical logic of the text and quantifies "hallucinations" via topological stress.
 
 1. Introduction
 
 In classical Computer Science, a Finite State Machine (FSM) is deterministic: a transition from State A to State B is a binary rule. Deep Learning, conversely, is probabilistic. The danger in modern AI lies in the potential for "hallucination," where the model generates plausible but logically invalid sequences.
 
-To bridge this gap, we introduce SACRSN v21, an architecture that imposes Normative Ethics on a neural network. In this context, "Ethics" defines a structural constraint (Nomos or Law): the strict adherence to a learned topological graph.
+To bridge this gap, we introduce SACRSN v26, an architecture that imposes Normative Ethics on a neural network. In this context, "Ethics" defines a structural constraint (Nomos or Law): the strict adherence to a learned topological graph.
 
-The v21 architecture introduces three critical improvements over standard recurrent models:
+The v26 architecture introduces three critical improvements over standard recurrent models:
 
 Complex-Valued Processing: Using the phase of complex numbers to encode semantic relations independent of signal magnitude.
 
@@ -60,7 +31,7 @@ C
 Standard neural networks use real numbers (
 𝑅
 R
-). However, cyclical data requires orthogonal representations to distinguish identical tokens in different contexts. SACRSN v21 maps inputs to complex vectors 
+). However, cyclical data requires orthogonal representations to distinguish identical tokens in different contexts. SACRSN v26 maps inputs to complex vectors 
 𝑧
 =
 𝑟
@@ -169,11 +140,11 @@ t−1
 	​
 
 
-Crucially, the implementation in v21 is persistent: the stack state (stack_mem) is passed as a hidden state between batches, allowing the model to maintain long-term context beyond the immediate sequence window.
+Crucially, the implementation in v26 is persistent: the stack state (stack_mem) is passed as a hidden state between batches, allowing the model to maintain long-term context beyond the immediate sequence window.
 
 3. The "Ethical" Layer: Graph-Biased Vector Quantization
 
-The core innovation of SACRSN v21 is the Ethical Constraint. In standard Vector Quantization (VQ), the network matches an input to a codebook symbol based solely on Euclidean distance. We augment this with a learned Adjacency Matrix (
+The core innovation of SACRSN v26 is the Ethical Constraint. In standard Vector Quantization (VQ), the network matches an input to a codebook symbol based solely on Euclidean distance. We augment this with a learned Adjacency Matrix (
 𝐴
 A
 ).
@@ -331,7 +302,7 @@ Data: The Emerald Tablet, selected for its strict cyclical structure.
 
 4.1 Stabilization Mechanisms
 
-The architecture employs a Temporal Consistency Buffer (prev_sym_soft) to stabilize the adjacency learning. A crucial fix in v21 is Autograd Safety: the momentum update of this buffer is wrapped in a torch.no_grad() block, preventing the optimizer from attempting to backpropagate through the entire history of the training session.
+The architecture employs a Temporal Consistency Buffer (prev_sym_soft) to stabilize the adjacency learning. A crucial fix in v26 is Autograd Safety: the momentum update of this buffer is wrapped in a torch.no_grad() block, preventing the optimizer from attempting to backpropagate through the entire history of the training session.
 
 5. Results and Analysis
 5.1 X-Ray Topology (Graph Reconstruction)
@@ -375,7 +346,7 @@ Result: The score spiked significantly at the word "banana." Unlike standard per
 
 6. Conclusion
 
-SACRSN v21 demonstrates that interpretability in neural networks need not be an afterthought. By integrating Complex-Valued logic for semantic encoding and Graph-Biased Vector Quantization for syntactic constraints, we created a "Glass Box" system.
+SACRSN v26 demonstrates that interpretability in neural networks need not be an afterthought. By integrating Complex-Valued logic for semantic encoding and Graph-Biased Vector Quantization for syntactic constraints, we created a "Glass Box" system.
 
 The "Ethical" layer successfully enforced normative behavior, distinguishing between improbable events and impossible events. This architecture suggests a path forward for safety-critical AI, where models must not only generate text but also adhere to a strict, verifiable set of logical state transitions.
 
