@@ -1141,3 +1141,57 @@ S_27   -> S_37   | 28     | 1.43
 S_45   -> S_45   | 17     | 1.76
 S_37   -> S_45   | 10     | 3.40
 S_37   -> S_37   | 3      | 2.00
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SACRSNv26 Short run didn't fininsh
+
+Ep 0000 | Loss: 7.6792 | Steps: 7.89 | Usage(PPX): 1.0 | LR: 0.001000
+Ep 0050 | Loss: 3.3161 | Steps: 4.14 | Usage(PPX): 1.0 | LR: 0.000999
+Ep 0100 | Loss: 3.2199 | Steps: 3.53 | Usage(PPX): 1.0 | LR: 0.000997
+Ep 0150 | Loss: 2.9605 | Steps: 2.11 | Usage(PPX): 1.0 | LR: 0.000994
+Ep 0200 | Loss: 1.2878 | Steps: 1.62 | Usage(PPX): 1.0 | LR: 0.000989
+Ep 0250 | Loss: 0.8349 | Steps: 1.47 | Usage(PPX): 1.0 | LR: 0.000983
+Ep 0300 | Loss: 0.7302 | Steps: 1.47 | Usage(PPX): 1.0 | LR: 0.000976
+Ep 0350 | Loss: 0.6946 | Steps: 1.55 | Usage(PPX): 1.0 | LR: 0.000967
+Ep 0400 | Loss: 0.8377 | Steps: 1.72 | Usage(PPX): 1.0 | LR: 0.000957
+Ep 0450 | Loss: 0.5889 | Steps: 1.58 | Usage(PPX): 1.0 | LR: 0.000946
+Ep 0500 | Loss: 0.4703 | Steps: 1.54 | Usage(PPX): 1.0 | LR: 0.000933
+Ep 0550 | Loss: 0.4675 | Steps: 1.50 | Usage(PPX): 1.0 | LR: 0.000920
+Ep 0600 | Loss: 0.3854 | Steps: 1.64 | Usage(PPX): 1.0 | LR: 0.000905
+Ep 0650 | Loss: 0.4167 | Steps: 1.61 | Usage(PPX): 1.0 | LR: 0.000889
+Ep 0700 | Loss: 0.4584 | Steps: 1.68 | Usage(PPX): 1.0 | LR: 0.000873
+
+Interrupted.
+
+— Saving Model to crsn_omni_model.pth —
+Saved.
+
+— Generating Diagnostics & Images —
+Mapping Symbols to Text…
+Saved 1_semantic_topology.png
+Running Inference Scan…
+Generated: Tr fals force of is ce on true.
+The o ee, certain als force on in the to earth. int is lh above.
+The o trth.
+The o eals force of all pe to thich is entirhood, cele world is habove.
+The o eld that whi
+
+— Extracting Explicit Logic Rules —
+FROM | TO | COUNT | AVG STEPS
+
+S_42 → S_42 | 268 | 1.62
+S_23 → S_23 | 3 | 2.00
+
+— :crescent_moon: Dream Mode (Pure Symbolic Walk) —
+Dream Output: T tol t
+
+— :rotating_light: Anomaly Detection Test —
+Input: ‘True without falsehood certain
+
+<img width="1000" height="400" alt="5_anomaly_detection" src="https://github.com/user-attachments/assets/d4046354-c67b-4e01-99c7-547016c10598" />
+<img width="800" height="800" alt="4_phase_plot" src="https://github.com/user-attachments/assets/546e7ba7-6c9a-4a1f-a059-da09cef1ac73" />
+<img width="1200" height="400" alt="3_act_profile" src="https://github.com/user-attachments/assets/afccc2df-f2a2-49f4-8121-095093f90730" />
+<img width="1200" height="400" alt="2_stack_mri" src="https://github.com/user-attachments/assets/b2119f5a-f88b-4a39-b992-00b24908f63e" />
+<img width="2100" height="2100" alt="1_semantic_topology" src="https://github.com/user-attachments/assets/09f5051c-75de-4bfd-a4f1-a2ecff3c7874" />
+
