@@ -1528,3 +1528,82 @@ Saved 5_anomaly_detection.png
 <img width="1200" height="400" alt="2_stack_mri" src="https://github.com/user-attachments/assets/52cc7ca1-6eb0-4efe-8b80-d5256acf1813" />
 <img width="2100" height="2100" alt="1_semantic_topology" src="https://github.com/user-attachments/assets/7a444274-bbf3-434c-9ae6-0096754901d3" />
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SACRSNv31 WORKING
+
+Ep 0000 | Loss: 2.7631 | Steps: 7.36 | Usage(PPX): 17.5 | LR: 0.001000
+Ep 0050 | Loss: 3.6697 | Steps: 7.87 | Usage(PPX): 14.0 | LR: 0.000999
+Ep 0100 | Loss: 5.0740 | Steps: 6.86 | Usage(PPX): 11.3 | LR: 0.000997
+Ep 0150 | Loss: 5.4830 | Steps: 7.74 | Usage(PPX): 15.2 | LR: 0.000994
+Ep 0200 | Loss: 7.9643 | Steps: 5.25 | Usage(PPX): 9.4 | LR: 0.000989
+Ep 0250 | Loss: 5.4902 | Steps: 7.62 | Usage(PPX): 14.9 | LR: 0.000983
+Ep 0300 | Loss: 5.7312 | Steps: 7.96 | Usage(PPX): 15.2 | LR: 0.000976
+Ep 0350 | Loss: 4.5355 | Steps: 7.08 | Usage(PPX): 5.4 | LR: 0.000967
+Ep 0400 | Loss: 2.8297 | Steps: 5.26 | Usage(PPX): 5.7 | LR: 0.000957
+Ep 0450 | Loss: 1.9423 | Steps: 3.93 | Usage(PPX): 6.9 | LR: 0.000946
+Ep 0500 | Loss: 2.9725 | Steps: 3.18 | Usage(PPX): 2.4 | LR: 0.000933
+Ep 0550 | Loss: 2.1027 | Steps: 2.81 | Usage(PPX): 1.4 | LR: 0.000920
+Ep 0600 | Loss: 1.9268 | Steps: 2.66 | Usage(PPX): 1.5 | LR: 0.000905
+Ep 0650 | Loss: 1.9058 | Steps: 1.87 | Usage(PPX): 1.7 | LR: 0.000889
+Ep 0700 | Loss: 0.9537 | Steps: 1.73 | Usage(PPX): 1.7 | LR: 0.000873
+Ep 0750 | Loss: 1.4402 | Steps: 1.76 | Usage(PPX): 1.7 | LR: 0.000855
+Ep 0800 | Loss: 0.9307 | Steps: 1.67 | Usage(PPX): 1.5 | LR: 0.000836
+Ep 0850 | Loss: 0.6387 | Steps: 1.60 | Usage(PPX): 1.8 | LR: 0.000816
+Ep 0900 | Loss: 0.8000 | Steps: 1.68 | Usage(PPX): 1.6 | LR: 0.000796
+Ep 0950 | Loss: 0.7005 | Steps: 1.66 | Usage(PPX): 1.6 | LR: 0.000774
+Ep 1000 | Loss: 0.4286 | Steps: 1.57 | Usage(PPX): 1.6 | LR: 0.000752
+Ep 1050 | Loss: 0.4143 | Steps: 1.49 | Usage(PPX): 1.8 | LR: 0.000729
+Ep 1100 | Loss: 0.3390 | Steps: 1.44 | Usage(PPX): 1.8 | LR: 0.000706
+Ep 1150 | Loss: 0.2309 | Steps: 1.59 | Usage(PPX): 2.1 | LR: 0.000682
+Ep 1200 | Loss: 0.2206 | Steps: 1.56 | Usage(PPX): 1.9 | LR: 0.000657
+Ep 1250 | Loss: 0.3842 | Steps: 1.55 | Usage(PPX): 1.8 | LR: 0.000633
+Ep 1300 | Loss: 0.2878 | Steps: 1.50 | Usage(PPX): 1.4 | LR: 0.000607
+Ep 1350 | Loss: 0.2877 | Steps: 1.48 | Usage(PPX): 2.0 | LR: 0.000582
+Ep 1400 | Loss: 0.1104 | Steps: 1.49 | Usage(PPX): 1.6 | LR: 0.000556
+Ep 1450 | Loss: 0.2881 | Steps: 1.46 | Usage(PPX): 1.8 | LR: 0.000530
+Ep 1500 | Loss: 0.3255 | Steps: 1.50 | Usage(PPX): 1.7 | LR: 0.000504
+Ep 1550 | Loss: 0.2249 | Steps: 1.43 | Usage(PPX): 1.6 | LR: 0.000479
+Ep 1600 | Loss: 0.1282 | Steps: 1.45 | Usage(PPX): 1.7 | LR: 0.000453
+Ep 1650 | Loss: -0.1724 | Steps: 1.43 | Usage(PPX): 2.3 | LR: 0.000427
+
+--- PERFECT CONVERGENCE ---
+
+--- Saving Model to crsn_omni_model.pth ---
+Saved.
+
+--- Generating Diagnostics & Images ---
+Saved 1_semantic_topology.png
+Running Inference Scan...
+Generated: True, without falsehood, certain and most true. 
+That which is above is like to that which is below is like to that which is above.
+The father of all perfection in the father of all perfection in the w
+
+
+--- Extracting Explicit Logic Rules ---
+
+FROM   | TO     | COUNT  | AVG STEPS 
+---------------------------------------------
+S_22   -> S_22   | 96     | 1.42
+S_19   -> S_19   | 78     | 1.46
+S_28   -> S_28   | 24     | 1.29
+S_19   -> S_22   | 21     | 1.10
+S_22   -> S_19   | 20     | 1.45
+S_19   -> S_28   | 11     | 1.64
+S_28   -> S_19   | 11     | 1.45
+S_29   -> S_29   | 8      | 1.75
+
+--- 🌙 Dream Mode (Pure Symbolic Walk) ---
+Dream Output: T
+
+
+--- 🚨 Anomaly Detection Test ---
+Input: 'True without falsehood certain and most banana'
+Saved 5_anomaly_detection.png
+
+<img width="1000" height="400" alt="5_anomaly_detection" src="https://github.com/user-attachments/assets/2be626a2-24a4-41a9-84d7-fbaf257e58ae" />
+<img width="800" height="800" alt="4_phase_plot" src="https://github.com/user-attachments/assets/f43d3f4d-6551-4c08-8285-fee87e548571" />
+<img width="1200" height="400" alt="3_act_profile" src="https://github.com/user-attachments/assets/99d16b9a-6815-4e5d-af33-345758abdad0" />
+<img width="1200" height="400" alt="2_stack_mri" src="https://github.com/user-attachments/assets/940510a2-1d2f-404e-9c57-11ae2563a33d" />
+<img width="2100" height="2100" alt="1_semantic_topology" src="https://github.com/user-attachments/assets/312e5a0e-7839-4a71-81b2-5af131b6bc9b" />
+
