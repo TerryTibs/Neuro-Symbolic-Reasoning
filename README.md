@@ -1296,3 +1296,72 @@ Saved 5_anomaly_detection.png
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SACRSNv27 Commitment cost 1.0
+
+Ep 0000 | Loss: 4.5858 | Steps: 7.72 | Usage(PPX): 1.0 | LR: 0.000109
+Ep 0050 | Loss: 4.1800 | Steps: 6.85 | Usage(PPX): 1.0 | LR: 0.000559
+Ep 0100 | Loss: 4.5679 | Steps: 7.27 | Usage(PPX): 1.0 | LR: 0.001000
+Ep 0150 | Loss: 5.4483 | Steps: 7.73 | Usage(PPX): 1.0 | LR: 0.000999
+Ep 0200 | Loss: 3.0782 | Steps: 6.05 | Usage(PPX): 1.0 | LR: 0.000997
+Ep 0250 | Loss: 1.9646 | Steps: 2.60 | Usage(PPX): 1.0 | LR: 0.000993
+Ep 0300 | Loss: 1.5053 | Steps: 1.94 | Usage(PPX): 1.0 | LR: 0.000988
+Ep 0350 | Loss: 1.2581 | Steps: 1.88 | Usage(PPX): 1.0 | LR: 0.000982
+Ep 0400 | Loss: 1.3392 | Steps: 1.80 | Usage(PPX): 1.0 | LR: 0.000974
+Ep 0450 | Loss: 1.3562 | Steps: 1.80 | Usage(PPX): 1.0 | LR: 0.000965
+Ep 0500 | Loss: 1.3086 | Steps: 1.68 | Usage(PPX): 1.0 | LR: 0.000954
+Ep 0550 | Loss: 1.4765 | Steps: 1.68 | Usage(PPX): 1.0 | LR: 0.000942
+Ep 0600 | Loss: 1.8346 | Steps: 1.83 | Usage(PPX): 1.0 | LR: 0.000929
+Ep 0650 | Loss: 1.1334 | Steps: 1.80 | Usage(PPX): 1.0 | LR: 0.000914
+Ep 0700 | Loss: 1.3159 | Steps: 1.77 | Usage(PPX): 1.0 | LR: 0.000899
+Ep 0750 | Loss: 1.5498 | Steps: 1.72 | Usage(PPX): 1.0 | LR: 0.000882
+Ep 0800 | Loss: 1.3183 | Steps: 1.83 | Usage(PPX): 1.0 | LR: 0.000864
+Ep 0850 | Loss: 1.4099 | Steps: 1.73 | Usage(PPX): 1.0 | LR: 0.000845
+Ep 0900 | Loss: 1.8833 | Steps: 1.82 | Usage(PPX): 1.0 | LR: 0.000825
+Ep 0950 | Loss: 2.0992 | Steps: 1.85 | Usage(PPX): 1.0 | LR: 0.000804
+Ep 1000 | Loss: 1.3922 | Steps: 1.65 | Usage(PPX): 1.0 | LR: 0.000782
+Ep 1050 | Loss: 1.4219 | Steps: 1.74 | Usage(PPX): 1.0 | LR: 0.000760
+Ep 1100 | Loss: 1.2854 | Steps: 1.83 | Usage(PPX): 1.0 | LR: 0.000736
+Ep 1150 | Loss: 1.5022 | Steps: 1.79 | Usage(PPX): 1.0 | LR: 0.000712
+Ep 1200 | Loss: 1.0658 | Steps: 1.81 | Usage(PPX): 1.0 | LR: 0.000688
+Ep 1250 | Loss: 1.9628 | Steps: 1.89 | Usage(PPX): 1.0 | LR: 0.000663
+Ep 1300 | Loss: 1.1106 | Steps: 1.85 | Usage(PPX): 1.0 | LR: 0.000637
+Ep 1350 | Loss: 1.4532 | Steps: 1.86 | Usage(PPX): 1.0 | LR: 0.000611
+Ep 1400 | Loss: 1.0772 | Steps: 1.85 | Usage(PPX): 1.0 | LR: 0.000585
+Ep 1450 | Loss: 1.1630 | Steps: 1.82 | Usage(PPX): 1.0 | LR: 0.000558
+Ep 1500 | Loss: 1.1267 | Steps: 1.92 | Usage(PPX): 1.0 | LR: 0.000531
+Early stopping due to no improvement
+
+--- Saving Model to crsn_omni_model.pth ---
+Saved.
+
+--- Generating Diagnostics & Images ---
+Saved 1_semantic_topology.png
+Running Inference Scan...
+Generated: True. 
+Therehworce which is fortain and that which is fortain at which is entire is entire is entire is for power is forthert which is fort which is forthert which is entire is entire is entire is hert
+
+
+--- Extracting Explicit Logic Rules ---
+
+FROM   | TO     | COUNT  | AVG STEPS 
+---------------------------------------------
+S_23   -> S_23   | 272    | 1.94
+
+--- 🌙 Dream Mode (Pure Symbolic Walk) ---
+Dream Output: Ti l riiid
+knwpribals tsesie trtp ahdbdho  vodobaihn
+  do eve fwtfirhpd
+ewp
+ltrs   dpbel ik hkd
+walkd
+
+
+--- 🚨 Anomaly Detection Test ---
+Input: 'True without falsehood certain and most banana'
+Saved 5_anomaly_detection.png
+
+<img width="1000" height="400" alt="5_anomaly_detection" src="https://github.com/user-attachments/assets/3dce1d8b-a22b-4eb0-b023-76d9357ac380" />
+<img width="800" height="800" alt="4_phase_plot" src="https://github.com/user-attachments/assets/4615fa01-9264-4046-a75c-bb2ff325654c" />
+<img width="1200" height="400" alt="3_act_profile" src="https://github.com/user-attachments/assets/7d3a393f-0586-4f92-8329-c45ad0c520ab" />
+<img width="1200" height="400" alt="2_stack_mri" src="https://github.com/user-attachments/assets/d8043775-ee57-45bb-8e5f-66024cc3137c" />
+<img width="2100" height="2100" alt="1_semantic_topology" src="https://github.com/user-attachments/assets/a888d12f-dcba-4965-90b9-6be13ac096df" />
+
