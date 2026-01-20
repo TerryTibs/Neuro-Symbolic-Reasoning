@@ -2,6 +2,8 @@
 
 **SACRSN BEFORE FINE TUNING**
 
+**Tokenizing per word rather than per character speeds up traing for SACRSNV31 x3**
+
 To scale it up it will need Holographic Associative Memory
 
 Needed to make it work better.
