@@ -1,0 +1,190 @@
+Hardware: cuda (NVIDIA GeForce RTX 5060 Ti, 15.9 GB VRAM) | BF16=True | TF32=True
+Loaded corpus from 'data.txt' (3,331,655 chars)
+=== Auto-Configuration Summary (SACRSN v41) ===
+Corpus       : 3,331,655 chars (86 base chars, min_char_freq>=5) | Train=1,350,429 toks | Val=9,944 toks
+Tokenizer    : Subword BPE | Vocab=956 (Used=946, ZipfPPX=352.8) | Merges=874/2048 | Comp=2.45x
+Architecture : Dim=240 (2D=480) | Codebook=2048 (~2.16x used vocab, TargetPPX=[300..635]) | Stack=24 | MaxDepth=4
+Schedule     : Streams=256x64 (Cap=16,384, TBPTT=8) | MaxEpochs=1000 (MinReady=80, ~12.1x corpus passes)
+InitHyper    : LR=0.00077 (Plateau) | WD=1.0e-04 | AutoClipInit=1.94 | EthW=0.162 | InitTemp=0.181
+Sample tokens: ['First', '·C', 'it', 'iz', 'en', ':', '\\n', 'Be', 'fore', '·we', '·pro', 'ce']
+===============================================
+--- Training SACRSN v41 (BF16=True | FusedAdamW=True | TBPTT=8) ---
+Ep 0000 | Loss:9.527 (Pred:6.910 VQ:2.109 Div:0.575 Eth:7.505) | Acc:  0.1% TokPPX:1002.57 | Val:6.908 ( 0.1% PPX:1000.6) | 3,131 tok/s (5.2s)
+        | ACT:3.13 Stk:11.6(32/34/34) | Syms:2045/2048 SymPPX:1569.5 Top1: 0.5% Loop: 0.3% Rev:  0 Edges:   0 | Grad:2.85 Skips:0 LR:0.00005
+        | Tune[Ready:  0% DivW:1.13 Temp:0.11 Cmt:0.26 Alpha:0.64 PndP:0.00021 Clip:2.00(100%)]
+   Sample: 'FirstD L anEP ne H war purCLtisull fairreal sclandimthat des wat fauthAGither0 friends scastervS forth knowD'
+Ep 0025 | Loss:7.803 (Pred:5.266 VQ:1.194 Div:1.261 Eth:7.453) | Acc: 12.0% TokPPX:193.61 | Val:6.143 ( 6.0% PPX:465.6) | 4,164 tok/s (98.4s)
+        | ACT:1.97 Stk:11.3(97/ 2/ 1) | Syms:1028/2048 SymPPX:162.8 Top1: 9.4% Loop:15.5% Rev:2690 Edges:   0 | Grad:1.88 Skips:8 LR:0.00077
+        | Tune[Ready:  9% DivW:2.50 Temp:0.35 Cmt:0.31 Alpha:0.76 PndP:0.00034 Clip:2.00(29%)]
+Ep 0050 | Loss:7.584 (Pred:4.776 VQ:0.745 Div:1.237 Eth:6.676) | Acc: 10.8% TokPPX:118.64 | Val:5.366 ( 6.7% PPX:214.0) | 4,475 tok/s (91.5s)
+        | ACT:1.25 Stk:11.1(98/ 1/ 1) | Syms:1370/2048 SymPPX:454.6 Top1: 4.5% Loop: 4.8% Rev:1029 Edges:   0 | Grad:0.83 Skips:0 LR:0.00077
+        | Tune[Ready: 82% DivW:2.50 Temp:0.43 Cmt:0.40 Alpha:0.67 PndP:0.00023 Clip:1.74( 2%)]
+Ep 0075 | Loss:6.971 (Pred:4.272 VQ:0.791 Div:1.219 Eth:6.251) | Acc: 17.7% TokPPX:71.70 | Val:4.749 (12.7% PPX:115.5) | 4,659 tok/s (87.9s)
+        | ACT:1.94 Stk:11.3(98/ 1/ 0) | Syms:1511/2048 SymPPX:441.8 Top1: 5.7% Loop: 8.9% Rev:765 Edges:   0 | Grad:0.94 Skips:0 LR:0.00077
+        | Tune[Ready: 73% DivW:2.50 Temp:0.37 Cmt:0.40 Alpha:0.64 PndP:0.00023 Clip:2.00( 0%)]
+Ep 0100 | Loss:6.989 (Pred:4.284 VQ:0.735 Div:1.204 Eth:5.555) | Acc: 17.2% TokPPX:72.53 | Val:4.889 (10.7% PPX:132.8) | 4,662 tok/s (87.9s)
+        | ACT:1.97 Stk:11.0(81/18/ 1) | Syms:1402/2048 SymPPX:392.4 Top1: 5.4% Loop: 4.0% Rev:445 Edges:  12 | Grad:1.23 Skips:0 LR:0.00077
+        | Tune[Ready: 90% DivW:2.50 Temp:0.36 Cmt:0.40 Alpha:0.68 PndP:0.00023 Clip:2.00( 0%)]
+   Sample: 'First IVI:\nI am IV:\nI am IV:\nI am not to the boy,\nI am IV:\nI'
+Ep 0125 | Loss:6.463 (Pred:3.890 VQ:0.633 Div:1.200 Eth:5.112) | Acc: 23.4% TokPPX:48.93 | Val:4.776 (11.3% PPX:118.6) | 4,630 tok/s (88.5s)
+        | ACT:1.98 Stk:10.9(70/30/ 0) | Syms:1347/2048 SymPPX:361.6 Top1: 5.5% Loop: 2.2% Rev:689 Edges:  44 | Grad:0.86 Skips:0 LR:0.00077
+        | Tune[Ready: 85% DivW:2.50 Temp:0.39 Cmt:0.40 Alpha:0.70 PndP:0.00023 Clip:1.78( 2%)]
+Ep 0150 | Loss:6.543 (Pred:3.977 VQ:0.749 Div:1.191 Eth:5.224) | Acc: 19.4% TokPPX:53.36 | Val:4.335 (16.6% PPX: 76.3) | 4,665 tok/s (87.8s)
+        | ACT:2.00 Stk:10.9(71/29/ 0) | Syms:1387/2048 SymPPX:471.0 Top1: 2.1% Loop: 2.1% Rev:  0 Edges:  72 | Grad:1.16 Skips:0 LR:0.00077
+        | Tune[Ready: 80% DivW:2.50 Temp:0.34 Cmt:0.40 Alpha:0.66 PndP:0.00023 Clip:2.00( 0%)]
+Ep 0175 | Loss:6.675 (Pred:4.086 VQ:0.666 Div:1.187 Eth:4.778) | Acc: 20.7% TokPPX:59.51 | Val:4.678 (12.1% PPX:107.5) | 4,628 tok/s (88.5s)
+        | ACT:2.03 Stk:11.1(60/38/ 2) | Syms:1432/2048 SymPPX:438.6 Top1: 3.2% Loop: 2.9% Rev:311 Edges: 126 | Grad:1.35 Skips:0 LR:0.00077
+        | Tune[Ready: 99% DivW:2.50 Temp:0.36 Cmt:0.40 Alpha:0.71 PndP:0.00023 Clip:2.00( 1%)]
+Ep 0200 | Loss:6.547 (Pred:3.981 VQ:0.682 Div:1.176 Eth:4.559) | Acc: 22.9% TokPPX:53.59 | Val:4.607 (12.7% PPX:100.2) | 4,646 tok/s (88.2s)
+        | ACT:1.99 Stk:11.7(47/50/ 3) | Syms:1440/2048 SymPPX:440.4 Top1: 3.7% Loop: 5.3% Rev:  0 Edges: 189 | Grad:1.08 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:2.50 Temp:0.35 Cmt:0.40 Alpha:0.72 PndP:0.00023 Clip:2.00( 9%)]
+   Sample: 'First VINCENTIO, \nAnd, \nAnd, \nAnd, \nAnd, \nAnd, \nAnd, \nAnd, '
+Ep 0225 | Loss:6.730 (Pred:4.120 VQ:0.671 Div:1.182 Eth:4.979) | Acc: 17.1% TokPPX:61.58 | Val:4.534 (14.3% PPX: 93.2) | 4,621 tok/s (88.6s)
+        | ACT:1.99 Stk:10.9(61/37/ 2) | Syms:1534/2048 SymPPX:584.4 Top1: 2.1% Loop: 2.9% Rev:346 Edges: 230 | Grad:1.28 Skips:0 LR:0.00077
+        | Tune[Ready: 98% DivW:2.50 Temp:0.35 Cmt:0.40 Alpha:0.72 PndP:0.00023 Clip:2.00( 2%)]
+Ep 0250 | Loss:6.438 (Pred:3.839 VQ:0.678 Div:1.168 Eth:4.816) | Acc: 23.4% TokPPX:46.49 | Val:4.230 (18.4% PPX: 68.7) | 4,652 tok/s (88.0s)
+        | ACT:2.01 Stk:11.0(68/30/ 2) | Syms:1459/2048 SymPPX:525.5 Top1: 2.1% Loop: 2.4% Rev:  0 Edges: 288 | Grad:1.45 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:2.50 Temp:0.33 Cmt:0.40 Alpha:0.74 PndP:0.00023 Clip:2.00(10%)]
+Ep 0275 | Loss:6.518 (Pred:3.961 VQ:0.667 Div:1.171 Eth:4.622) | Acc: 19.8% TokPPX:52.50 | Val:4.563 (13.3% PPX: 95.8) | 4,647 tok/s (88.2s)
+        | ACT:2.00 Stk:11.9(42/54/ 5) | Syms:1506/2048 SymPPX:564.8 Top1: 1.8% Loop: 2.8% Rev:308 Edges: 332 | Grad:1.21 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:2.50 Temp:0.35 Cmt:0.40 Alpha:0.75 PndP:0.00023 Clip:2.00( 9%)]
+Ep 0300 | Loss:6.530 (Pred:4.003 VQ:0.622 Div:1.162 Eth:4.748) | Acc: 19.2% TokPPX:54.76 | Val:4.540 (12.2% PPX: 93.7) | 4,641 tok/s (88.3s)
+        | ACT:2.00 Stk:10.8(59/38/ 3) | Syms:1518/2048 SymPPX:604.9 Top1: 2.2% Loop: 2.5% Rev:  0 Edges: 370 | Grad:1.83 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:2.50 Temp:0.33 Cmt:0.40 Alpha:0.76 PndP:0.00023 Clip:2.00( 4%)]
+   Sample: "First Aeeteson's son of the\nshould, and the\nshould, and the maiden of the\nshould, and"
+Ep 0325 | Loss:5.910 (Pred:3.820 VQ:0.565 Div:0.808 Eth:4.569) | Acc: 21.5% TokPPX:45.59 | Val:3.927 (17.7% PPX: 50.8) | 4,620 tok/s (88.7s)
+        | ACT:2.01 Stk:10.8(64/34/ 2) | Syms:1502/2048 SymPPX:624.3 Top1: 1.7% Loop: 3.4% Rev:  0 Edges: 429 | Grad:1.30 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:1.72 Temp:0.35 Cmt:0.40 Alpha:0.76 PndP:0.00023 Clip:2.00( 6%)]
+Ep 0350 | Loss:5.734 (Pred:3.796 VQ:0.556 Div:0.666 Eth:4.558) | Acc: 23.7% TokPPX:44.52 | Val:4.398 (13.1% PPX: 81.3) | 4,633 tok/s (88.4s)
+        | ACT:2.00 Stk:10.8(65/33/ 1) | Syms:1535/2048 SymPPX:623.0 Top1: 1.5% Loop: 2.4% Rev:  0 Edges: 479 | Grad:1.43 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:1.43 Temp:0.35 Cmt:0.40 Alpha:0.77 PndP:0.00023 Clip:2.00( 4%)]
+Ep 0375 | Loss:5.732 (Pred:3.901 VQ:0.544 Div:0.517 Eth:4.888) | Acc: 19.7% TokPPX:49.44 | Val:4.360 (14.6% PPX: 78.3) | 4,653 tok/s (88.0s)
+        | ACT:2.00 Stk:10.7(63/36/ 1) | Syms:1531/2048 SymPPX:660.3 Top1: 1.7% Loop: 1.9% Rev:  0 Edges: 512 | Grad:1.26 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:1.05 Temp:0.34 Cmt:0.40 Alpha:0.78 PndP:0.00023 Clip:2.00( 6%)]
+Ep 0400 | Loss:5.383 (Pred:3.827 VQ:0.620 Div:0.181 Eth:4.795) | Acc: 21.4% TokPPX:45.92 | Val:4.050 (17.2% PPX: 57.4) | 4,648 tok/s (88.1s)
+        | ACT:2.00 Stk:10.8(64/35/ 1) | Syms:1461/2048 SymPPX:631.0 Top1: 1.8% Loop: 1.9% Rev:  0 Edges: 541 | Grad:1.67 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:0.39 Temp:0.32 Cmt:0.40 Alpha:0.74 PndP:0.00023 Clip:2.00(20%)]
+   Sample: 'First MANTHENES And I will not beaten to the\n\nDEMOSTHENES And! I will be a brague.'
+Ep 0425 | Loss:5.213 (Pred:3.823 VQ:0.597 Div:0.097 Eth:4.406) | Acc: 23.3% TokPPX:45.76 | Val:4.355 (14.1% PPX: 77.9) | 4,620 tok/s (88.7s)
+        | ACT:2.01 Stk:10.9(71/27/ 2) | Syms:1514/2048 SymPPX:633.1 Top1: 2.1% Loop: 1.7% Rev:  0 Edges: 571 | Grad:1.68 Skips:0 LR:0.00077
+        | Tune[Ready:100% DivW:0.21 Temp:0.32 Cmt:0.40 Alpha:0.76 PndP:0.00023 Clip:2.00(12%)]
+Ep 0450 | Loss:4.937 (Pred:3.642 VQ:0.548 Div:0.071 Eth:4.284) | Acc: 25.9% TokPPX:38.16 | Val:4.365 (14.9% PPX: 78.7) | 4,656 tok/s (88.0s)
+        | ACT:2.00 Stk:10.8(66/32/ 3) | Syms:1510/2048 SymPPX:606.8 Top1: 2.6% Loop: 2.8% Rev:  0 Edges: 598 | Grad:1.27 Skips:0 LR:0.00039
+        | Tune[Ready:100% DivW:0.15 Temp:0.32 Cmt:0.40 Alpha:0.77 PndP:0.00023 Clip:2.00(10%)]
+Ep 0475 | Loss:5.073 (Pred:3.775 VQ:0.565 Div:0.023 Eth:4.495) | Acc: 21.7% TokPPX:43.59 | Val:4.007 (17.8% PPX: 55.0) | 4,660 tok/s (87.9s)
+        | ACT:2.01 Stk:10.9(63/34/ 3) | Syms:1486/2048 SymPPX:669.5 Top1: 1.7% Loop: 1.9% Rev:  0 Edges: 614 | Grad:1.60 Skips:0 LR:0.00039
+        | Tune[Ready:100% DivW:0.05 Temp:0.31 Cmt:0.40 Alpha:0.78 PndP:0.00023 Clip:2.00( 8%)]
+Ep 0500 | Loss:5.115 (Pred:3.778 VQ:0.591 Div:0.023 Eth:4.563) | Acc: 23.7% TokPPX:43.74 | Val:4.097 (17.7% PPX: 60.1) | 4,653 tok/s (88.0s)
+        | ACT:2.06 Stk:10.8(65/32/ 2) | Syms:1505/2048 SymPPX:642.5 Top1: 1.9% Loop: 2.4% Rev:  0 Edges: 622 | Grad:1.57 Skips:0 LR:0.00039
+        | Tune[Ready:100% DivW:0.05 Temp:0.31 Cmt:0.40 Alpha:0.77 PndP:0.00023 Clip:2.00(14%)]
+   Sample: 'Firsts of the king,\nAnd, my lord, and the king of the king of the king of the king of the king of the king of the king of'
+Ep 0525 | Loss:5.145 (Pred:3.849 VQ:0.552 Div:0.023 Eth:4.540) | Acc: 22.9% TokPPX:46.95 | Val:4.156 (16.0% PPX: 63.8) | 4,630 tok/s (88.5s)
+        | ACT:2.00 Stk:10.8(66/33/ 2) | Syms:1502/2048 SymPPX:645.6 Top1: 2.4% Loop: 1.2% Rev:  0 Edges: 635 | Grad:1.57 Skips:0 LR:0.00039
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.78 PndP:0.00023 Clip:2.00(13%)]
+Ep 0550 | Loss:5.221 (Pred:3.950 VQ:0.530 Div:0.023 Eth:4.525) | Acc: 19.1% TokPPX:51.93 | Val:4.099 (19.0% PPX: 60.3) | 4,653 tok/s (88.0s)
+        | ACT:2.01 Stk:10.8(61/37/ 2) | Syms:1448/2048 SymPPX:713.5 Top1: 1.7% Loop: 2.5% Rev:  0 Edges: 654 | Grad:1.76 Skips:0 LR:0.00039
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00( 9%)]
+Ep 0575 | Loss:4.883 (Pred:3.544 VQ:0.590 Div:0.023 Eth:4.564) | Acc: 26.6% TokPPX:34.60 | Val:4.027 (17.9% PPX: 56.1) | 4,647 tok/s (88.1s)
+        | ACT:2.04 Stk:10.9(67/29/ 3) | Syms:1502/2048 SymPPX:642.2 Top1: 2.4% Loop: 1.7% Rev:  0 Edges: 656 | Grad:1.74 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.77 PndP:0.00023 Clip:2.00(18%)]
+Ep 0600 | Loss:5.221 (Pred:3.917 VQ:0.554 Div:0.023 Eth:4.572) | Acc: 19.9% TokPPX:50.22 | Val:3.981 (17.9% PPX: 53.6) | 4,657 tok/s (88.0s)
+        | ACT:2.04 Stk:10.8(64/34/ 2) | Syms:1443/2048 SymPPX:642.9 Top1: 1.7% Loop: 2.2% Rev:  0 Edges: 669 | Grad:1.69 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.77 PndP:0.00023 Clip:2.00(18%)]
+   Sample: 'Firstts, and the\npution of the world, and the body, and the\npution of the world, and the'
+Ep 0625 | Loss:5.177 (Pred:3.938 VQ:0.511 Div:0.023 Eth:4.436) | Acc: 19.9% TokPPX:51.30 | Val:4.038 (17.3% PPX: 56.7) | 4,628 tok/s (88.5s)
+        | ACT:2.00 Stk:10.7(57/42/ 2) | Syms:1458/2048 SymPPX:668.6 Top1: 1.8% Loop: 1.9% Rev:  0 Edges: 672 | Grad:1.39 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.31 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00( 9%)]
+Ep 0650 | Loss:4.716 (Pred:3.431 VQ:0.567 Div:0.023 Eth:4.356) | Acc: 28.3% TokPPX:30.89 | Val:3.819 (21.0% PPX: 45.6) | 4,638 tok/s (88.3s)
+        | ACT:1.98 Stk:10.9(66/32/ 2) | Syms:1498/2048 SymPPX:661.8 Top1: 1.2% Loop: 4.3% Rev:  0 Edges: 689 | Grad:1.60 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.78 PndP:0.00023 Clip:2.00(12%)]
+Ep 0675 | Loss:4.733 (Pred:3.459 VQ:0.552 Div:0.023 Eth:4.372) | Acc: 28.9% TokPPX:31.80 | Val:3.997 (18.4% PPX: 54.4) | 4,649 tok/s (88.1s)
+        | ACT:2.00 Stk:10.9(74/24/ 2) | Syms:1469/2048 SymPPX:647.8 Top1: 1.7% Loop: 1.6% Rev:  0 Edges: 699 | Grad:1.63 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.78 PndP:0.00023 Clip:2.00(20%)]
+Ep 0700 | Loss:5.140 (Pred:3.892 VQ:0.515 Div:0.023 Eth:4.441) | Acc: 19.7% TokPPX:49.00 | Val:3.958 (18.8% PPX: 52.4) | 4,648 tok/s (88.1s)
+        | ACT:1.99 Stk:10.9(65/34/ 1) | Syms:1497/2048 SymPPX:694.5 Top1: 1.9% Loop: 1.9% Rev:  0 Edges: 711 | Grad:1.65 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(14%)]
+   Sample: 'Firstting)\n\nThe Fox of the forest thou wilt thou wilt thou wilt thou wilt thou wilt thou wilt thou'
+Ep 0725 | Loss:4.849 (Pred:3.617 VQ:0.543 Div:0.023 Eth:4.162) | Acc: 24.8% TokPPX:37.22 | Val:3.836 (22.2% PPX: 46.3) | 4,652 tok/s (88.1s)
+        | ACT:1.99 Stk:10.9(66/32/ 2) | Syms:1479/2048 SymPPX:668.2 Top1: 1.8% Loop: 3.6% Rev:  0 Edges: 710 | Grad:1.89 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.79 PndP:0.00023 Clip:2.00(14%)]
+Ep 0750 | Loss:4.709 (Pred:3.457 VQ:0.542 Div:0.023 Eth:4.277) | Acc: 30.2% TokPPX:31.74 | Val:4.045 (18.8% PPX: 57.1) | 4,649 tok/s (88.1s)
+        | ACT:1.99 Stk:10.9(73/25/ 2) | Syms:1501/2048 SymPPX:665.1 Top1: 1.4% Loop: 2.1% Rev:  0 Edges: 716 | Grad:1.60 Skips:0 LR:0.00019
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.79 PndP:0.00023 Clip:2.00(24%)]
+Ep 0775 | Loss:4.907 (Pred:3.676 VQ:0.525 Div:0.023 Eth:4.261) | Acc: 24.9% TokPPX:39.47 | Val:4.050 (18.6% PPX: 57.4) | 4,638 tok/s (88.3s)
+        | ACT:1.98 Stk:10.8(67/32/ 1) | Syms:1504/2048 SymPPX:623.2 Top1: 2.8% Loop: 1.7% Rev:  0 Edges: 725 | Grad:1.55 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(24%)]
+Ep 0800 | Loss:4.896 (Pred:3.671 VQ:0.521 Div:0.023 Eth:4.235) | Acc: 23.8% TokPPX:39.29 | Val:3.873 (21.2% PPX: 48.1) | 4,657 tok/s (88.0s)
+        | ACT:2.00 Stk:10.8(63/36/ 1) | Syms:1506/2048 SymPPX:695.5 Top1: 1.8% Loop: 3.5% Rev:  0 Edges: 737 | Grad:1.85 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.29 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(16%)]
+   Sample: 'First\nthey, and the birds, and the birds, and the birds,\nand the birds, and the bird'
+Ep 0825 | Loss:4.842 (Pred:3.606 VQ:0.530 Div:0.023 Eth:4.248) | Acc: 26.7% TokPPX:36.80 | Val:3.890 (21.2% PPX: 48.9) | 4,631 tok/s (88.4s)
+        | ACT:2.00 Stk:10.9(71/27/ 2) | Syms:1532/2048 SymPPX:688.4 Top1: 1.3% Loop: 1.4% Rev:  0 Edges: 740 | Grad:2.04 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(28%)]
+Ep 0850 | Loss:4.997 (Pred:3.808 VQ:0.497 Div:0.023 Eth:4.150) | Acc: 22.2% TokPPX:45.06 | Val:3.902 (21.6% PPX: 49.5) | 4,658 tok/s (87.9s)
+        | ACT:2.00 Stk:10.8(63/35/ 2) | Syms:1502/2048 SymPPX:657.9 Top1: 2.7% Loop: 3.1% Rev:  0 Edges: 745 | Grad:1.98 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.29 Cmt:0.40 Alpha:0.81 PndP:0.00023 Clip:2.00(22%)]
+Ep 0875 | Loss:5.163 (Pred:3.937 VQ:0.497 Div:0.023 Eth:4.378) | Acc: 19.3% TokPPX:51.24 | Val:3.911 (20.7% PPX: 50.0) | 4,647 tok/s (88.1s)
+        | ACT:2.01 Stk:11.0(59/40/ 1) | Syms:1472/2048 SymPPX:736.3 Top1: 1.8% Loop: 1.6% Rev:  0 Edges: 765 | Grad:1.82 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.81 PndP:0.00023 Clip:2.00(19%)]
+Ep 0900 | Loss:4.768 (Pred:3.540 VQ:0.523 Div:0.023 Eth:4.219) | Acc: 28.2% TokPPX:34.47 | Val:3.817 (21.6% PPX: 45.4) | 4,650 tok/s (88.1s)
+        | ACT:1.99 Stk:11.0(74/24/ 1) | Syms:1500/2048 SymPPX:680.7 Top1: 1.7% Loop: 1.8% Rev:  0 Edges: 763 | Grad:2.44 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(34%)]
+   Sample: 'First\nshould, and the birds,\nAnd, I am going to the\nfrom the matters, and the\nsh'
+Ep 0925 | Loss:5.185 (Pred:3.951 VQ:0.507 Div:0.023 Eth:4.348) | Acc: 20.2% TokPPX:51.99 | Val:3.931 (19.8% PPX: 51.0) | 4,631 tok/s (88.5s)
+        | ACT:1.98 Stk:10.9(68/31/ 1) | Syms:1456/2048 SymPPX:673.1 Top1: 2.0% Loop: 2.8% Rev:  0 Edges: 767 | Grad:2.12 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(36%)]
+Ep 0950 | Loss:5.187 (Pred:3.954 VQ:0.498 Div:0.023 Eth:4.394) | Acc: 19.0% TokPPX:52.15 | Val:3.921 (20.6% PPX: 50.4) | 4,643 tok/s (88.2s)
+        | ACT:1.98 Stk:10.8(63/36/ 1) | Syms:1463/2048 SymPPX:720.3 Top1: 1.7% Loop: 1.8% Rev:  0 Edges: 779 | Grad:1.76 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.81 PndP:0.00023 Clip:2.00(23%)]
+Ep 0975 | Loss:4.777 (Pred:3.507 VQ:0.544 Div:0.023 Eth:4.330) | Acc: 27.1% TokPPX:33.36 | Val:3.780 (23.2% PPX: 43.8) | 4,635 tok/s (88.4s)
+        | ACT:1.98 Stk:10.9(66/33/ 1) | Syms:1496/2048 SymPPX:699.3 Top1: 1.8% Loop: 2.6% Rev:  0 Edges: 787 | Grad:1.69 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.29 Cmt:0.40 Alpha:0.79 PndP:0.00023 Clip:2.00(33%)]
+Ep 0999 | Loss:4.746 (Pred:3.532 VQ:0.520 Div:0.023 Eth:4.130) | Acc: 28.2% TokPPX:34.20 | Val:3.906 (21.9% PPX: 49.7) | 4,641 tok/s (84.7s)
+        | ACT:1.99 Stk:10.9(74/24/ 2) | Syms:1484/2048 SymPPX:626.6 Top1: 1.8% Loop: 1.6% Rev:  0 Edges: 787 | Grad:2.24 Skips:0 LR:0.00010
+        | Tune[Ready:100% DivW:0.05 Temp:0.30 Cmt:0.40 Alpha:0.80 PndP:0.00023 Clip:2.00(59%)]
+   Sample: "First\nTo the besty, and the best of the\nshould behold,\nAnd, I'll be a broke,"
+Restored best healthy checkpoint (Val Loss: 3.7803).
+
+--- Saving Final Model to crsn_omni_model.pth ---
+Saved.
+
+--- Generating Diagnostics & Images ---
+Saved 1_semantic_topology.png
+Running Inference Scan...
+ACT Step Breakdown : 1 steps: 3%, 2 steps: 96%, 3 steps: 1%
+Stack Depth Range  : [4.56, 16.11]
+Generated          : First who woman a newage else, 
+And if a coming to keep withins to pass with them to be a field,
+With them on, and dwelling into the torpol! o'er long for food of Suponiances,
+so where usus; then was dup, shall
+
+
+--- Extracting Explicit Logic Rules ---
+--- Extracting Explicit Logic Rules ---
+
+FROM   | TO     | COUNT  | AVG STEPS 
+---------------------------------------------
+S_14   -> S_1439 | 368    | 2.00
+S_1137 -> S_1779 | 246    | 2.00
+S_1779 -> S_987  | 228    | 3.00
+
+--- Dream Mode (Entropy-Targeted Symbolic Walk) ---
+Dream Stats  : AvgTemp=0.43 | AvgBranchPPX=4.00 (Target=4.00)
+Dream Output : Firsti ofeni of ofseni of
+,ath, tos theure. 
+ea,, the I
+
+
+: you you yousond,, thes thei ofseni ofeni ofipu
+
+
+
+
+ip 
+ea
+
+
+--- Anomaly Detection Test ---
+Input: 'some bronze vase, survey the ceiling, admire banana'
+Anomaly Stats: ValidPrefixMean=5.69 | TailMean=3.82 TailMax=5.33 (Contrast=0.94x)
+Saved 5_anomaly_detection.png

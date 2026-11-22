@@ -1,0 +1,540 @@
+Hardware: cuda (NVIDIA GeForce RTX 5060 Ti, 15.9 GB VRAM) | BF16=True | TF32=True
+[Notice] Working directory is inside OneDrive; checkpoint disk writes are deferred until milestones/finish.
+Loaded corpus from 'data.txt' (3,331,655 chars)
+=== Auto-Configuration Summary (SACRSN v56 Dual-Clock Polar + Macro-Packets) ===
+Corpus       : 3,331,655 chars (86 base chars, min_char_freq>=5) | Train=824,544 units | Val=12,410 units (8 slices)
+Tokenizer    : DualClock-Polar | Stems=2048 (Used=2045, ZipfPPX=388.5) | Morphs=96 | Edges=96 | Comp=3.98 chars/unit | MacroPkts=True
+Architecture : Dim=288 (2D=576) | Codebook=1024 (~0.50x used stems, TargetPPX=[272..563]) | RelOps=24 | Stack=24 | MaxDepth=4
+Schedule     : Streams=256x128 (Cap=32,768, TBPTT=32) | Epochs=600 (Phases: 0..60->KMeans->150->Macro->600, ~23.8x corpus passes)
+InitHyper    : LR=0.00071 (Plateau every 5ep, AdjMult=8.0x) | WD=3.0e-04 | Drop=0.10 | ClipMax=3.0 | EthW=0.181 | SymLMW=0.22 | StkBalW=0.08
+Sample units : ['First', 'Citizen:\\n', 'Before', 'we', 'proceed', 'any', 'further,·', 'hear', 'me', 'speak.\\n\\n', 'All:\\n', 'Speak,·']
+====================================================================================
+--- Training SACRSN v56 (BF16_AMP=True | FusedAdamW=True | TBPTT=32) ---
+Ep 0000 [P1] | Loss:18.715 BPC:6.209 (SymLM:7.792[ 0.0%] VQ:2.164 Div:0.003 Eth:6.887) | Acc(S/M/E): 0.0/ 1.0/ 0.6% | ValBPC:6.441 (S: 0.0% M: 1.0% E: 0.5% Gap:+0.23)  | 1,049 u/s (Tr:26.5s Va:4.7s Io:0.0s) VRAM:14.6G
+        | ACT:3.54±0.57[ 0/ 4/39/57%] Stk:10.8(36/29/35 PtrPPX:10.5 Occ:89%) GWT[P:33 S:33 H:34 G: 0] SigRMS[0.65/0.11/0.34/0.00] CarryG:0.50±0.11 | Grad:95.50/95.5 Skips:3 LR:0.00005
+        | GradMod[Cell:2.20 Att:0.22 FFN:1.16 VQ:0.000 Op:0.001 Adj:0.000 Holo:1.46 Dec:0.78] | LossPct[Pr:92% SL: 2% VQ: 6% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1024/1024 SymPPX:783.7 VQCos:0.13 Ops:24/24 OpPPX:21.6 RelAcc: 0.4% Drift:0.288 Top1: 0.9% Loop: 9.8% Rev:  0/ 0 Edges:   0(AdjPPX:979.1) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:3.00(25%) Pat:0/10]
+   Sample: 'First ART! \n\nUncomeed)\n\nFness: "REANIMAL: "titles \'Hoting  \n\nhast\'st.)  Underwoe  \n\naccused"FAME\'T\n\nREDEVICEED: "WHOMING."\n\nUnbrothered;refrain\'ll; \nSat\'st."\n\nalive\'ll:\n\'labourer" UNTAILED" Satisfied\'t,\n"Herself\'t" value\'ll(Themselves\'st,\nWit\'st!VIER,- \n'
+Ep 0015 [P1] | Loss:13.543 BPC:4.410 (SymLM:7.212[ 1.6%] VQ:2.159 Div:0.029 Eth:6.841) | Acc(S/M/E): 0.5/68.4/42.2% | ValBPC:6.651 (S: 0.4% M:29.0% E:18.3% Gap:+2.24)  | 1,622 u/s (Tr:299.0s Va:2.7s Io:0.0s) VRAM:14.7G
+        | ACT:3.68±0.50[ 0/ 2/29/69%] Stk:13.6(37/26/36 PtrPPX: 8.4 Occ:91%) GWT[P:44 S:38 H:19 G: 0] SigRMS[0.74/0.19/0.18/0.00] CarryG:0.51±0.12 | Grad:34.89/60.2 Skips:48 LR:0.00071
+        | GradMod[Cell:2.15 Att:0.19 FFN:1.16 VQ:0.000 Op:0.001 Adj:0.000 Holo:1.39 Dec:0.95] | LossPct[Pr:90% SL: 3% VQ: 8% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1024/1024 SymPPX: 67.8 VQCos:0.14 Ops:24/24 OpPPX:23.1 RelAcc: 1.9% Drift:0.553 Top1:24.8% Loop:50.0% Rev:  0/ 0 Edges:   0(AdjPPX:935.5) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:3.00(20%) Pat:0/10]
+Ep 0030 [P1] | Loss:19.721 BPC:6.664 (SymLM:7.391[ 0.9%] VQ:2.169 Div:0.039 Eth:6.879) | Acc(S/M/E): 0.2/15.2/ 9.4% | ValBPC:6.107 (S: 0.4% M:29.9% E:18.3% Gap:-0.56)  | 1,688 u/s (Tr:288.5s Va:2.7s Io:0.0s) VRAM:14.7G
+        | ACT:3.90±0.33[ 0/ 1/ 8/91%] Stk:19.9(67/11/22 PtrPPX: 2.4 Occ:92%) GWT[P:43 S:40 H:17 G: 0] SigRMS[0.79/0.35/0.17/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:59 LR:0.00071
+        | GradMod[Cell:2.32 Att:0.30 FFN:1.32 VQ:0.000 Op:0.001 Adj:0.000 Holo:1.03 Dec:0.84] | LossPct[Pr:93% SL: 2% VQ: 5% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:957/1024 SymPPX: 25.8 VQCos:0.13 Ops:24/24 OpPPX:17.5 RelAcc: 0.2% Drift:0.087 Top1:29.3% Loop:48.3% Rev:  0/ 0 Edges:   0(AdjPPX:971.6) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:3.00( 2%) Pat:0/10]
+Ep 0045 [P1] | Loss:19.386 BPC:6.495 (SymLM:7.385[ 1.0%] VQ:2.169 Div:0.040 Eth:6.879) | Acc(S/M/E): 0.2/16.4/10.3% | ValBPC:6.107 (S: 0.4% M:29.9% E:18.3% Gap:-0.39)  | 1,800 u/s (Tr:270.4s Va:2.7s Io:0.0s) VRAM:14.7G
+        | ACT:3.91±0.31[ 0/ 1/ 7/92%] Stk:19.8(67/11/22 PtrPPX: 2.4 Occ:92%) GWT[P:43 S:40 H:17 G: 0] SigRMS[0.80/0.36/0.16/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:93% SL: 2% VQ: 5% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:959/1024 SymPPX: 24.2 VQCos:0.13 Ops:24/24 OpPPX:17.4 RelAcc: 0.1% Drift:0.040 Top1:31.0% Loop:48.4% Rev:  0/ 0 Edges:   0(AdjPPX:971.7) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:3.00( 0%) Pat:0/10]
+   [End of Phase 1 Sample @ Ep 0059]: 'First DINNERST! \n\nhas. "Your by but in an in i the r or our good let which m age no, head one--Cment@Drown) sovereign('
+[Phase 2 Crystallization @ Ep 0060] Initialized VQ & RelOp codebooks via GPU K-Means.
+Ep 0060 [P2] | Loss:19.039 BPC:6.586 (SymLM:7.809[ 0.2%] VQ:0.289 Div:0.071 Eth:6.871) | Acc(S/M/E): 0.2/14.6/ 9.4% | ValBPC:6.115 (S: 0.4% M:29.5% E:18.1% Gap:-0.47)  | 1,792 u/s (Tr:270.5s Va:2.7s Io:0.0s) VRAM:14.7G
+        | ACT:3.92±0.30[ 0/ 1/ 7/92%] Stk:20.0(68/11/21 PtrPPX: 2.3 Occ:92%) GWT[P:43 S:40 H:17 G: 0] SigRMS[0.80/0.36/0.17/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:96% SL: 0% VQ: 3% Et: 1% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1007/1024 SymPPX:365.5 VQCos:0.88 Ops:24/24 OpPPX:11.8 RelAcc: 0.1% Drift:0.900 Top1: 1.4% Loop:23.8% Rev:102/ 0 Edges:   0(AdjPPX:963.4) | Tune[Ready:  0% DivW:1.15 Temp:0.18 Cmt:0.24 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0315 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+   Sample: "First REVENGE.\n\nhere\np you me him him y this but o ro n or whichhere\nh from or or with new: , ourness' "
+Ep 0075 [P2] | Loss:19.637 BPC:6.740 (SymLM:7.832[ 0.2%] VQ:0.252 Div:0.047 Eth:6.871) | Acc(S/M/E): 0.1/12.9/ 7.9% | ValBPC:6.161 (S: 0.3% M:27.9% E:16.6% Gap:-0.58)  | 1,745 u/s (Tr:277.7s Va:2.7s Io:0.0s) VRAM:14.8G
+        | ACT:3.91±0.31[ 0/ 1/ 7/92%] Stk:20.2(69/10/20 PtrPPX: 2.2 Occ:92%) GWT[P:43 S:40 H:17 G: 0] SigRMS[0.79/0.36/0.17/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:94% SL: 2% VQ: 3% Et: 1% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1015/1024 SymPPX:413.6 VQCos:0.89 Ops:24/24 OpPPX:12.3 RelAcc: 0.1% Drift:0.099 Top1: 1.2% Loop:22.2% Rev:  0/ 0 Edges:   0(AdjPPX:963.7) | Tune[Ready:  0% DivW:0.62 Temp:0.18 Cmt:0.13 Alpha:0.05 Bias:0.000 GGate:0.00 PndP:0.0655 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+Ep 0090 [P2] | Loss:19.890 BPC:6.725 (SymLM:7.824[ 0.2%] VQ:0.234 Div:0.039 Eth:6.873) | Acc(S/M/E): 0.1/13.2/ 8.3% | ValBPC:6.344 (S: 0.2% M:24.2% E:14.1% Gap:-0.38)  | 1,725 u/s (Tr:282.3s Va:2.7s Io:0.0s) VRAM:14.8G
+        | ACT:3.92±0.30[ 0/ 1/ 7/92%] Stk:20.4(70/10/20 PtrPPX: 2.2 Occ:92%) GWT[P:42 S:40 H:18 G: 0] SigRMS[0.79/0.36/0.17/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:93% SL: 3% VQ: 2% Et: 1% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1011/1024 SymPPX:405.1 VQCos:0.89 Ops:24/24 OpPPX:12.3 RelAcc: 0.1% Drift:0.042 Top1: 1.3% Loop:22.3% Rev:  0/ 0 Edges:   0(AdjPPX:965.9) | Tune[Ready:  0% DivW:0.34 Temp:0.18 Cmt:0.10 Alpha:0.10 Bias:0.000 GGate:0.00 PndP:0.1361 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+Ep 0105 [P2] | Loss:20.458 BPC:6.788 (SymLM:7.856[ 0.2%] VQ:0.223 Div:0.034 Eth:6.876) | Acc(S/M/E): 0.2/12.1/ 7.2% | ValBPC:6.499 (S: 0.2% M:21.4% E:12.5% Gap:-0.29)  | 1,715 u/s (Tr:284.0s Va:2.6s Io:0.0s) VRAM:14.8G
+        | ACT:3.93±0.28[ 0/ 1/ 6/93%] Stk:20.6(71/10/20 PtrPPX: 2.1 Occ:93%) GWT[P:42 S:40 H:18 G: 0] SigRMS[0.79/0.37/0.18/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:92% SL: 4% VQ: 2% Et: 1% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1000/1024 SymPPX:395.5 VQCos:0.90 Ops:24/24 OpPPX:12.2 RelAcc: 0.0% Drift:0.036 Top1: 1.2% Loop:22.1% Rev:  0/ 0 Edges:   0(AdjPPX:968.5) | Tune[Ready:  0% DivW:0.18 Temp:0.18 Cmt:0.10 Alpha:0.15 Bias:0.000 GGate:0.00 PndP:0.1500 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+Ep 0120 [P2] | Loss:20.579 BPC:6.691 (SymLM:7.822[ 0.2%] VQ:0.211 Div:0.033 Eth:6.872) | Acc(S/M/E): 0.2/12.6/ 7.3% | ValBPC:6.622 (S: 0.2% M:19.4% E:11.3% Gap:-0.07)  | 1,718 u/s (Tr:283.3s Va:2.7s Io:0.0s) VRAM:14.8G
+        | ACT:3.94±0.26[ 0/ 0/ 5/94%] Stk:20.6(71/10/20 PtrPPX: 2.1 Occ:93%) GWT[P:43 S:40 H:17 G: 0] SigRMS[0.80/0.37/0.17/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:90% SL: 6% VQ: 2% Et: 2% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:994/1024 SymPPX:388.4 VQCos:0.90 Ops:24/24 OpPPX:12.2 RelAcc: 0.0% Drift:0.039 Top1: 1.3% Loop:22.1% Rev:  0/ 0 Edges:   0(AdjPPX:965.3) | Tune[Ready:  0% DivW:0.15 Temp:0.18 Cmt:0.10 Alpha:0.20 Bias:0.000 GGate:0.00 PndP:0.1500 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+   Sample: "First fleet't, \nre; d an and have an de him who but our his let which for here\nage, c, who this age or) Who--"
+Ep 0135 [P2] | Loss:20.983 BPC:6.821 (SymLM:7.843[ 0.2%] VQ:0.207 Div:0.033 Eth:6.875) | Acc(S/M/E): 0.2/12.5/ 7.2% | ValBPC:6.545 (S: 0.2% M:19.6% E:11.3% Gap:-0.28)  | 1,718 u/s (Tr:282.2s Va:2.8s Io:0.0s) VRAM:14.8G
+        | ACT:3.95±0.23[ 0/ 0/ 5/95%] Stk:20.7(71/ 9/19 PtrPPX: 2.1 Occ:93%) GWT[P:42 S:40 H:18 G: 0] SigRMS[0.80/0.37/0.17/0.00] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:89% SL: 7% VQ: 2% Et: 2% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:979/1024 SymPPX:387.1 VQCos:0.91 Ops:24/24 OpPPX:12.3 RelAcc: 0.0% Drift:0.042 Top1: 1.3% Loop:21.2% Rev:  0/ 0 Edges:   0(AdjPPX:967.4) | Tune[Ready:  0% DivW:0.15 Temp:0.18 Cmt:0.10 Alpha:0.25 Bias:0.000 GGate:0.00 PndP:0.1500 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+   [End of Phase 2 Sample @ Ep 0149]: 'First arting (Unfooled, comes h u an n r in thisfor ro in notro no c no which whichwe m most n '
+[Phase 3 Macro-Packets @ Ep 0150] Crystallized mastered phrases -> 1.05 units/pkt | Top: ['to the'(n=74,ACT=3.99), 'of the'(n=61,ACT=3.96), 'I have'(n=58,ACT=3.97), 'in the'(n=53,ACT=3.92)]
+Ep 0150 [P3M] | Loss:23.254 BPC:7.438 (SymLM:7.851[ 0.1%] VQ:0.170 Div:0.033 Eth:6.883) | Acc(S/M/E): 0.1/ 8.7/ 4.8% | ValBPC:7.394 (S: 0.1% M:14.8% E: 8.9% Gap:-0.04)  | 1,548 u/s (Tr:306.3s Va:11.1s Io:0.0s) VRAM:15.6G
+        | ACT:3.97±0.16[ 0/ 0/ 2/97%] Stk:21.0(73/ 9/18 PtrPPX: 2.0 Occ:93%) GWT[P:33 S:31 H:12 G:23] SigRMS[0.75/0.30/0.12/0.01] CarryG:0.50±0.13 | Grad:0.00/0.0 Skips:60 LR:0.00071
+        | GradMod[Cell:0.00 Att:0.00 FFN:0.00 VQ:0.000 Op:0.000 Adj:0.000 Holo:0.00 Dec:0.00] | LossPct[Pr:89% SL: 7% VQ: 2% Et: 2% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:967/1024 SymPPX:281.7 VQCos:0.92 Ops:24/24 OpPPX:11.7 RelAcc: 0.0% Drift:0.165 Top1: 2.4% Loop:21.8% Rev:  0/ 0 Edges:   0(AdjPPX:975.5) | Tune[Ready:  1% DivW:0.15 Temp:0.18 Cmt:0.10 Alpha:0.32 Bias:0.000 GGate:0.04 PndP:0.1500 Consc:0.08 Clip:3.00( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0163 | Val BPC: 3.8339 (ValLoss: 10.338 StemAcc:  1.4%) | Cached best weights
+   Sample (*BEST* Ep 0163): 'First n--whichn the this Handd? \n\nWEALTHNESS: Es \nat REWAS Lets! \nNotice\nbut Parentss? \n\nLaws)Wilteth \ns t Cliffordd."\n\nROBES\'ST.\'\n\ntale? \n\nc me WISEEDHA\'ST--\n\nINDEEDFUL\nof FARMENTAGAMEMNONNESS(have HUNTMENT:\n\ne FLEECEMENT.\n(SIN\'ST.\'\n\nWilteth \nand HAIRMENTACCOUNTNESS! \nInruin?do WORNED.\n\nSIN\'ST--\n\nINFORMER:c your this an not ALWAYSER:\n\'Robess,\nunderdeep: "o wind\'stSMELLLESS--\n\nbut Ndes Ofst,--Useth?o '
+Ep 0165 [P3M] | Loss:12.012 BPC:3.115 (SymLM:5.991[ 3.8%] VQ:0.818 Div:0.066 Eth:6.642) | Acc(S/M/E): 3.2/83.8/55.3% | ValBPC:3.077 (S: 3.6% M:85.8% E:55.8% Gap:-0.04) BestBPC:3.834@163 | 1,394 u/s (Tr:351.3s Va:16.5s Io:0.0s) VRAM:15.7G
+        | ACT:3.22±0.48[ 0/ 3/72/25%] Stk: 0.7( 8/21/71 PtrPPX: 3.1 Occ:53%) GWT[P:30 S:21 H:10 G:38] SigRMS[0.85/0.06/0.10/0.25] CarryG:0.50±0.14 | Grad:2.44/3.1 Skips:49 LR:0.00071
+        | GradMod[Cell:1.54 Att:0.18 FFN:0.97 VQ:0.006 Op:0.118 Adj:0.007 Holo:0.46 Dec:1.90] | LossPct[Pr:72% SL:11% VQ:12% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 1%]
+        | Syms:373/1024 SymPPX: 51.7 VQCos:0.63 Ops:24/24 OpPPX:13.7 RelAcc: 1.6% Drift:0.804 Top1: 7.6% Loop:22.0% Rev:394/ 0 Edges:   0(AdjPPX:766.9) | Tune[Ready: 41% DivW:0.18 Temp:0.14 Cmt:0.10 Alpha:0.36 Bias:0.053 GGate:0.64 PndP:0.1500 Consc:0.08 Clip:3.00(13%) Pat:0/10]
+   >>> *BEST* EPOCH 0170 | Val BPC: 2.9960 (ValLoss: 8.047 StemAcc:  4.8%) | Cached best weights
+   Sample (*BEST* Ep 0170): 'First gthee in anthe di  c re to t i atsm u and in top'
+   >>> *BEST* EPOCH 0172 | Val BPC: 2.9541 (ValLoss: 7.935 StemAcc:  5.7%) | Cached best weights
+   Sample (*BEST* Ep 0172): 'First andi themy p ae fand toand p heofandc the his a and m u the e m s '
+   >>> *BEST* EPOCH 0173 | Val BPC: 2.9222 (ValLoss: 7.849 StemAcc:  6.7%) | Cached best weights
+   Sample (*BEST* Ep 0173): 'First this of y i the bp rethelthatu itc res rmatautand l '
+   >>> *BEST* EPOCH 0175 | Val BPC: 2.9107 (ValLoss: 7.818 StemAcc:  7.3%) | Cached best weights
+   Sample (*BEST* Ep 0175): 'First thec exr is absandfor for their n he he a sr tos y g and my '
+   >>> *BEST* EPOCH 0176 | Val BPC: 2.8708 (ValLoss: 7.711 StemAcc:  8.1%) | Cached best weights
+   Sample (*BEST* Ep 0176): 'First is p edirraythesin g atio n of alland that i thed byt '
+   >>> *BEST* EPOCH 0177 | Val BPC: 2.8681 (ValLoss: 7.704 StemAcc:  8.3%) | Cached best weights
+   Sample (*BEST* Ep 0177): 'First the p eriprooc hm ing siofYork the chorusr achac e'
+   >>> *BEST* EPOCH 0178 | Val BPC: 2.8188 (ValLoss: 7.572 StemAcc:  8.2%) | Cached best weights
+   Sample (*BEST* Ep 0178): 'First it them acedl heto that and thatit to him that a cei b urr'
+   >>> *BEST* EPOCH 0179 | Val BPC: 2.8088 (ValLoss: 7.545 StemAcc:  9.0%) | Cached best weights
+   Sample (*BEST* Ep 0179): "First OfTheb ation' d byc sandu licto thee my lord To to him\nfor with "
+Ep 0180 [P3M] | Loss:11.011 BPC:2.807 (SymLM:5.704[ 6.2%] VQ:0.448 Div:0.008 Eth:6.527) | Acc(S/M/E): 8.1/84.4/63.5% | ValBPC:2.780 (S: 9.4% M:85.7% E:64.8% Gap:-0.03) *BEST* | 1,237 u/s (Tr:361.4s Va:45.4s Io:0.2s) VRAM:15.7G
+        | ACT:3.04±0.64[ 0/17/60/22%] Stk: 6.4(36/41/23 PtrPPX: 6.0 Occ:80%) GWT[P:21 S:30 H:12 G:37] SigRMS[0.62/0.08/0.11/0.41] CarryG:0.21±0.15 | Grad:1.51/1.7 Skips:0 LR:0.00071
+        | GradMod[Cell:0.63 Att:0.05 FFN:0.37 VQ:0.004 Op:0.068 Adj:0.002 Holo:0.13 Dec:1.73] | LossPct[Pr:70% SL:11% VQ:10% Et: 8% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:951/1024 SymPPX:471.3 VQCos:0.80 Ops:24/24 OpPPX:12.4 RelAcc: 4.8% Drift:0.338 Top1: 1.2% Loop: 5.8% Rev:1421/ 0 Edges:   0(AdjPPX:683.4) | Tune[Ready: 77% DivW:0.15 Temp:0.15 Cmt:0.10 Alpha:0.37 Bias:0.089 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00(12%) Pat:0/10]
+   >>> *BEST* EPOCH 0180 | Val BPC: 2.7795 (ValLoss: 7.466 StemAcc:  9.4%) | Cached best weights
+   Sample (*BEST* Ep 0180): 'First and c lydis s p imamuraceation c lyas that '
+   >>> *BEST* EPOCH 0181 | Val BPC: 2.7621 (ValLoss: 7.419 StemAcc:  9.7%) | Cached best weights
+   Sample (*BEST* Ep 0181): 'First to you is hed ilinthep emicianrydivand a p es'
+   >>> *BEST* EPOCH 0182 | Val BPC: 2.7508 (ValLoss: 7.389 StemAcc: 10.2%) | Cached best weights
+   Sample (*BEST* Ep 0182): 'First t a f eriderandall it you and b lensin g     -- '
+   >>> *BEST* EPOCH 0183 | Val BPC: 2.7331 (ValLoss: 7.342 StemAcc: 10.0%) | Cached best weights
+   Sample (*BEST* Ep 0183): 'First youp lingsa u ri eg re ilying to hear me so them the house '
+   >>> *BEST* EPOCH 0184 | Val BPC: 2.7131 (ValLoss: 7.288 StemAcc: 10.5%) | Cached best weights
+   Sample (*BEST* Ep 0184): "First t y and what a de lil' s hresand that and thouthat to s theda"
+   >>> *BEST* EPOCH 0185 | Val BPC: 2.7021 (ValLoss: 7.258 StemAcc: 10.8%) | Cached best weights
+   Sample (*BEST* Ep 0185): 'First he have him the b alitl andcapercetr sio n in one a b '
+   >>> *BEST* EPOCH 0186 | Val BPC: 2.6879 (ValLoss: 7.220 StemAcc: 11.0%) | Cached best weights
+   Sample (*BEST* Ep 0186): 'First you it and all to thee The king of her and b olys a u ncets p h'
+   >>> *BEST* EPOCH 0187 | Val BPC: 2.6734 (ValLoss: 7.181 StemAcc: 11.2%) | Cached best weights
+   Sample (*BEST* Ep 0187): 'First and all the p lians in chiansu ress itin g s imo'
+   >>> *BEST* EPOCH 0188 | Val BPC: 2.6620 (ValLoss: 7.151 StemAcc: 11.3%) | Cached best weights
+   Sample (*BEST* Ep 0188): 'First to her s thewholeand she on his co nyforthemby the samewith the tueityou but '
+   >>> *BEST* EPOCH 0190 | Val BPC: 2.6451 (ValLoss: 7.105 StemAcc: 11.7%) | Cached best weights
+   Sample (*BEST* Ep 0190): 'First I saythe a piedand with one and that the p reseltaing i ry'
+   >>> *BEST* EPOCH 0192 | Val BPC: 2.6329 (ValLoss: 7.073 StemAcc: 12.3%) | Cached best weights
+   Sample (*BEST* Ep 0192): 'First Womanthe gods of the trripro b okswith i anel is the c hys the '
+   >>> *BEST* EPOCH 0193 | Val BPC: 2.6176 (ValLoss: 7.031 StemAcc: 12.4%) | Cached best weights
+   Sample (*BEST* Ep 0193): 'First Your highto p endpopu iant si e xgek the lord ofc af'
+   >>> *BEST* EPOCH 0194 | Val BPC: 2.6162 (ValLoss: 7.028 StemAcc: 12.4%) | Cached best weights
+   Sample (*BEST* Ep 0194): 'First herin g re apsand you will take for no one by my lord Of the world then thou artst to me '
+Ep 0195 [P3M] | Loss:10.439 BPC:2.599 (SymLM:5.392[ 8.8%] VQ:0.500 Div:0.010 Eth:5.610) | Acc(S/M/E):11.5/84.9/66.7% | ValBPC:2.605 (S:12.7% M:86.4% E:68.0% Gap:+0.01) *BEST* | 1,136 u/s (Tr:383.1s Va:54.1s Io:0.2s) VRAM:15.7G
+        | ACT:3.47±0.52[ 0/ 1/50/49%] Stk: 8.0(48/47/ 5 PtrPPX: 9.5 Occ:88%) GWT[P:27 S:20 H:13 G:40] SigRMS[0.68/0.05/0.13/0.41] CarryG:0.24±0.17 | Grad:1.13/1.3 Skips:0 LR:0.00071
+        | GradMod[Cell:0.60 Att:0.06 FFN:0.26 VQ:0.004 Op:0.045 Adj:0.002 Holo:0.17 Dec:0.92] | LossPct[Pr:69% SL:11% VQ:10% Et: 9% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:956/1024 SymPPX:464.0 VQCos:0.77 Ops:24/24 OpPPX:10.9 RelAcc: 8.1% Drift:0.193 Top1: 1.0% Loop: 5.3% Rev:249/ 0 Edges:   0(AdjPPX:273.2) | Tune[Ready: 90% DivW:0.15 Temp:0.15 Cmt:0.10 Alpha:0.34 Bias:0.109 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.25( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0195 | Val BPC: 2.6051 (ValLoss: 6.998 StemAcc: 12.7%) | Cached best weights
+   Sample (*BEST* Ep 0195): 'First For her the man with the gods king of acles and p repeigshe a vent'
+   >>> *BEST* EPOCH 0196 | Val BPC: 2.5970 (ValLoss: 6.976 StemAcc: 12.9%) | Cached best weights
+   Sample (*BEST* Ep 0196): 'First The l arcly buti did his own to you have to the audience the chorusof love to him but if '
+   >>> *BEST* EPOCH 0197 | Val BPC: 2.5907 (ValLoss: 6.959 StemAcc: 12.9%) | Cached best weights
+   Sample (*BEST* Ep 0197): 'First The sc hily and there are that they had been all things which not have not in hereyes that he '
+   >>> *BEST* EPOCH 0198 | Val BPC: 2.5870 (ValLoss: 6.949 StemAcc: 13.3%) | Cached best weights
+   Sample (*BEST* Ep 0198): 'First The s horc e padof p resands sionin g u nded to '
+   >>> *BEST* EPOCH 0199 | Val BPC: 2.5809 (ValLoss: 6.933 StemAcc: 13.4%) | Cached best weights
+   Sample (*BEST* Ep 0199): 'First Her obace it for a do prousc holing the same in all and a '
+   >>> *BEST* EPOCH 0200 | Val BPC: 2.5738 (ValLoss: 6.914 StemAcc: 13.2%) | Cached best weights
+   Sample (*BEST* Ep 0200): 'First of all things which are to him you go tran ratio n in g i do rnc imo'
+   >>> *BEST* EPOCH 0202 | Val BPC: 2.5662 (ValLoss: 6.893 StemAcc: 13.5%) | Cached best weights
+   Sample (*BEST* Ep 0202): 'First servant is it to hearp ents that are he co nquckle the cityof their re i'
+   >>> *BEST* EPOCH 0203 | Val BPC: 2.5609 (ValLoss: 6.879 StemAcc: 13.8%) | Cached best weights
+   Sample (*BEST* Ep 0203): 'First Woman For he had to thee That a p rotersbut when they were the peduss and with him '
+   >>> *BEST* EPOCH 0204 | Val BPC: 2.5573 (ValLoss: 6.869 StemAcc: 13.5%) | Cached best weights
+   Sample (*BEST* Ep 0204): 'First womanthe time of love and her a impedand of her feration s pluto '
+   >>> *BEST* EPOCH 0205 | Val BPC: 2.5547 (ValLoss: 6.863 StemAcc: 13.7%) | Cached best weights
+   Sample (*BEST* Ep 0205): 'First WOMAN and how can you see what are to me as the s uptincy my lord chorus Chanting of her '
+   >>> *BEST* EPOCH 0206 | Val BPC: 2.5523 (ValLoss: 6.856 StemAcc: 13.9%) | Cached best weights
+   Sample (*BEST* Ep 0206): 'First The m ied his own withwhat c hedin ity and The co ntelythat I am ac '
+   >>> *BEST* EPOCH 0207 | Val BPC: 2.5507 (ValLoss: 6.852 StemAcc: 13.8%) | Cached best weights
+   Sample (*BEST* Ep 0207): 'First woman To them as a urcyand f lapor in grietes the s ho'
+   >>> *BEST* EPOCH 0208 | Val BPC: 2.5443 (ValLoss: 6.835 StemAcc: 13.9%) | Cached best weights
+   Sample (*BEST* Ep 0208): 'First woman And to her brother that he was the matter of life For this the p rounss a chood '
+   >>> *BEST* EPOCH 0209 | Val BPC: 2.5366 (ValLoss: 6.814 StemAcc: 14.0%) | Cached best weights
+   Sample (*BEST* Ep 0209): 'First of suche lywith her life of iaand for you not yet my father land i dined with '
+Ep 0210 [P3M] | Loss:10.275 BPC:2.545 (SymLM:5.228[ 9.8%] VQ:0.576 Div:0.009 Eth:5.304) | Acc(S/M/E):12.6/84.8/67.4% | ValBPC:2.539 (S:13.9% M:87.0% E:68.4% Gap:-0.01) BestBPC:2.537@209 | 1,136 u/s (Tr:380.0s Va:55.9s Io:0.2s) VRAM:15.7G
+        | ACT:3.44±0.53[ 0/ 1/53/46%] Stk:12.7(51/42/ 6 PtrPPX:13.3 Occ:91%) GWT[P:28 S:17 H:16 G:39] SigRMS[0.72/0.05/0.16/0.37] CarryG:0.27±0.19 | Grad:1.19/1.4 Skips:0 LR:0.00071
+        | GradMod[Cell:0.81 Att:0.08 FFN:0.34 VQ:0.004 Op:0.070 Adj:0.002 Holo:0.27 Dec:0.86] | LossPct[Pr:68% SL:11% VQ:12% Et: 9% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:982/1024 SymPPX:492.8 VQCos:0.74 Ops:24/24 OpPPX:12.1 RelAcc: 8.2% Drift:0.122 Top1: 1.0% Loop: 4.9% Rev:129/ 0 Edges:   0(AdjPPX:201.1) | Tune[Ready: 96% DivW:0.15 Temp:0.16 Cmt:0.10 Alpha:0.33 Bias:0.118 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.35( 3%) Pat:0/10]
+   >>> *BEST* EPOCH 0212 | Val BPC: 2.5299 (ValLoss: 6.796 StemAcc: 14.2%) | Cached best weights
+   Sample (*BEST* Ep 0212): 'First woman My friends with the m onyof his mother should be l ierd for me i ash to in g u '
+   >>> *BEST* EPOCH 0213 | Val BPC: 2.5271 (ValLoss: 6.789 StemAcc: 14.0%) | Cached best weights
+   Sample (*BEST* Ep 0213): 'First WomanAnd all too wellto, come him of him and for that we should live to thee and i a man who have '
+   >>> *BEST* EPOCH 0214 | Val BPC: 2.5210 (ValLoss: 6.772 StemAcc: 14.4%) | Cached best weights
+   Sample (*BEST* Ep 0214): 'First i m itis not have done to your p reech us as a manand co veryin '
+   >>> *BEST* EPOCH 0215 | Val BPC: 2.5143 (ValLoss: 6.754 StemAcc: 14.5%) | Cached best weights
+   Sample (*BEST* Ep 0215): 'First tle ands parachandd his lifeof the g arieve ncial'
+   >>> *BEST* EPOCH 0217 | Val BPC: 2.5052 (ValLoss: 6.730 StemAcc: 14.9%) | Cached best weights
+   Sample (*BEST* Ep 0217): 'First c tiond ish unceit if i aminsthat they saw the gods a prote'
+   >>> *BEST* EPOCH 0219 | Val BPC: 2.4950 (ValLoss: 6.702 StemAcc: 15.1%) | Cached best weights
+   Sample (*BEST* Ep 0219): 'First is it is a u reandat their actionof ment ripers theotherof t '
+   >>> *BEST* EPOCH 0221 | Val BPC: 2.4928 (ValLoss: 6.696 StemAcc: 14.8%) | Cached best weights
+   Sample (*BEST* Ep 0221): 'First ofall his pultinatio ns and persedis no longto him for it was and '
+   >>> *BEST* EPOCH 0222 | Val BPC: 2.4917 (ValLoss: 6.694 StemAcc: 15.1%) | Cached best weights
+   Sample (*BEST* Ep 0222): 'First be r aptor at home he will the lion and the godsand that it be done in order in co n'
+   >>> *BEST* EPOCH 0223 | Val BPC: 2.4867 (ValLoss: 6.680 StemAcc: 15.1%) | Cached best weights
+   Sample (*BEST* Ep 0223): 'First and he todand posesbut by my son of cest antu natem '
+   >>> *BEST* EPOCH 0224 | Val BPC: 2.4853 (ValLoss: 6.676 StemAcc: 15.3%) | Cached best weights
+   Sample (*BEST* Ep 0224): 'First i greet ri blesto say that it so far from his lifei adryle '
+Ep 0225 [P3M] | Loss:10.155 BPC:2.436 (SymLM:5.146[10.4%] VQ:0.643 Div:0.009 Eth:5.074) | Acc(S/M/E):14.1/85.2/68.3% | ValBPC:2.489 (S:15.3% M:86.8% E:69.2% Gap:+0.05) BestBPC:2.485@224 | 1,133 u/s (Tr:382.0s Va:60.1s Io:0.2s) VRAM:15.7G
+        | ACT:3.53±0.61[ 0/ 6/35/60%] Stk:12.5(49/41/ 9 PtrPPX:13.3 Occ:90%) GWT[P:26 S:24 H:16 G:34] SigRMS[0.73/0.06/0.16/0.32] CarryG:0.28±0.20 | Grad:1.28/1.6 Skips:0 LR:0.00071
+        | GradMod[Cell:0.94 Att:0.10 FFN:0.38 VQ:0.005 Op:0.088 Adj:0.003 Holo:0.31 Dec:0.91] | LossPct[Pr:67% SL:11% VQ:12% Et: 9% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:973/1024 SymPPX:497.4 VQCos:0.71 Ops:24/24 OpPPX:13.7 RelAcc: 8.3% Drift:0.081 Top1: 1.2% Loop: 5.0% Rev: 60/ 0 Edges:   0(AdjPPX:159.8) | Tune[Ready: 99% DivW:0.15 Temp:0.16 Cmt:0.10 Alpha:0.31 Bias:0.120 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.45( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0226 | Val BPC: 2.4801 (ValLoss: 6.662 StemAcc: 15.4%) | Cached best weights
+   Sample (*BEST* Ep 0226): 'First a ply and totakethe first b uresas he niusto his motherand then you can we '
+   >>> *BEST* EPOCH 0227 | Val BPC: 2.4756 (ValLoss: 6.650 StemAcc: 15.6%) | Cached best weights
+   Sample (*BEST* Ep 0227): 'First in g theo pilit tens umperfrequiaed his friends but '
+   >>> *BEST* EPOCH 0229 | Val BPC: 2.4706 (ValLoss: 6.637 StemAcc: 15.9%) | Cached best weights
+   Sample (*BEST* Ep 0229): 'First of all a phrutusi mbsionfrom these a cquerch '
+   >>> *BEST* EPOCH 0234 | Val BPC: 2.4625 (ValLoss: 6.615 StemAcc: 16.2%) | Cached best weights
+   Sample (*BEST* Ep 0234): 'First woman t apiantsand d aig hment uof rn ingtheg le'
+   >>> *BEST* EPOCH 0236 | Val BPC: 2.4584 (ValLoss: 6.604 StemAcc: 16.2%) | Cached best weights
+   Sample (*BEST* Ep 0236): 'First s hatlandthat a pessat once s cately and m oses cra'
+   >>> *BEST* EPOCH 0237 | Val BPC: 2.4524 (ValLoss: 6.588 StemAcc: 16.2%) | Cached best weights
+   Sample (*BEST* Ep 0237): 'First of that for nothing is not in sproducedit and for himyou know what are you the '
+   >>> *BEST* EPOCH 0238 | Val BPC: 2.4482 (ValLoss: 6.577 StemAcc: 16.4%) | Cached best weights
+   Sample (*BEST* Ep 0238): 'First he would give him with themby a co mportunative my lordThe s hine'
+Ep 0240 [P3M] | Loss:9.873 BPC:2.427 (SymLM:4.992[11.7%] VQ:0.680 Div:0.009 Eth:4.871) | Acc(S/M/E):15.4/85.9/68.4% | ValBPC:2.443 (S:16.4% M:87.0% E:69.9% Gap:+0.02) *BEST* | 1,137 u/s (Tr:381.5s Va:62.8s Io:0.1s) VRAM:15.7G
+        | ACT:3.49±0.67[ 1/ 8/34/58%] Stk:12.3(37/29/34 PtrPPX:10.4 Occ:87%) GWT[P:26 S:23 H:18 G:33] SigRMS[0.75/0.06/0.18/0.30] CarryG:0.28±0.21 | Grad:1.36/1.8 Skips:0 LR:0.00071
+        | GradMod[Cell:0.92 Att:0.11 FFN:0.39 VQ:0.005 Op:0.083 Adj:0.003 Holo:0.35 Dec:0.83] | LossPct[Pr:67% SL:11% VQ:13% Et: 9% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:994/1024 SymPPX:507.1 VQCos:0.69 Ops:24/24 OpPPX:13.6 RelAcc: 9.2% Drift:0.072 Top1: 0.8% Loop: 4.9% Rev: 54/ 0 Edges:   3(AdjPPX:130.4) | Tune[Ready: 99% DivW:0.15 Temp:0.16 Cmt:0.10 Alpha:0.30 Bias:0.117 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.41( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0240 | Val BPC: 2.4435 (ValLoss: 6.564 StemAcc: 16.4%) | Cached best weights
+   Sample (*BEST* Ep 0240): 'First I re lys horn and in grief urt atesand perfer'
+   >>> *BEST* EPOCH 0241 | Val BPC: 2.4417 (ValLoss: 6.559 StemAcc: 16.4%) | Cached best weights
+   Sample (*BEST* Ep 0241): 'First a peratedby his head and in termast yarishygransthe gods '
+   >>> *BEST* EPOCH 0245 | Val BPC: 2.4354 (ValLoss: 6.542 StemAcc: 16.5%) | Cached best weights
+   Sample (*BEST* Ep 0245): "First ons of this b arrows upphosethe g nctal am's manif Thou art "
+   >>> *BEST* EPOCH 0249 | Val BPC: 2.4310 (ValLoss: 6.531 StemAcc: 16.7%) | Cached best weights
+   Sample (*BEST* Ep 0249): "First And he wrought to her clute' d my heart a manof love Where is this s pendit "
+   >>> *BEST* EPOCH 0252 | Val BPC: 2.4290 (ValLoss: 6.525 StemAcc: 17.1%) | Cached best weights
+   Sample (*BEST* Ep 0252): 'First is hed to the parriesi mirt ymiess abbanc e '
+   >>> *BEST* EPOCH 0253 | Val BPC: 2.4219 (ValLoss: 6.506 StemAcc: 17.1%) | Cached best weights
+   Sample (*BEST* Ep 0253): 'First ashe has spake as he stant ualf ation s impecling all'
+Ep 0255 [P3M] | Loss:9.745 BPC:2.391 (SymLM:4.901[12.7%] VQ:0.712 Div:0.008 Eth:4.883) | Acc(S/M/E):16.8/85.9/68.6% | ValBPC:2.423 (S:17.2% M:87.1% E:69.5% Gap:+0.03) BestBPC:2.422@253 | 1,151 u/s (Tr:378.4s Va:61.3s Io:0.1s) VRAM:15.7G
+        | ACT:3.36±0.71[ 1/11/39/49%] Stk:14.5(36/25/39 PtrPPX: 9.6 Occ:88%) GWT[P:25 S:24 H:19 G:32] SigRMS[0.75/0.07/0.19/0.29] CarryG:0.29±0.22 | Grad:1.69/2.3 Skips:0 LR:0.00071
+        | GradMod[Cell:0.97 Att:0.12 FFN:0.42 VQ:0.006 Op:0.083 Adj:0.003 Holo:0.40 Dec:0.81] | LossPct[Pr:66% SL:11% VQ:13% Et: 9% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1005/1024 SymPPX:521.4 VQCos:0.68 Ops:24/24 OpPPX:14.0 RelAcc: 9.7% Drift:0.103 Top1: 0.9% Loop: 4.7% Rev: 57/ 0 Edges:  20(AdjPPX:132.0) | Tune[Ready: 97% DivW:0.15 Temp:0.15 Cmt:0.10 Alpha:0.29 Bias:0.111 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.62( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0257 | Val BPC: 2.4203 (ValLoss: 6.502 StemAcc: 17.3%) | Cached best weights
+   Sample (*BEST* Ep 0257): 'First achesof p yxOf The o otat eand rinechorus Singing) the gods s '
+   >>> *BEST* EPOCH 0258 | Val BPC: 2.4134 (ValLoss: 6.484 StemAcc: 17.3%) | Cached best weights
+   Sample (*BEST* Ep 0258): 'First as he willto find thee and p roviden cethe tures ishthe r a'
+   >>> *BEST* EPOCH 0260 | Val BPC: 2.4112 (ValLoss: 6.478 StemAcc: 17.5%) | Cached best weights
+   Sample (*BEST* Ep 0260): 'First To co nstungand f omp ressed in glia a chorus singing) Do '
+   >>> *BEST* EPOCH 0263 | Val BPC: 2.4094 (ValLoss: 6.473 StemAcc: 17.9%) | Cached best weights
+   Sample (*BEST* Ep 0263): 'First woman Oh my son or i mitedthe de ofs p erfuly hehas not even now '
+   >>> *BEST* EPOCH 0264 | Val BPC: 2.4083 (ValLoss: 6.470 StemAcc: 17.9%) | Cached best weights
+   Sample (*BEST* Ep 0264): 'First oldman And by all y p erseds lapp abors to theskex'
+   >>> *BEST* EPOCH 0265 | Val BPC: 2.4063 (ValLoss: 6.465 StemAcc: 17.7%) | Cached best weights
+   Sample (*BEST* Ep 0265): 'First i ang umped it and the c advenges s catewith their headbut as the '
+   >>> *BEST* EPOCH 0266 | Val BPC: 2.4003 (ValLoss: 6.448 StemAcc: 17.6%) | Cached best weights
+   Sample (*BEST* Ep 0266): 'First to her fors the g reeksyou b alec litc hips int u'
+Ep 0270 [P3M] | Loss:9.730 BPC:2.351 (SymLM:4.908[12.4%] VQ:0.741 Div:0.008 Eth:4.711) | Acc(S/M/E):16.6/85.8/68.9% | ValBPC:2.406 (S:17.9% M:87.0% E:69.9% Gap:+0.05) BestBPC:2.400@266 | 1,090 u/s (Tr:382.5s Va:81.3s Io:0.1s) VRAM:15.7G
+        | ACT:3.37±0.78[ 2/11/33/53%] Stk:10.7(33/28/39 PtrPPX:12.8 Occ:87%) GWT[P:27 S:25 H:18 G:31] SigRMS[0.77/0.06/0.17/0.27] CarryG:0.29±0.23 | Grad:1.63/2.1 Skips:0 LR:0.00071
+        | GradMod[Cell:0.99 Att:0.13 FFN:0.44 VQ:0.006 Op:0.084 Adj:0.003 Holo:0.40 Dec:0.84] | LossPct[Pr:67% SL:11% VQ:14% Et: 8% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:988/1024 SymPPX:507.6 VQCos:0.66 Ops:24/24 OpPPX:14.6 RelAcc: 9.9% Drift:0.059 Top1: 0.8% Loop: 3.9% Rev:  0/ 0 Edges:  29(AdjPPX:111.2) | Tune[Ready: 95% DivW:0.15 Temp:0.15 Cmt:0.10 Alpha:0.28 Bias:0.103 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.80( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0274 | Val BPC: 2.3958 (ValLoss: 6.436 StemAcc: 18.0%) | Cached best weights
+   Sample (*BEST* Ep 0274): 'First i do the s pressed aintothe landof tricke xclaimedme his t '
+   >>> *BEST* EPOCH 0276 | Val BPC: 2.3945 (ValLoss: 6.433 StemAcc: 18.3%) | Cached best weights
+   Sample (*BEST* Ep 0276): 'First he p elus and s horn a ppolatives ti nguresy '
+   >>> *BEST* EPOCH 0278 | Val BPC: 2.3889 (ValLoss: 6.418 StemAcc: 18.3%) | Cached best weights
+   Sample (*BEST* Ep 0278): 'First of it the m agnistand aswe a ve rly and st iculch'
+   >>> *BEST* EPOCH 0282 | Val BPC: 2.3878 (ValLoss: 6.415 StemAcc: 18.3%) | Cached best weights
+   Sample (*BEST* Ep 0282): 'First watch the wind of adly and s paptthem a bagi anty ran '
+   >>> *BEST* EPOCH 0284 | Val BPC: 2.3836 (ValLoss: 6.404 StemAcc: 18.4%) | Cached best weights
+   Sample (*BEST* Ep 0284): 'First that is this but to c reatin her own and u npurcy ar dshe was'
+Ep 0285 [P3M] | Loss:9.576 BPC:2.332 (SymLM:4.855[12.7%] VQ:0.753 Div:0.010 Eth:4.491) | Acc(S/M/E):17.1/85.9/69.1% | ValBPC:2.385 (S:18.3% M:87.1% E:69.8% Gap:+0.05) BestBPC:2.384@284 | 1,091 u/s (Tr:389.5s Va:76.4s Io:0.1s) VRAM:15.7G
+        | ACT:3.36±0.78[ 3/11/33/53%] Stk: 5.3(24/28/48 PtrPPX: 9.7 Occ:80%) GWT[P:27 S:25 H:18 G:30] SigRMS[0.79/0.06/0.17/0.26] CarryG:0.29±0.23 | Grad:1.41/1.5 Skips:0 LR:0.00071
+        | GradMod[Cell:1.02 Att:0.14 FFN:0.45 VQ:0.006 Op:0.087 Adj:0.003 Holo:0.42 Dec:0.88] | LossPct[Pr:67% SL:11% VQ:14% Et: 8% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:989/1024 SymPPX:515.9 VQCos:0.66 Ops:24/24 OpPPX:13.7 RelAcc:11.3% Drift:0.066 Top1: 0.9% Loop: 3.3% Rev: 54/ 0 Edges:  39(AdjPPX: 89.2) | Tune[Ready: 91% DivW:0.15 Temp:0.14 Cmt:0.10 Alpha:0.28 Bias:0.098 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.73( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0286 | Val BPC: 2.3825 (ValLoss: 6.401 StemAcc: 18.4%) | Cached best weights
+   Sample (*BEST* Ep 0286): 'First A inplyand p rotection to speak  I lves imb lew of '
+   >>> *BEST* EPOCH 0287 | Val BPC: 2.3809 (ValLoss: 6.396 StemAcc: 18.6%) | Cached best weights
+   Sample (*BEST* Ep 0287): 'First To be no more than thepelsin order And yet with me I mightfor that which we should in '
+   >>> *BEST* EPOCH 0288 | Val BPC: 2.3792 (ValLoss: 6.392 StemAcc: 18.4%) | Cached best weights
+   Sample (*BEST* Ep 0288): 'First to rum or a baef recting that she had made no more to usethe wholeg '
+   >>> *BEST* EPOCH 0289 | Val BPC: 2.3733 (ValLoss: 6.376 StemAcc: 18.5%) | Cached best weights
+   Sample (*BEST* Ep 0289): 'First old woman  CHORUS To you scythian not for our leaderOF THE CHORUS A ceim pleashe himself '
+   >>> *BEST* EPOCH 0292 | Val BPC: 2.3721 (ValLoss: 6.373 StemAcc: 18.9%) | Cached best weights
+   Sample (*BEST* Ep 0292): 'First As p retended immissions thef iling armer ap'
+   >>> *BEST* EPOCH 0294 | Val BPC: 2.3703 (ValLoss: 6.368 StemAcc: 19.0%) | Cached best weights
+   Sample (*BEST* Ep 0294): 'First As thou wilt not yet in that case to live that which is p robunce in de gr'
+Ep 0300 [P3M] | Loss:9.498 BPC:2.276 (SymLM:4.823[13.2%] VQ:0.764 Div:0.010 Eth:4.463) | Acc(S/M/E):17.8/85.8/69.3% | ValBPC:2.372 (S:18.9% M:87.2% E:70.3% Gap:+0.10) BestBPC:2.370@294 | 1,085 u/s (Tr:385.7s Va:81.8s Io:0.1s) VRAM:15.7G
+        | ACT:3.35±0.81[ 3/12/31/53%] Stk: 7.7(28/27/45 PtrPPX:12.5 Occ:84%) GWT[P:27 S:25 H:19 G:29] SigRMS[0.78/0.06/0.18/0.25] CarryG:0.30±0.24 | Grad:1.44/1.7 Skips:0 LR:0.00071
+        | GradMod[Cell:1.00 Att:0.14 FFN:0.43 VQ:0.006 Op:0.084 Adj:0.003 Holo:0.41 Dec:0.75] | LossPct[Pr:67% SL:11% VQ:14% Et: 7% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:982/1024 SymPPX:508.4 VQCos:0.65 Ops:24/24 OpPPX:15.7 RelAcc:12.7% Drift:0.070 Top1: 1.0% Loop: 2.8% Rev:  0/ 0 Edges:  48(AdjPPX: 86.8) | Tune[Ready: 88% DivW:0.15 Temp:0.14 Cmt:0.10 Alpha:0.27 Bias:0.092 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.57( 0%) Pat:0/10]
+   Sample: 'First watch over the s precked the m alt unyony thats uaves '
+   >>> *BEST* EPOCH 0301 | Val BPC: 2.3646 (ValLoss: 6.352 StemAcc: 19.1%) | Cached best weights
+   Sample (*BEST* Ep 0301): 'First i rateand shel ampers umpedupon a blelus ands h'
+   >>> *BEST* EPOCH 0306 | Val BPC: 2.3597 (ValLoss: 6.339 StemAcc: 19.0%) | Cached best weights
+   Sample (*BEST* Ep 0306): 'First Of him As for as i mprecionto be to pass his t axtended ag'
+   >>> *BEST* EPOCH 0311 | Val BPC: 2.3587 (ValLoss: 6.337 StemAcc: 19.0%) | Cached best weights
+   Sample (*BEST* Ep 0311): 'First tohave you your grace, to n ig ht unatio n to day And she d to this in c'
+   >>> *BEST* EPOCH 0313 | Val BPC: 2.3547 (ValLoss: 6.326 StemAcc: 19.1%) | Cached best weights
+   Sample (*BEST* Ep 0313): 'First And to be ne fits purn is hed inc hersthat g ardaf fl'
+Ep 0315 [P3M] | Loss:9.332 BPC:2.270 (SymLM:4.726[14.5%] VQ:0.793 Div:0.009 Eth:4.306) | Acc(S/M/E):19.1/85.7/69.7% | ValBPC:2.364 (S:19.0% M:86.9% E:70.4% Gap:+0.09) BestBPC:2.355@313 | 1,058 u/s (Tr:392.7s Va:87.8s Io:0.1s) VRAM:15.7G
+        | ACT:3.36±0.79[ 3/12/32/53%] Stk:11.4(32/27/42 PtrPPX:13.1 Occ:87%) GWT[P:26 S:27 H:20 G:28] SigRMS[0.78/0.07/0.20/0.24] CarryG:0.30±0.25 | Grad:1.78/2.3 Skips:0 LR:0.00071
+        | GradMod[Cell:1.04 Att:0.15 FFN:0.45 VQ:0.007 Op:0.087 Adj:0.003 Holo:0.44 Dec:0.84] | LossPct[Pr:67% SL:11% VQ:15% Et: 7% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:975/1024 SymPPX:500.9 VQCos:0.64 Ops:24/24 OpPPX:16.1 RelAcc:13.4% Drift:0.059 Top1: 0.9% Loop: 3.2% Rev: 56/ 0 Edges:  55(AdjPPX: 74.2) | Tune[Ready: 82% DivW:0.15 Temp:0.13 Cmt:0.10 Alpha:0.27 Bias:0.081 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.69( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0320 | Val BPC: 2.3494 (ValLoss: 6.312 StemAcc: 19.6%) | Cached best weights
+   Sample (*BEST* Ep 0320): 'First arc hmalebanshave the endof your own i aptingande xactiv'
+   >>> *BEST* EPOCH 0324 | Val BPC: 2.3469 (ValLoss: 6.305 StemAcc: 19.7%) | Cached best weights
+   Sample (*BEST* Ep 0324): 'First toyour c, herpiant resse the describeofmineo wlingand'
+   >>> *BEST* EPOCH 0328 | Val BPC: 2.3418 (ValLoss: 6.291 StemAcc: 19.6%) | Cached best weights
+   Sample (*BEST* Ep 0328): 'First S amphit tto monda wille ing todaclus for all '
+Ep 0330 [P3M] | Loss:9.295 BPC:2.253 (SymLM:4.730[14.4%] VQ:0.791 Div:0.010 Eth:4.323) | Acc(S/M/E):18.8/85.7/69.5% | ValBPC:2.339 (S:19.7% M:87.0% E:70.6% Gap:+0.09) *BEST* | 1,092 u/s (Tr:380.8s Va:87.0s Io:0.1s) VRAM:15.7G
+        | ACT:3.26±0.80[ 3/13/38/46%] Stk: 9.7(33/29/39 PtrPPX:12.5 Occ:86%) GWT[P:25 S:26 H:20 G:29] SigRMS[0.78/0.07/0.19/0.25] CarryG:0.29±0.25 | Grad:1.47/1.7 Skips:0 LR:0.00071
+        | GradMod[Cell:1.05 Att:0.16 FFN:0.44 VQ:0.007 Op:0.088 Adj:0.003 Holo:0.44 Dec:0.85] | LossPct[Pr:67% SL:11% VQ:14% Et: 7% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:998/1024 SymPPX:519.3 VQCos:0.65 Ops:24/24 OpPPX:16.3 RelAcc:13.8% Drift:0.058 Top1: 0.8% Loop: 2.7% Rev:  0/ 0 Edges:  70(AdjPPX: 75.4) | Tune[Ready: 81% DivW:0.15 Temp:0.13 Cmt:0.12 Alpha:0.26 Bias:0.080 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.63( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0330 | Val BPC: 2.3390 (ValLoss: 6.284 StemAcc: 19.7%) | Cached best weights
+   Sample (*BEST* Ep 0330): 'First of:\nthe man to a churywhich i m petledtheir b urs ish'
+   >>> *BEST* EPOCH 0337 | Val BPC: 2.3356 (ValLoss: 6.275 StemAcc: 19.8%) | Cached best weights
+   Sample (*BEST* Ep 0337): 'First And i mplesin all nightAnd thou the ship to me And from thy sire her fatherand that his '
+   >>> *BEST* EPOCH 0343 | Val BPC: 2.3318 (ValLoss: 6.265 StemAcc: 20.0%) | Cached best weights
+   Sample (*BEST* Ep 0343): 'First OLD and manthat a doze the consergedu ous pirce and b'
+Ep 0345 [P3M] | Loss:9.105 BPC:2.232 (SymLM:4.651[15.3%] VQ:0.858 Div:0.010 Eth:4.157) | Acc(S/M/E):20.3/86.0/69.9% | ValBPC:2.327 (S:20.0% M:87.1% E:70.7% Gap:+0.09) *BEST* | 1,117 u/s (Tr:379.1s Va:78.0s Io:0.1s) VRAM:15.7G
+        | ACT:3.27±0.85[ 5/12/35/49%] Stk:11.5(32/27/41 PtrPPX:12.3 Occ:86%) GWT[P:26 S:26 H:20 G:28] SigRMS[0.79/0.07/0.20/0.24] CarryG:0.30±0.26 | Grad:1.48/1.8 Skips:0 LR:0.00071
+        | GradMod[Cell:1.07 Att:0.17 FFN:0.44 VQ:0.007 Op:0.087 Adj:0.003 Holo:0.45 Dec:0.81] | LossPct[Pr:67% SL:11% VQ:15% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:989/1024 SymPPX:509.3 VQCos:0.64 Ops:24/24 OpPPX:15.5 RelAcc:14.8% Drift:0.055 Top1: 0.8% Loop: 2.9% Rev:  0/ 0 Edges:  94(AdjPPX: 63.9) | Tune[Ready: 75% DivW:0.15 Temp:0.13 Cmt:0.20 Alpha:0.26 Bias:0.072 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.66( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0345 | Val BPC: 2.3269 (ValLoss: 6.252 StemAcc: 20.0%) | Cached best weights
+   Sample (*BEST* Ep 0345): 'First And d racian aef les in alls hrill its obsi'
+   >>> *BEST* EPOCH 0347 | Val BPC: 2.3251 (ValLoss: 6.247 StemAcc: 20.1%) | Cached best weights
+   Sample (*BEST* Ep 0347): "First Old:\nmanand a d ismir' d hisin honourand blood s of f agin gthe thre"
+   >>> *BEST* EPOCH 0348 | Val BPC: 2.3202 (ValLoss: 6.233 StemAcc: 20.1%) | Cached best weights
+   Sample (*BEST* Ep 0348): 'First Of the b anks clasping a ccomposed yel lowand'
+   >>> *BEST* EPOCH 0354 | Val BPC: 2.3176 (ValLoss: 6.226 StemAcc: 20.2%) | Cached best weights
+   Sample (*BEST* Ep 0354): 'First As:\nc heston the b ranged and s petualco nflicatio'
+   >>> *BEST* EPOCH 0355 | Val BPC: 2.3130 (ValLoss: 6.214 StemAcc: 20.5%) | Cached best weights
+   Sample (*BEST* Ep 0355): 'First men:\nt winr ablys whelledof the samein orders and hudderof their '
+Ep 0360 [P3M] | Loss:8.944 BPC:2.191 (SymLM:4.679[14.8%] VQ:0.893 Div:0.010 Eth:4.015) | Acc(S/M/E):20.0/86.1/69.7% | ValBPC:2.317 (S:20.4% M:87.1% E:71.1% Gap:+0.13) BestBPC:2.313@355 | 1,046 u/s (Tr:392.5s Va:93.4s Io:0.1s) VRAM:15.7G
+        | ACT:3.14±0.81[ 4/13/45/37%] Stk: 7.2(30/29/41 PtrPPX:11.4 Occ:82%) GWT[P:25 S:26 H:20 G:29] SigRMS[0.78/0.06/0.19/0.25] CarryG:0.29±0.25 | Grad:1.33/1.5 Skips:0 LR:0.00071
+        | GradMod[Cell:1.01 Att:0.16 FFN:0.41 VQ:0.007 Op:0.079 Adj:0.003 Holo:0.42 Dec:0.79] | LossPct[Pr:69% SL:11% VQ:14% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:993/1024 SymPPX:509.2 VQCos:0.67 Ops:24/24 OpPPX:14.1 RelAcc:16.3% Drift:0.055 Top1: 0.8% Loop: 2.7% Rev:  0/ 0 Edges: 112(AdjPPX: 55.4) | Tune[Ready: 67% DivW:0.15 Temp:0.14 Cmt:0.36 Alpha:0.25 Bias:0.071 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.52( 0%) Pat:0/10]
+   Sample: 'First Of it not but the same time to make all else if you were being in ventedto s centwith him '
+   >>> *BEST* EPOCH 0362 | Val BPC: 2.3116 (ValLoss: 6.210 StemAcc: 20.6%) | Cached best weights
+   Sample (*BEST* Ep 0362): 'First L iap arc emons and antres seras foryouhe who his guard you do '
+   >>> *BEST* EPOCH 0364 | Val BPC: 2.3097 (ValLoss: 6.205 StemAcc: 20.7%) | Cached best weights
+   Sample (*BEST* Ep 0364): 'First Officeri the house he turn away with us the c heatin whole orof them and thenthe heroes but one which to '
+   >>> *BEST* EPOCH 0366 | Val BPC: 2.3087 (ValLoss: 6.202 StemAcc: 20.8%) | Cached best weights
+   Sample (*BEST* Ep 0366): 'First Soldier I should have been more than his life and that it will but the world to do and live as in every where the '
+   >>> *BEST* EPOCH 0367 | Val BPC: 2.3068 (ValLoss: 6.197 StemAcc: 20.6%) | Cached best weights
+   Sample (*BEST* Ep 0367): 'First old:\nmanit was the m ids aphlyas he could not let me see how to do'
+   >>> *BEST* EPOCH 0371 | Val BPC: 2.3043 (ValLoss: 6.191 StemAcc: 20.6%) | Cached best weights
+   Sample (*BEST* Ep 0371): 'First keep your in versation, and dissolution his pace agre'
+   >>> *BEST* EPOCH 0374 | Val BPC: 2.3025 (ValLoss: 6.186 StemAcc: 20.8%) | Cached best weights
+   Sample (*BEST* Ep 0374): 'First he m achusand all over w heatthe bardes p erching his son '
+Ep 0375 [P3M] | Loss:8.720 BPC:2.185 (SymLM:4.605[15.2%] VQ:0.859 Div:0.010 Eth:3.960) | Acc(S/M/E):20.4/86.4/69.7% | ValBPC:2.301 (S:20.9% M:87.3% E:71.2% Gap:+0.12) *BEST* | 1,083 u/s (Tr:385.8s Va:81.1s Io:0.1s) VRAM:15.7G
+        | ACT:3.04±0.79[ 5/15/51/29%] Stk:10.0(32/26/41 PtrPPX:12.3 Occ:85%) GWT[P:26 S:24 H:20 G:31] SigRMS[0.78/0.06/0.19/0.26] CarryG:0.29±0.26 | Grad:1.37/1.4 Skips:0 LR:0.00071
+        | GradMod[Cell:0.97 Att:0.16 FFN:0.39 VQ:0.006 Op:0.070 Adj:0.003 Holo:0.40 Dec:0.79] | LossPct[Pr:69% SL:12% VQ:13% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:993/1024 SymPPX:496.8 VQCos:0.69 Ops:24/24 OpPPX:13.7 RelAcc:16.0% Drift:0.053 Top1: 0.8% Loop: 3.0% Rev:  0/ 0 Edges: 147(AdjPPX: 52.5) | Tune[Ready: 66% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.24 Bias:0.072 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.45( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0375 | Val BPC: 2.3014 (ValLoss: 6.183 StemAcc: 20.9%) | Cached best weights
+   Sample (*BEST* Ep 0375): 'First Of a dventration i mplexious to be s ucked up your '
+   >>> *BEST* EPOCH 0376 | Val BPC: 2.3001 (ValLoss: 6.179 StemAcc: 20.7%) | Cached best weights
+   Sample (*BEST* Ep 0376): 'First Watch man No no no But what we can do the king of the city is to f inal s capt '
+Ep 0390 [P3M] | Loss:8.684 BPC:2.156 (SymLM:4.600[15.4%] VQ:0.853 Div:0.010 Eth:3.927) | Acc(S/M/E):20.6/86.6/70.1% | ValBPC:2.298 (S:20.8% M:87.3% E:70.9% Gap:+0.14) *BEST* | 1,085 u/s (Tr:377.3s Va:95.1s Io:0.1s) VRAM:15.7G
+        | ACT:3.04±0.82[ 5/15/49/30%] Stk:10.4(33/29/39 PtrPPX:13.8 Occ:86%) GWT[P:26 S:24 H:19 G:31] SigRMS[0.78/0.07/0.19/0.26] CarryG:0.29±0.26 | Grad:1.31/1.5 Skips:0 LR:0.00071
+        | GradMod[Cell:1.07 Att:0.18 FFN:0.42 VQ:0.007 Op:0.073 Adj:0.004 Holo:0.46 Dec:0.81] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:982/1024 SymPPX:496.1 VQCos:0.70 Ops:24/24 OpPPX:14.1 RelAcc:16.6% Drift:0.050 Top1: 0.8% Loop: 3.1% Rev:  0/ 0 Edges: 165(AdjPPX: 50.8) | Tune[Ready: 69% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.25 Bias:0.075 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.62( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0390 | Val BPC: 2.2981 (ValLoss: 6.174 StemAcc: 20.8%) | Cached best weights
+   Sample (*BEST* Ep 0390): 'First to f lazed me marsH ypicians uginus in cred'
+   >>> *BEST* EPOCH 0393 | Val BPC: 2.2961 (ValLoss: 6.169 StemAcc: 21.1%) | Cached best weights
+   Sample (*BEST* Ep 0393): 'First of it He the causeto my p rudents implicateth agust '
+   >>> *BEST* EPOCH 0396 | Val BPC: 2.2926 (ValLoss: 6.159 StemAcc: 21.2%) | Cached best weights
+   Sample (*BEST* Ep 0396): 'First Servant:\nfor him who are tosay no man but the same that are d ispersed in his de ful'
+   >>> *BEST* EPOCH 0399 | Val BPC: 2.2899 (ValLoss: 6.152 StemAcc: 21.0%) | Cached best weights
+   Sample (*BEST* Ep 0399): 'First of:\nman as a man is taken thee A manand re vealand p elleg ing the e'
+Ep 0405 [P3M] | Loss:8.635 BPC:2.156 (SymLM:4.526[16.4%] VQ:0.847 Div:0.009 Eth:3.928) | Acc(S/M/E):21.8/86.2/70.0% | ValBPC:2.297 (S:21.1% M:87.1% E:71.0% Gap:+0.14) BestBPC:2.290@399 | 1,119 u/s (Tr:379.6s Va:75.8s Io:0.1s) VRAM:15.7G
+        | ACT:2.93±0.83[ 7/18/50/25%] Stk:11.9(33/27/39 PtrPPX:12.9 Occ:87%) GWT[P:26 S:24 H:19 G:32] SigRMS[0.78/0.07/0.18/0.27] CarryG:0.29±0.26 | Grad:1.62/2.1 Skips:0 LR:0.00071
+        | GradMod[Cell:1.13 Att:0.19 FFN:0.43 VQ:0.007 Op:0.077 Adj:0.004 Holo:0.46 Dec:0.80] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:989/1024 SymPPX:497.3 VQCos:0.70 Ops:24/24 OpPPX:14.4 RelAcc:17.3% Drift:0.056 Top1: 0.8% Loop: 3.5% Rev:  0/ 0 Edges: 188(AdjPPX: 50.8) | Tune[Ready: 72% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.25 Bias:0.080 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.85( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0414 | Val BPC: 2.2874 (ValLoss: 6.145 StemAcc: 21.2%) | Cached best weights
+   Sample (*BEST* Ep 0414): "First begin:\nto p oiss his heart as for the g reekof her bhorn' d by my "
+Ep 0420 [P3M] | Loss:8.594 BPC:2.143 (SymLM:4.538[15.7%] VQ:0.832 Div:0.009 Eth:3.886) | Acc(S/M/E):21.6/86.7/70.6% | ValBPC:2.289 (S:21.4% M:87.4% E:71.1% Gap:+0.15) BestBPC:2.287@414 | 1,076 u/s (Tr:387.6s Va:89.8s Io:0.0s) VRAM:15.7G
+        | ACT:3.04±0.87[ 7/16/44/33%] Stk: 9.7(32/28/40 PtrPPX:13.7 Occ:86%) GWT[P:26 S:24 H:19 G:31] SigRMS[0.78/0.06/0.19/0.27] CarryG:0.30±0.27 | Grad:1.45/1.6 Skips:0 LR:0.00071
+        | GradMod[Cell:1.15 Att:0.19 FFN:0.44 VQ:0.008 Op:0.080 Adj:0.004 Holo:0.47 Dec:0.89] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:971/1024 SymPPX:495.2 VQCos:0.70 Ops:24/24 OpPPX:14.4 RelAcc:17.1% Drift:0.046 Top1: 0.8% Loop: 3.0% Rev:  0/ 0 Edges: 216(AdjPPX: 48.7) | Tune[Ready: 73% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.25 Bias:0.080 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.82( 0%) Pat:0/10]
+   Sample: 'First woman:\ni mport an celle n ch you AND so long as he is a d vo'
+   >>> *BEST* EPOCH 0422 | Val BPC: 2.2848 (ValLoss: 6.138 StemAcc: 21.3%) | Cached best weights
+   Sample (*BEST* Ep 0422): 'First lord Will i enforcehim His t ravelsto hear it is with that which he never be re p'
+   >>> *BEST* EPOCH 0434 | Val BPC: 2.2838 (ValLoss: 6.135 StemAcc: 21.5%) | Cached best weights
+   Sample (*BEST* Ep 0434): 'First old woman   .\nthe superiorof a busein g limity of thy '
+Ep 0435 [P3M] | Loss:8.483 BPC:2.130 (SymLM:4.462[16.9%] VQ:0.829 Div:0.009 Eth:3.836) | Acc(S/M/E):22.1/86.9/70.8% | ValBPC:2.286 (S:21.3% M:87.3% E:71.1% Gap:+0.16) BestBPC:2.284@434 | 1,128 u/s (Tr:371.8s Va:81.2s Io:0.1s) VRAM:15.7G
+        | ACT:2.95±0.84[ 7/17/50/26%] Stk: 8.7(32/29/39 PtrPPX:12.1 Occ:84%) GWT[P:26 S:23 H:19 G:32] SigRMS[0.78/0.06/0.19/0.27] CarryG:0.30±0.27 | Grad:1.49/1.7 Skips:0 LR:0.00071
+        | GradMod[Cell:1.17 Att:0.20 FFN:0.46 VQ:0.008 Op:0.079 Adj:0.004 Holo:0.52 Dec:0.90] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:972/1024 SymPPX:494.4 VQCos:0.70 Ops:24/24 OpPPX:14.9 RelAcc:17.6% Drift:0.052 Top1: 0.8% Loop: 3.1% Rev:  0/ 0 Edges: 250(AdjPPX: 46.3) | Tune[Ready: 74% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.96( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0438 | Val BPC: 2.2821 (ValLoss: 6.131 StemAcc: 21.3%) | Cached best weights
+   Sample (*BEST* Ep 0438): 'First And a man who has been but for him he will to do nothing whatever i mportat io nin '
+   >>> *BEST* EPOCH 0440 | Val BPC: 2.2801 (ValLoss: 6.126 StemAcc: 21.5%) | Cached best weights
+   Sample (*BEST* Ep 0440): 'First Keep the seabut a chood as they were and f ulfilled the de wirm in'
+Ep 0450 [P3M] | Loss:8.546 BPC:2.141 (SymLM:4.489[16.3%] VQ:0.818 Div:0.010 Eth:3.812) | Acc(S/M/E):21.7/86.6/70.4% | ValBPC:2.287 (S:21.5% M:87.4% E:71.0% Gap:+0.15) BestBPC:2.280@440 | 1,105 u/s (Tr:383.5s Va:80.5s Io:0.0s) VRAM:15.7G
+        | ACT:2.94±0.78[ 6/16/56/22%] Stk:11.9(34/26/39 PtrPPX:12.1 Occ:86%) GWT[P:25 S:23 H:20 G:32] SigRMS[0.78/0.06/0.20/0.27] CarryG:0.30±0.27 | Grad:1.66/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:1.21 Att:0.21 FFN:0.45 VQ:0.008 Op:0.083 Adj:0.004 Holo:0.49 Dec:0.85] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:957/1024 SymPPX:489.9 VQCos:0.71 Ops:24/24 OpPPX:15.0 RelAcc:17.7% Drift:0.052 Top1: 0.8% Loop: 2.8% Rev:  0/ 0 Edges: 261(AdjPPX: 45.2) | Tune[Ready: 76% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.26 Bias:0.084 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0463 | Val BPC: 2.2788 (ValLoss: 6.122 StemAcc: 21.7%) | Cached best weights
+   Sample (*BEST* Ep 0463): 'First c hestoftyandd icec ushians clipons calam'
+Ep 0465 [P3M] | Loss:8.524 BPC:2.117 (SymLM:4.465[16.8%] VQ:0.829 Div:0.009 Eth:3.827) | Acc(S/M/E):21.9/86.4/70.3% | ValBPC:2.287 (S:21.6% M:87.3% E:71.3% Gap:+0.17) BestBPC:2.279@463 | 1,145 u/s (Tr:373.7s Va:74.7s Io:0.0s) VRAM:15.7G
+        | ACT:2.92±0.83[ 7/19/50/24%] Stk: 8.5(33/28/39 PtrPPX:12.5 Occ:84%) GWT[P:27 S:24 H:20 G:30] SigRMS[0.79/0.06/0.19/0.26] CarryG:0.30±0.27 | Grad:1.49/1.6 Skips:0 LR:0.00071
+        | GradMod[Cell:1.27 Att:0.22 FFN:0.46 VQ:0.009 Op:0.089 Adj:0.004 Holo:0.53 Dec:0.99] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:956/1024 SymPPX:486.0 VQCos:0.70 Ops:24/24 OpPPX:14.7 RelAcc:18.0% Drift:0.052 Top1: 0.8% Loop: 2.5% Rev:  0/ 0 Edges: 284(AdjPPX: 45.9) | Tune[Ready: 76% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.26 Bias:0.087 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 3%) Pat:0/10]
+   >>> *BEST* EPOCH 0469 | Val BPC: 2.2767 (ValLoss: 6.116 StemAcc: 22.0%) | Cached best weights
+   Sample (*BEST* Ep 0469): 'First Servant The son of AeacusIn herwombbut the sun is made a de cks posed up his '
+Ep 0480 [P3M] | Loss:8.455 BPC:2.099 (SymLM:4.444[16.7%] VQ:0.831 Div:0.009 Eth:3.749) | Acc(S/M/E):22.3/87.0/70.6% | ValBPC:2.273 (S:21.9% M:87.6% E:71.3% Gap:+0.17) *BEST* | 1,117 u/s (Tr:377.4s Va:82.7s Io:0.1s) VRAM:15.7G
+        | ACT:2.97±0.83[ 7/16/51/26%] Stk: 6.8(30/28/42 PtrPPX:12.0 Occ:83%) GWT[P:26 S:24 H:21 G:29] SigRMS[0.78/0.06/0.20/0.25] CarryG:0.30±0.28 | Grad:1.58/1.8 Skips:0 LR:0.00071
+        | GradMod[Cell:1.20 Att:0.22 FFN:0.45 VQ:0.009 Op:0.083 Adj:0.004 Holo:0.53 Dec:0.87] | LossPct[Pr:69% SL:12% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:962/1024 SymPPX:486.4 VQCos:0.70 Ops:24/24 OpPPX:15.1 RelAcc:18.5% Drift:0.048 Top1: 0.8% Loop: 2.9% Rev:  0/ 0 Edges: 298(AdjPPX: 42.5) | Tune[Ready: 76% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:2.90( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0480 | Val BPC: 2.2732 (ValLoss: 6.107 StemAcc: 21.9%) | Cached best weights
+   Sample (*BEST* Ep 0480): 'First Watch st umps orach yrusstheys hriek ne cleded '
+Ep 0495 [P3M] | Loss:8.496 BPC:2.113 (SymLM:4.438[16.8%] VQ:0.830 Div:0.009 Eth:3.807) | Acc(S/M/E):22.3/86.9/70.7% | ValBPC:2.287 (S:22.0% M:87.4% E:71.4% Gap:+0.17) BestBPC:2.273@480 | 1,078 u/s (Tr:391.9s Va:84.7s Io:0.0s) VRAM:15.7G
+        | ACT:2.89±0.83[ 7/19/52/22%] Stk: 8.1(30/26/43 PtrPPX:12.5 Occ:83%) GWT[P:26 S:23 H:21 G:30] SigRMS[0.78/0.06/0.21/0.26] CarryG:0.31±0.28 | Grad:1.69/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:1.33 Att:0.24 FFN:0.47 VQ:0.009 Op:0.091 Adj:0.004 Holo:0.54 Dec:0.98] | LossPct[Pr:69% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:948/1024 SymPPX:486.3 VQCos:0.70 Ops:24/24 OpPPX:15.3 RelAcc:18.2% Drift:0.053 Top1: 0.9% Loop: 2.4% Rev:  0/ 0 Edges: 320(AdjPPX: 45.0) | Tune[Ready: 77% DivW:0.15 Temp:0.15 Cmt:0.40 Alpha:0.26 Bias:0.085 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 2%) Pat:1/10]
+   >>> *BEST* EPOCH 0508 | Val BPC: 2.2688 (ValLoss: 6.095 StemAcc: 22.4%) | Cached best weights
+   Sample (*BEST* Ep 0508): 'First To:\nfind the c urstresswill you not have a pursuit s hootto '
+   >>> *BEST* EPOCH 0509 | Val BPC: 2.2642 (ValLoss: 6.083 StemAcc: 22.3%) | Cached best weights
+   Sample (*BEST* Ep 0509): 'First To be and ru mble l acetheg\niants PITHETAERUS\nWhat an animaldo you '
+Ep 0510 [P3M] | Loss:8.354 BPC:2.086 (SymLM:4.364[17.4%] VQ:0.816 Div:0.009 Eth:3.731) | Acc(S/M/E):23.0/87.4/71.0% | ValBPC:2.265 (S:22.5% M:87.5% E:71.5% Gap:+0.18) BestBPC:2.264@509 | 1,129 u/s (Tr:369.8s Va:83.8s Io:0.0s) VRAM:15.7G
+        | ACT:2.99±0.88[ 8/16/46/30%] Stk:11.3(34/26/40 PtrPPX:12.5 Occ:86%) GWT[P:26 S:23 H:20 G:30] SigRMS[0.78/0.06/0.20/0.26] CarryG:0.31±0.28 | Grad:1.67/1.8 Skips:0 LR:0.00035
+        | GradMod[Cell:1.31 Att:0.24 FFN:0.45 VQ:0.010 Op:0.091 Adj:0.004 Holo:0.54 Dec:0.91] | LossPct[Pr:69% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:944/1024 SymPPX:489.2 VQCos:0.71 Ops:24/24 OpPPX:15.3 RelAcc:18.9% Drift:0.050 Top1: 0.9% Loop: 2.8% Rev:  0/ 0 Edges: 342(AdjPPX: 41.7) | Tune[Ready: 77% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0512 | Val BPC: 2.2601 (ValLoss: 6.072 StemAcc: 22.4%) | Cached best weights
+   Sample (*BEST* Ep 0512): 'First Watch and relishus the capt urythe airwhich the stead a ccom'
+   >>> *BEST* EPOCH 0516 | Val BPC: 2.2590 (ValLoss: 6.069 StemAcc: 22.8%) | Cached best weights
+   Sample (*BEST* Ep 0516): 'First Thatis so ands critof her\nhusbandbut not even to preferred upon my thoughts to our own '
+   >>> *BEST* EPOCH 0519 | Val BPC: 2.2573 (ValLoss: 6.064 StemAcc: 22.5%) | Cached best weights
+   Sample (*BEST* Ep 0519): 'First gentlemanHe should be for what a p etiteof the cause and f retto rg er or m o'
+   >>> *BEST* EPOCH 0522 | Val BPC: 2.2540 (ValLoss: 6.055 StemAcc: 22.5%) | Cached best weights
+   Sample (*BEST* Ep 0522): 'First Servant What are you doing There IS:\nit to me i lyhe who love the spursuit of you '
+Ep 0525 [P3M] | Loss:8.418 BPC:2.073 (SymLM:4.399[17.2%] VQ:0.820 Div:0.009 Eth:3.771) | Acc(S/M/E):23.0/86.8/70.8% | ValBPC:2.262 (S:22.6% M:87.6% E:71.3% Gap:+0.19) BestBPC:2.254@522 | 1,117 u/s (Tr:388.1s Va:68.1s Io:0.1s) VRAM:15.7G
+        | ACT:2.92±0.84[ 8/17/52/24%] Stk:10.3(34/27/39 PtrPPX:13.0 Occ:85%) GWT[P:26 S:23 H:21 G:29] SigRMS[0.78/0.06/0.20/0.25] CarryG:0.31±0.28 | Grad:1.84/2.2 Skips:0 LR:0.00035
+        | GradMod[Cell:1.33 Att:0.25 FFN:0.48 VQ:0.010 Op:0.093 Adj:0.004 Holo:0.60 Dec:0.85] | LossPct[Pr:68% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:960/1024 SymPPX:486.3 VQCos:0.71 Ops:24/24 OpPPX:15.4 RelAcc:18.8% Drift:0.050 Top1: 1.0% Loop: 2.5% Rev:  0/ 0 Edges: 349(AdjPPX: 43.4) | Tune[Ready: 78% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.085 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 0%) Pat:0/10]
+Ep 0540 [P3M] | Loss:8.243 BPC:2.057 (SymLM:4.302[18.3%] VQ:0.808 Div:0.009 Eth:3.686) | Acc(S/M/E):24.0/87.1/71.1% | ValBPC:2.254 (S:22.5% M:87.7% E:71.4% Gap:+0.20) BestBPC:2.254@522 | 1,095 u/s (Tr:376.6s Va:93.6s Io:0.0s) VRAM:15.7G
+        | ACT:2.95±0.86[ 8/16/49/27%] Stk: 8.1(33/29/38 PtrPPX:13.1 Occ:85%) GWT[P:26 S:23 H:21 G:29] SigRMS[0.78/0.06/0.20/0.25] CarryG:0.31±0.28 | Grad:1.96/2.0 Skips:0 LR:0.00035
+        | GradMod[Cell:1.46 Att:0.28 FFN:0.53 VQ:0.011 Op:0.102 Adj:0.005 Holo:0.67 Dec:0.90] | LossPct[Pr:69% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:947/1024 SymPPX:486.9 VQCos:0.71 Ops:24/24 OpPPX:15.4 RelAcc:19.3% Drift:0.047 Top1: 1.0% Loop: 3.0% Rev:  0/ 0 Edges: 352(AdjPPX: 39.9) | Tune[Ready: 77% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 7%) Pat:1/10]
+   Sample: 'First keep the king of p ermitte d ucedhim with p referred by and deb'
+Ep 0555 [P3M] | Loss:8.325 BPC:2.057 (SymLM:4.332[18.4%] VQ:0.819 Div:0.009 Eth:3.726) | Acc(S/M/E):23.7/87.2/71.2% | ValBPC:2.256 (S:22.3% M:87.6% E:71.3% Gap:+0.20) BestBPC:2.254@522 | 1,098 u/s (Tr:375.7s Va:92.3s Io:0.0s) VRAM:15.7G
+        | ACT:2.96±0.86[ 7/17/48/28%] Stk:10.2(34/29/37 PtrPPX:13.7 Occ:86%) GWT[P:26 S:23 H:22 G:30] SigRMS[0.78/0.06/0.21/0.26] CarryG:0.31±0.28 | Grad:2.17/2.5 Skips:0 LR:0.00035
+        | GradMod[Cell:1.55 Att:0.29 FFN:0.56 VQ:0.011 Op:0.106 Adj:0.005 Holo:0.71 Dec:0.98] | LossPct[Pr:68% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:945/1024 SymPPX:490.3 VQCos:0.71 Ops:24/24 OpPPX:15.3 RelAcc:19.3% Drift:0.045 Top1: 0.9% Loop: 3.1% Rev:  0/ 0 Edges: 352(AdjPPX: 41.5) | Tune[Ready: 77% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.082 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 7%) Pat:2/10]
+Ep 0570 [P3M] | Loss:8.242 BPC:2.028 (SymLM:4.289[18.2%] VQ:0.817 Div:0.009 Eth:3.737) | Acc(S/M/E):24.1/87.2/71.1% | ValBPC:2.256 (S:22.6% M:87.5% E:71.5% Gap:+0.23) BestBPC:2.254@522 | 1,086 u/s (Tr:380.5s Va:93.5s Io:0.0s) VRAM:15.7G
+        | ACT:2.93±0.85[ 8/17/50/25%] Stk: 8.0(33/30/37 PtrPPX:13.1 Occ:85%) GWT[P:26 S:23 H:22 G:29] SigRMS[0.78/0.06/0.21/0.25] CarryG:0.31±0.28 | Grad:1.99/2.3 Skips:0 LR:0.00018
+        | GradMod[Cell:1.57 Att:0.30 FFN:0.56 VQ:0.012 Op:0.110 Adj:0.005 Holo:0.69 Dec:0.98] | LossPct[Pr:68% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:940/1024 SymPPX:487.5 VQCos:0.71 Ops:24/24 OpPPX:15.6 RelAcc:18.8% Drift:0.043 Top1: 0.9% Loop: 2.8% Rev:  0/ 0 Edges: 355(AdjPPX: 42.0) | Tune[Ready: 77% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 5%) Pat:3/10]
+   >>> *BEST* EPOCH 0571 | Val BPC: 2.2510 (ValLoss: 6.047 StemAcc: 22.7%) | Cached best weights
+   Sample (*BEST* Ep 0571): 'First Soldieris to c hok e k.\n\nnitThe p hrytusand c rags i'
+   >>> *BEST* EPOCH 0574 | Val BPC: 2.2491 (ValLoss: 6.043 StemAcc: 22.8%) | Cached best weights
+   Sample (*BEST* Ep 0574): 'First To:\nserve you for e cquospiti a,\ndoreyou in suchan g\nrandand'
+Ep 0585 [P3M] | Loss:8.185 BPC:2.028 (SymLM:4.264[18.7%] VQ:0.820 Div:0.009 Eth:3.700) | Acc(S/M/E):24.4/87.6/71.7% | ValBPC:2.251 (S:22.6% M:87.6% E:71.5% Gap:+0.22) BestBPC:2.249@574 | 1,077 u/s (Tr:384.0s Va:91.7s Io:0.0s) VRAM:15.7G
+        | ACT:2.89±0.85[ 8/18/51/23%] Stk: 9.3(35/29/36 PtrPPX:13.4 Occ:85%) GWT[P:26 S:23 H:23 G:29] SigRMS[0.78/0.06/0.22/0.25] CarryG:0.31±0.28 | Grad:2.06/2.4 Skips:0 LR:0.00018
+        | GradMod[Cell:1.58 Att:0.31 FFN:0.58 VQ:0.012 Op:0.113 Adj:0.005 Holo:0.73 Dec:0.97] | LossPct[Pr:68% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:953/1024 SymPPX:485.6 VQCos:0.71 Ops:24/24 OpPPX:15.7 RelAcc:19.0% Drift:0.047 Top1: 0.9% Loop: 3.1% Rev:  0/ 0 Edges: 349(AdjPPX: 40.5) | Tune[Ready: 77% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00( 5%) Pat:0/10]
+   >>> *BEST* EPOCH 0594 | Val BPC: 2.2469 (ValLoss: 6.036 StemAcc: 22.9%) | Cached best weights
+   Sample (*BEST* Ep 0594): 'First Beginme you know Well for myself I a dvise thee so much of thes ubstitute'
+   >>> *BEST* EPOCH 0597 | Val BPC: 2.2455 (ValLoss: 6.033 StemAcc: 22.8%) | Cached best weights
+   Sample (*BEST* Ep 0597): 'First begin to c rawk leour;\np olutsi ble, of herds hine '
+Ep 0599 [P3M] | Loss:8.243 BPC:2.038 (SymLM:4.301[17.9%] VQ:0.812 Div:0.009 Eth:3.706) | Acc(S/M/E):23.7/87.5/71.3% | ValBPC:2.248 (S:22.8% M:87.6% E:71.4% Gap:+0.21) BestBPC:2.245@597 | 1,059 u/s (Tr:357.5s Va:94.0s Io:0.1s) VRAM:15.7G
+        | ACT:2.91±0.84[ 8/17/52/23%] Stk: 9.7(34/28/37 PtrPPX:13.6 Occ:85%) GWT[P:26 S:24 H:21 G:29] SigRMS[0.78/0.06/0.21/0.25] CarryG:0.31±0.28 | Grad:3.00/5.7 Skips:0 LR:0.00018
+        | GradMod[Cell:1.76 Att:0.34 FFN:0.63 VQ:0.013 Op:0.122 Adj:0.005 Holo:0.79 Dec:1.03] | LossPct[Pr:68% SL:11% VQ:13% Et: 6% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:945/1024 SymPPX:485.8 VQCos:0.71 Ops:24/24 OpPPX:15.6 RelAcc:19.4% Drift:0.044 Top1: 0.9% Loop: 2.5% Rev:  0/ 0 Edges: 357(AdjPPX: 40.7) | Tune[Ready: 77% DivW:0.15 Temp:0.14 Cmt:0.40 Alpha:0.26 Bias:0.083 GGate:1.00 PndP:0.1500 Consc:0.08 Clip:3.00(11%) Pat:0/10]
+   [End of Phase 3 Sample @ Ep 0599]: 'First and:\ns urmise yourhead of ingsare in constantly c a'
+Restored best healthy checkpoint (Val BPC: 2.2455 at Ep 597).
+
+--- Saving Final Model to crsn_omni_model.pth ---
+Saved.
+Saved 0_training_dynamics.png
+
+--- Generating Diagnostics & Images ---
+Codebook Health : Active=394/1024 | Top10%Share=83.8% | MedianHits=10 | AvgStemPurity=37.4%
+   Hub S_46   (hits=693 , purity= 4.3%, dom_op=R_20): ['him'(30), 'marcius'(18), 'me'(14)]
+   Hub S_387  (hits=620 , purity= 8.1%, dom_op=R_20): ['not'(50), 'do'(30), 'you'(23)]
+   Hub S_328  (hits=484 , purity= 3.1%, dom_op=R_20): ['voice'(15), 'good'(14), 'people'(12)]
+   Hub S_311  (hits=425 , purity=17.2%, dom_op=R_16): ['c'(73), 'p'(44), 's'(43)]
+   Hub S_555  (hits=393 , purity=12.5%, dom_op=R_14): ['and'(49), 'we'(25), 'that'(18)]
+Saved 1_semantic_topology.png
+Running Inference Scan...
+ACT Step Breakdown : 1 steps: 13%, 2 steps: 18%, 3 steps: 40%, 4 steps: 29%
+Stack Depth Range  : [0.12, 4.68] | Avg Gen PktLen=1.02
+Generated          : First c irckle s catter 'd his dissolvent alpart,
+And then he should be to b addi,
+an i mpulin g lyof the seaand 
+
+Saved 2_stack_mri.png
+Saved 3_act_profile.png
+Saved 4_phase_plot.png
+
+--- Extracting Explicit Logic Rules (Relational Operator + Dual-Clock Edge Triples) ---
+
+[1-Hop Relational Rules] FROM             | OP | EDGE      | TO               | COUNT  | AVG STEPS
+--------------------------------------------------------------------------------
+S_722 (a)        --[R_14|:\n  ]--> S_87  (o)        | 116    | 2.79 (op 100%)
+S_752 (i)        --[R_20|·    ]--> S_387 (not)      | 98     | 3.17 (op  94%)
+S_387 (not)      --[R_20|·    ]--> S_387 (not)      | 88     | 3.33 (op  99%)
+S_46  (him)      --[R_14|,\n  ]--> S_555 (and)      | 73     | 3.63 (op  97%)
+S_993 (the)      --[R_20|·    ]--> S_396 (city)     | 67     | 3.57 (op 100%)
+S_46  (him)      --[R_20|·    ]--> S_46  (him)      | 64     | 3.62 (op 100%)
+S_193 (first)    --[R_14|:\n  ]--> S_87  (o)        | 63     | 2.65 (op 100%)
+S_46  (him)      --[R_18|;·   ]--> S_353 (and)      | 52     | 3.65 (op  96%)
+S_387 (not)      --[R_20|·    ]--> S_46  (him)      | 51     | 3.67 (op 100%)
+S_193 (first)    --[R_20|·    ]--> S_717 (citizen)  | 49     | 3.00 (op 100%)
+S_46  (him)      --[R_17|.\n\n]--> S_193 (first)    | 47     | 3.66 (op 100%)
+S_364 (your)     --[R_20|·    ]--> S_328 (voice)    | 46     | 3.04 (op  98%)
+S_328 (voice)    --[R_20|·    ]--> S_46  (him)      | 40     | 3.65 (op  95%)
+S_555 (and)      --[R_20|·    ]--> S_46  (him)      | 39     | 3.03 (op 100%)
+S_387 (not)      --[R_20|·    ]--> S_478 (you)      | 39     | 3.54 (op 100%)
+S_711 (he)       --[R_20|·    ]--> S_711 (he)       | 38     | 3.05 (op  97%)
+S_328 (voice)    --[R_20|·    ]--> S_328 (voice)    | 38     | 3.16 (op  95%)
+S_82  (b)        --[R_0 |<CON…]--> S_77  (s)        | 37     | 3.32 (op 100%)
+S_711 (he)       --[R_20|·    ]--> S_387 (not)      | 37     | 3.35 (op 100%)
+S_328 (voice)    --[R_17|.\n\n]--> S_722 (a)        | 37     | 3.16 (op  97%)
+S_311 (c)        --[R_11|<CON…]--> S_183 (a)        | 35     | 1.00 (op 100%)
+S_46  (him)      --[R_17|.\n\n]--> S_722 (a)        | 35     | 3.03 (op 100%)
+S_108 (good)     --[R_20|·    ]--> S_328 (voice)    | 34     | 3.21 (op 100%)
+S_555 (and)      --[R_20|·    ]--> S_178 (give)     | 34     | 2.71 (op  85%)
+S_711 (he)       --[R_20|·    ]--> S_178 (give)     | 33     | 3.09 (op 100%)
+
+[2-Hop Concept Chains] S_A -> S_B -> S_C                                    | COUNT  | AVG STEPS
+----------------------------------------------------------------------------
+S_752 (i) -> S_387 (not) -> S_387 (not)              | 26     | 3.27
+S_722 (a) -> S_752 (i) -> S_387 (not)                | 19     | 3.00
+S_46  (him) -> S_722 (a) -> S_87  (o)                | 17     | 2.88
+S_193 (first) -> S_722 (a) -> S_87  (o)              | 16     | 2.75
+S_193 (first) -> S_717 (citizen) -> S_555 (and)      | 15     | 2.93
+S_328 (voice) -> S_722 (a) -> S_87  (o)              | 15     | 2.80
+S_184 (r) -> S_341 (g) -> S_339 (i)                  | 14     | 1.00
+S_722 (a) -> S_87  (o) -> S_328 (voice)              | 13     | 2.62
+S_193 (first) -> S_717 (citizen) -> S_87  (o)        | 12     | 2.42
+S_193 (first) -> S_184 (r) -> S_341 (g)              | 12     | 1.00
+S_46  (him) -> S_193 (first) -> S_87  (o)            | 11     | 2.55
+S_993 (the) -> S_396 (city) -> S_555 (and)           | 11     | 3.36
+S_353 (and) -> S_752 (i) -> S_387 (not)              | 11     | 3.73
+S_722 (a) -> S_87  (o) -> S_387 (not)                | 11     | 2.91
+S_387 (not) -> S_387 (not) -> S_387 (not)            | 11     | 3.73
+
+--- Dream Mode (Relational Operator Conceptual Walk) ---
+Dream Stats  : AvgTemp=0.30 | AvgBranchPPX=4.06 (Target=4.00) | GroundedSyms=50/50
+Dream Output : First I havecall coriolanus You well said you citizen Citizen sir i disfortheirspirit than they HAVE shall
+have these war purchasethese love these bear aslove this thing he was brought but do norwith the s urnuali gn
+
+
+--- Anomaly Detection Test (With Warmup Context) ---
+Warmup: 'noble and good is' | Test: 'not something different from saving and being banana'
+Anomaly Stats: ValidPrefixMean=9.61 | TailMean=13.16 TailMax=23.27 (Contrast=2.42x) | [LM: 7.63->20.73 (2.72x) | RelSymEth: 0.99->3.38 (3.41x) | ACT: 3.57->2.50]
+Saved 5_anomaly_detection.png
+
+--- Context-Difficulty ACT Probe ---
+Val ACT (Aligned Stem NLL) : Easy(NLL<=4.66)=2.951 steps | Hard(NLL>4.66)=3.262 steps
+Val ACT (Model Entropy)    : LowEnt(H<=4.96)=2.842 steps | HighEnt(H>4.96)=3.371 steps
+Val ACT (Input Surprisal)  : EasyIn(NLL<=4.65)=3.062 steps | HardIn(NLL>4.65)=3.149 steps
+
+--- Split Module Ablation Probe (Val Set, BPC Scorecard) ---
+Configuration         | BPC     | Loss    | StemAcc | dBPC vs Full
+--------------------------------------------------------------------
+Full Model            | 2.2455  | 6.0327  |   22.8% |    +0.0000
+- No Stack (Both)     | 2.5290  | 6.7938  |   17.3% |    +0.2835
+- No Stack Attn       | 2.5385  | 6.8195  |   16.8% |    +0.2930
+- No Stack Read       | 2.2715  | 6.1025  |   22.5% |    +0.0260
+- No HoloMem          | 2.3220  | 6.2383  |   20.6% |    +0.0765
+- No GraphEcho        | 2.8269  | 7.5960  |   16.7% |    +0.5814
+- No RelOp Bind       | 2.3339  | 6.2703  |   22.0% |    +0.0884
+- No DualClock Edge   | 2.3941  | 6.4318  |   21.2% |    +0.1486
+- No Morph Phase      | 2.2761  | 6.1150  |   22.1% |    +0.0307
+- No VQ Feedback      | 2.4816  | 6.6667  |   20.1% |    +0.2361
+- No Rec Carry        | 2.6863  | 7.2164  |   12.5% |    +0.4408
+- Fixed ACT (1x)      | 2.6988  | 7.2503  |   16.3% |    +0.4533
+- Unpacked (L=1)      | 2.2496  | 6.0344  |   20.4% |    +0.0041
+Saved 6_codebook_and_ablation.png
+
+Saved complete terminal output log to 'terminal outputs.txt'.

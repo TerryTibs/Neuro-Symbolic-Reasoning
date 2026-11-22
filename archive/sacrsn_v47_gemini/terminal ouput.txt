@@ -1,0 +1,205 @@
+Hardware: cuda (NVIDIA GeForce RTX 5060 Ti, 15.9 GB VRAM) | BF16=True | TF32=True
+'data.txt' not found — using built-in default text.
+=== Auto-Configuration Summary (SACRSN v47 Unified) ===
+Corpus       : 274 chars (26 base chars, min_char_freq>=1) | Train=156 toks | Val=None (small text)
+Tokenizer    : Subword BPE | Vocab=60 (Used=47, ZipfPPX=36.6) | Merges=33/33 | Comp=1.76x
+Architecture : Dim=64 (2D=128) | Codebook=120 (~2.55x used vocab, TargetPPX=[31..66]) | Stack=16 | MaxDepth=8
+Schedule     : Streams=4x38 (Cap=155, TBPTT=16) | Epochs=1348 (Phases: 0..134->KMeans->337->1348, ~1321.9x corpus passes)
+InitHyper    : LR=0.00150 (Plateau) | WD=1.0e-05 | AutoClipInit=1.00 | EthW=0.129 | ConsW=0.020 | ACT_Thresh=0.90
+Sample tokens: ['T', 'rue', ',', '·w', 'i', 'th', 'o', 'u', 't', '·fa', 'l', 's']
+=========================================================
+--- Training SACRSN v47 (BF16=True | FusedAdamW=True | TBPTT=16) ---
+Ep 0000 [P1] | Loss:4.836 (Pred:4.248 VQ:1.939 Div:0.140 Eth:1.867 Cons:0.404) | Acc:  2.6% TokPPX:69.97 |  | 22 tok/s (6.9s) VRAM:0.1G
+        | ACT:7.36±0.80[ 0/ 0/ 0/ 1/ 1/14/31/53%] Stk: 4.0(33/38/29 PtrPPX: 9.2 Occ:91%) GWT[P:25 S:23 H:26 G:25] | Grad:9.19/11.4 Skips:1 LR:0.00010
+        | Syms:117/120 SymPPX: 88.2 VQCos:0.22 Drift:0.301 Top1: 3.9% Loop: 1.4% Rev:  0 Edges:   0(AdjPPX:  6.5) | Tune[Ready:  0% DivW:1.20 Temp:0.21 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00026 Clip:2.00(67%) Pat:0/10]
+   Sample: 'T whins whicTTTTTTTTbb th w\n v. b th thatererv. bertorruerue..ruooor fowruerueru.ru '
+Ep 0033 [P1] | Loss:2.358 (Pred:1.804 VQ:1.748 Div:0.141 Eth:1.865 Cons:0.455) | Acc: 63.8% TokPPX: 6.08 |  | 24 tok/s (206.7s) VRAM:0.1G
+        | ACT:3.28±0.91[ 0/18/47/26/ 6/ 3/ 0/ 0%] Stk: 0.2( 8/46/46 PtrPPX: 1.7 Occ:41%) GWT[P:31 S:26 H:16 G:27] | Grad:3.64/4.4 Skips:1 LR:0.00150
+        | Syms: 91/120 SymPPX: 59.7 VQCos:0.25 Drift:0.216 Top1: 5.0% Loop: 3.4% Rev:  0 Edges:   0(AdjPPX:  6.5) | Tune[Ready:  0% DivW:1.20 Temp:0.22 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:2.00(96%) Pat:0/10]
+Ep 0066 [P1] | Loss:0.659 (Pred:0.155 VQ:1.474 Div:0.138 Eth:1.898 Cons:0.632) | Acc: 98.0% TokPPX: 1.17 |  | 20 tok/s (248.7s) VRAM:0.1G
+        | ACT:3.06±0.84[ 0/25/50/20/ 3/ 1/ 0/ 0%] Stk: 0.4(10/36/54 PtrPPX: 2.1 Occ:43%) GWT[P:33 S:25 H:16 G:26] | Grad:1.27/1.8 Skips:0 LR:0.00150
+        | Syms: 92/120 SymPPX: 66.9 VQCos:0.32 Drift:0.153 Top1: 3.4% Loop: 2.7% Rev:  0 Edges:   0(AdjPPX:  6.7) | Tune[Ready:  0% DivW:1.20 Temp:0.24 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:2.00(64%) Pat:0/10]
+Ep 0099 [P1] | Loss:0.506 (Pred:0.067 VQ:1.223 Div:0.133 Eth:2.105 Cons:0.872) | Acc: 98.7% TokPPX: 1.07 |  | 20 tok/s (249.9s) VRAM:0.1G
+        | ACT:3.08±0.75[ 0/21/53/22/ 3/ 0/ 0/ 0%] Stk: 0.7(11/27/62 PtrPPX: 2.8 Occ:51%) GWT[P:32 S:25 H:16 G:27] | Grad:0.94/1.4 Skips:0 LR:0.00150
+        | Syms: 87/120 SymPPX: 64.8 VQCos:0.40 Drift:0.112 Top1: 3.6% Loop: 4.1% Rev:  0 Edges:   0(AdjPPX:  8.2) | Tune[Ready:  0% DivW:1.20 Temp:0.25 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:1.68( 8%) Pat:0/10]
+Ep 0132 [P1] | Loss:0.463 (Pred:0.071 VQ:1.052 Div:0.129 Eth:2.636 Cons:1.171) | Acc: 98.0% TokPPX: 1.07 |  | 20 tok/s (250.6s) VRAM:0.1G
+        | ACT:2.86±0.77[ 0/36/43/20/ 1/ 0/ 0/ 0%] Stk: 0.6( 9/25/66 PtrPPX: 2.6 Occ:50%) GWT[P:33 S:25 H:15 G:27] | Grad:0.43/0.9 Skips:0 LR:0.00150
+        | Syms: 88/120 SymPPX: 65.7 VQCos:0.48 Drift:0.110 Top1: 4.4% Loop: 5.4% Rev:  0 Edges:   0(AdjPPX: 14.0) | Tune[Ready:  0% DivW:1.20 Temp:0.26 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:1.56(14%) Pat:0/10]
+[Phase 2 Crystallization @ Ep 0134] Initialized VQ codebook via GPU K-Means.
+Ep 0165 [P2] | Loss:0.940 (Pred:0.104 VQ:0.811 Div:0.020 Eth:2.741 Cons:1.216) | Acc: 97.4% TokPPX: 1.11 |  | 20 tok/s (249.7s) VRAM:0.1G
+        | ACT:2.78±0.70[ 0/37/49/14/ 1/ 0/ 0/ 0%] Stk: 0.7( 8/19/73 PtrPPX: 2.9 Occ:51%) GWT[P:35 S:25 H:14 G:26] | Grad:0.64/1.5 Skips:0 LR:0.00150
+        | Syms:102/120 SymPPX: 74.0 VQCos:0.68 Drift:0.144 Top1: 4.7% Loop: 5.4% Rev:  0 Edges:   0(AdjPPX: 15.5) | Tune[Ready:  0% DivW:0.05 Temp:0.34 Cmt:0.40 Alpha:0.05 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:1.25( 8%) Pat:0/10]
+Ep 0198 [P2] | Loss:0.768 (Pred:0.061 VQ:0.678 Div:0.020 Eth:2.922 Cons:1.190) | Acc: 98.7% TokPPX: 1.06 |  | 21 tok/s (241.5s) VRAM:0.1G
+        | ACT:2.82±0.73[ 0/36/48/15/ 1/ 0/ 0/ 0%] Stk: 0.8( 9/18/73 PtrPPX: 3.2 Occ:53%) GWT[P:36 S:24 H:14 G:26] | Grad:0.50/1.1 Skips:0 LR:0.00150
+        | Syms:102/120 SymPPX: 77.7 VQCos:0.72 Drift:0.176 Top1: 4.4% Loop: 4.7% Rev:  0 Edges:   0(AdjPPX: 18.6) | Tune[Ready:  0% DivW:0.05 Temp:0.36 Cmt:0.40 Alpha:0.10 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:1.62(15%) Pat:0/10]
+Ep 0231 [P2] | Loss:0.666 (Pred:0.072 VQ:0.562 Div:0.020 Eth:3.118 Cons:1.110) | Acc: 97.4% TokPPX: 1.08 |  | 21 tok/s (241.9s) VRAM:0.1G
+        | ACT:2.75±0.65[ 0/37/51/12/ 0/ 0/ 0/ 0%] Stk: 0.9( 9/16/75 PtrPPX: 3.4 Occ:54%) GWT[P:35 S:25 H:15 G:26] | Grad:0.66/1.6 Skips:0 LR:0.00150
+        | Syms:110/120 SymPPX: 81.7 VQCos:0.77 Drift:0.143 Top1: 4.5% Loop: 4.1% Rev:  0 Edges:   0(AdjPPX: 22.6) | Tune[Ready:  0% DivW:0.05 Temp:0.38 Cmt:0.40 Alpha:0.14 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:1.43(15%) Pat:0/10]
+Ep 0264 [P2] | Loss:0.642 (Pred:0.058 VQ:0.549 Div:0.021 Eth:2.794 Cons:1.003) | Acc: 98.0% TokPPX: 1.06 |  | 20 tok/s (247.5s) VRAM:0.1G
+        | ACT:2.95±0.73[ 0/28/50/20/ 1/ 0/ 0/ 0%] Stk: 0.8( 8/18/74 PtrPPX: 3.0 Occ:56%) GWT[P:34 S:24 H:17 G:25] | Grad:1.85/3.0 Skips:0 LR:0.00150
+        | Syms: 91/120 SymPPX: 68.3 VQCos:0.78 Drift:0.170 Top1: 4.7% Loop: 6.1% Rev:  0 Edges:   0(AdjPPX: 16.3) | Tune[Ready:  0% DivW:0.05 Temp:0.39 Cmt:0.40 Alpha:0.19 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:2.00(18%) Pat:0/10]
+Ep 0297 [P2] | Loss:0.616 (Pred:0.048 VQ:0.524 Div:0.027 Eth:3.194 Cons:1.033) | Acc: 99.3% TokPPX: 1.05 |  | 20 tok/s (247.5s) VRAM:0.1G
+        | ACT:2.72±0.68[ 0/39/50/ 9/ 1/ 0/ 0/ 0%] Stk: 0.9( 9/16/75 PtrPPX: 3.2 Occ:49%) GWT[P:36 S:24 H:15 G:25] | Grad:0.70/1.4 Skips:0 LR:0.00150
+        | Syms:111/120 SymPPX: 82.7 VQCos:0.79 Drift:0.141 Top1: 4.6% Loop: 2.7% Rev:  0 Edges:   0(AdjPPX: 24.4) | Tune[Ready:  0% DivW:0.06 Temp:0.40 Cmt:0.40 Alpha:0.24 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:1.97( 7%) Pat:0/10]
+Ep 0330 [P2] | Loss:0.546 (Pred:0.052 VQ:0.453 Div:0.021 Eth:3.090 Cons:1.015) | Acc: 97.4% TokPPX: 1.05 |  | 20 tok/s (251.0s) VRAM:0.1G
+        | ACT:2.66±0.66[ 0/45/45/11/ 0/ 0/ 0/ 0%] Stk: 0.7( 6/14/81 PtrPPX: 2.8 Occ:47%) GWT[P:33 S:24 H:19 G:25] | Grad:0.70/1.1 Skips:0 LR:0.00150
+        | Syms:102/120 SymPPX: 72.9 VQCos:0.82 Drift:0.112 Top1: 4.5% Loop: 2.0% Rev:  0 Edges:   0(AdjPPX: 22.0) | Tune[Ready:  0% DivW:0.05 Temp:0.40 Cmt:0.40 Alpha:0.29 Bias:0.000 GGate:0.00 PndP:0.00045 Clip:2.00(11%) Pat:0/10]
+[Phase 3 Reasoning @ Ep 0337] Unlocked Multi-Hop Graph Echo & Ethical Rules.
+Ep 0363 [P3] | Loss:0.831 (Pred:0.121 VQ:0.432 Div:0.021 Eth:1.969 Cons:0.862) | Acc: 96.7% TokPPX: 1.13 | *BEST* | 19 tok/s (257.6s) VRAM:0.1G
+        | ACT:2.72±0.64[ 0/39/51/11/ 0/ 0/ 0/ 0%] Stk: 0.3( 5/23/72 PtrPPX: 1.9 Occ:37%) GWT[P:33 S:22 H:19 G:26] | Grad:1.14/2.1 Skips:0 LR:0.00150
+        | Syms:104/120 SymPPX: 75.9 VQCos:0.83 Drift:0.113 Top1: 4.8% Loop: 4.7% Rev:  0 Edges:  21(AdjPPX:  7.2) | Tune[Ready: 95% DivW:0.05 Temp:0.40 Cmt:0.40 Alpha:0.35 Bias:0.094 GGate:1.00 PndP:0.00045 Clip:2.00(14%) Pat:0/10]
+Ep 0396 [P3] | Loss:0.755 (Pred:0.068 VQ:0.448 Div:0.021 Eth:1.556 Cons:0.845) | Acc: 97.4% TokPPX: 1.07 | *BEST* | 19 tok/s (257.5s) VRAM:0.1G
+        | ACT:2.62±0.60[ 0/44/50/ 6/ 0/ 0/ 0/ 0%] Stk: 0.6( 7/16/78 PtrPPX: 2.4 Occ:40%) GWT[P:33 S:24 H:19 G:23] | Grad:1.21/2.1 Skips:0 LR:0.00150
+        | Syms:107/120 SymPPX: 77.9 VQCos:0.82 Drift:0.152 Top1: 4.5% Loop: 4.7% Rev:  0 Edges:  91(AdjPPX:  4.7) | Tune[Ready:100% DivW:0.05 Temp:0.41 Cmt:0.40 Alpha:0.36 Bias:0.105 GGate:1.00 PndP:0.00045 Clip:1.58( 9%) Pat:0/10]
+Ep 0429 [P3] | Loss:0.645 (Pred:0.062 VQ:0.394 Div:0.021 Eth:1.166 Cons:0.841) | Acc: 98.0% TokPPX: 1.06 |  | 19 tok/s (258.4s) VRAM:0.1G
+        | ACT:2.55±0.56[ 0/48/49/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 5/13/82 PtrPPX: 2.1 Occ:38%) GWT[P:36 S:26 H:18 G:19] | Grad:1.22/2.1 Skips:0 LR:0.00150
+        | Syms: 95/120 SymPPX: 68.6 VQCos:0.85 Drift:0.157 Top1: 5.9% Loop: 5.4% Rev:  0 Edges: 108(AdjPPX:  3.2) | Tune[Ready:100% DivW:0.05 Temp:0.42 Cmt:0.40 Alpha:0.36 Bias:0.107 GGate:1.00 PndP:0.00045 Clip:2.00(14%) Pat:0/10]
+Ep 0462 [P3] | Loss:0.641 (Pred:0.053 VQ:0.389 Div:0.021 Eth:1.240 Cons:0.830) | Acc: 98.7% TokPPX: 1.05 |  | 19 tok/s (258.7s) VRAM:0.1G
+        | ACT:2.62±0.57[ 0/43/53/ 5/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/13/83 PtrPPX: 2.1 Occ:35%) GWT[P:34 S:30 H:17 G:19] | Grad:0.76/1.9 Skips:0 LR:0.00150
+        | Syms:109/120 SymPPX: 81.2 VQCos:0.85 Drift:0.084 Top1: 4.8% Loop: 4.1% Rev:  0 Edges: 117(AdjPPX:  3.5) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.37 Bias:0.108 GGate:1.00 PndP:0.00045 Clip:1.12(11%) Pat:0/10]
+Ep 0495 [P3] | Loss:0.568 (Pred:0.050 VQ:0.343 Div:0.021 Eth:1.063 Cons:0.828) | Acc: 98.7% TokPPX: 1.05 |  | 20 tok/s (254.5s) VRAM:0.1G
+        | ACT:2.61±0.55[ 0/43/54/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/11/85 PtrPPX: 2.1 Occ:35%) GWT[P:34 S:30 H:17 G:19] | Grad:0.39/0.8 Skips:0 LR:0.00150
+        | Syms:105/120 SymPPX: 74.3 VQCos:0.87 Drift:0.104 Top1: 5.3% Loop: 6.1% Rev:  0 Edges: 117(AdjPPX:  2.9) | Tune[Ready:100% DivW:0.05 Temp:0.42 Cmt:0.40 Alpha:0.37 Bias:0.106 GGate:1.00 PndP:0.00045 Clip:1.12(19%) Pat:0/10]
+Ep 0528 [P3] | Loss:0.579 (Pred:0.075 VQ:0.326 Div:0.021 Eth:1.079 Cons:0.818) | Acc: 97.4% TokPPX: 1.08 |  | 20 tok/s (256.5s) VRAM:0.1G
+        | ACT:2.57±0.60[ 0/49/45/ 6/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/11/85 PtrPPX: 2.2 Occ:35%) GWT[P:33 S:31 H:19 G:17] | Grad:0.86/1.6 Skips:0 LR:0.00150
+        | Syms:100/120 SymPPX: 71.8 VQCos:0.87 Drift:0.120 Top1: 5.1% Loop: 3.4% Rev:  0 Edges: 120(AdjPPX:  2.9) | Tune[Ready:100% DivW:0.05 Temp:0.41 Cmt:0.40 Alpha:0.38 Bias:0.105 GGate:1.00 PndP:0.00045 Clip:1.27(25%) Pat:0/10]
+Ep 0561 [P3] | Loss:0.568 (Pred:0.035 VQ:0.358 Div:0.021 Eth:1.059 Cons:0.795) | Acc: 98.7% TokPPX: 1.04 |  | 19 tok/s (257.8s) VRAM:0.1G
+        | ACT:2.55±0.55[ 0/48/49/ 3/ 0/ 0/ 0/ 0%] Stk: 0.3( 4/17/79 PtrPPX: 1.7 Occ:31%) GWT[P:35 S:33 H:17 G:14] | Grad:0.47/0.9 Skips:0 LR:0.00075
+        | Syms:109/120 SymPPX: 83.0 VQCos:0.86 Drift:0.102 Top1: 4.7% Loop: 3.4% Rev:  0 Edges: 125(AdjPPX:  2.9) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.38 Bias:0.108 GGate:1.00 PndP:0.00045 Clip:1.82(20%) Pat:1/10]
+Ep 0594 [P3] | Loss:0.542 (Pred:0.039 VQ:0.316 Div:0.058 Eth:0.883 Cons:0.753) | Acc: 99.3% TokPPX: 1.04 | *BEST* | 20 tok/s (255.8s) VRAM:0.1G
+        | ACT:2.54±0.55[ 0/49/49/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 3/12/84 PtrPPX: 2.0 Occ:35%) GWT[P:34 S:33 H:18 G:15] | Grad:0.37/0.7 Skips:0 LR:0.00075
+        | Syms:108/120 SymPPX: 80.4 VQCos:0.88 Drift:0.090 Top1: 4.4% Loop: 2.0% Rev:  0 Edges: 128(AdjPPX:  2.4) | Tune[Ready:100% DivW:0.12 Temp:0.42 Cmt:0.40 Alpha:0.38 Bias:0.108 GGate:1.00 PndP:0.00045 Clip:1.01(16%) Pat:0/10]
+Ep 0627 [P3] | Loss:0.485 (Pred:0.033 VQ:0.290 Div:0.021 Eth:0.962 Cons:0.798) | Acc: 98.0% TokPPX: 1.03 | *BEST* | 19 tok/s (259.6s) VRAM:0.1G
+        | ACT:2.54±0.54[ 0/48/50/ 2/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/11/85 PtrPPX: 2.0 Occ:34%) GWT[P:33 S:33 H:19 G:15] | Grad:0.40/1.0 Skips:0 LR:0.00075
+        | Syms: 98/120 SymPPX: 71.6 VQCos:0.89 Drift:0.134 Top1: 5.7% Loop: 3.4% Rev:  0 Edges: 129(AdjPPX:  2.6) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.39 Bias:0.109 GGate:1.00 PndP:0.00045 Clip:0.87(23%) Pat:0/10]
+Ep 0660 [P3] | Loss:0.533 (Pred:0.044 VQ:0.324 Div:0.021 Eth:0.996 Cons:0.739) | Acc: 98.0% TokPPX: 1.04 |  | 20 tok/s (256.3s) VRAM:0.1G
+        | ACT:2.57±0.53[ 0/45/53/ 2/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/11/84 PtrPPX: 2.0 Occ:32%) GWT[P:34 S:34 H:18 G:15] | Grad:0.41/1.0 Skips:0 LR:0.00075
+        | Syms:109/120 SymPPX: 83.5 VQCos:0.88 Drift:0.109 Top1: 4.9% Loop: 3.4% Rev:  0 Edges: 132(AdjPPX:  2.7) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.39 Bias:0.108 GGate:1.00 PndP:0.00045 Clip:0.89(22%) Pat:1/10]
+Ep 0693 [P3] | Loss:0.494 (Pred:0.038 VQ:0.298 Div:0.021 Eth:0.933 Cons:0.768) | Acc: 98.7% TokPPX: 1.04 | *BEST* | 20 tok/s (252.3s) VRAM:0.1G
+        | ACT:2.54±0.55[ 0/49/49/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/10/86 PtrPPX: 2.0 Occ:33%) GWT[P:33 S:35 H:18 G:14] | Grad:0.44/1.0 Skips:0 LR:0.00075
+        | Syms:108/120 SymPPX: 80.6 VQCos:0.89 Drift:0.096 Top1: 4.7% Loop: 2.0% Rev:  0 Edges: 133(AdjPPX:  2.5) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.39 Bias:0.110 GGate:1.00 PndP:0.00045 Clip:0.97(21%) Pat:0/10]
+Ep 0726 [P3] | Loss:0.515 (Pred:0.040 VQ:0.317 Div:0.021 Eth:0.937 Cons:0.733) | Acc: 98.0% TokPPX: 1.04 |  | 19 tok/s (263.0s) VRAM:0.1G
+        | ACT:2.53±0.57[ 0/51/45/ 4/ 0/ 0/ 0/ 0%] Stk: 0.5( 5/12/83 PtrPPX: 2.3 Occ:39%) GWT[P:33 S:34 H:18 G:15] | Grad:0.56/1.5 Skips:0 LR:0.00075
+        | Syms:108/120 SymPPX: 82.0 VQCos:0.88 Drift:0.179 Top1: 4.4% Loop: 2.0% Rev:  0 Edges: 133(AdjPPX:  2.6) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.39 Bias:0.109 GGate:1.00 PndP:0.00045 Clip:0.99(25%) Pat:1/10]
+Ep 0759 [P3] | Loss:0.412 (Pred:0.021 VQ:0.248 Div:0.021 Eth:0.816 Cons:0.754) | Acc: 99.3% TokPPX: 1.02 | *BEST* | 20 tok/s (254.5s) VRAM:0.1G
+        | ACT:2.53±0.57[ 0/51/45/ 4/ 0/ 0/ 0/ 0%] Stk: 0.5( 5/11/84 PtrPPX: 2.2 Occ:37%) GWT[P:33 S:34 H:18 G:14] | Grad:0.49/1.1 Skips:0 LR:0.00075
+        | Syms:101/120 SymPPX: 76.4 VQCos:0.91 Drift:0.080 Top1: 4.9% Loop: 2.7% Rev:  0 Edges: 133(AdjPPX:  2.3) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.111 GGate:1.00 PndP:0.00045 Clip:0.97(27%) Pat:0/10]
+Ep 0792 [P3] | Loss:0.451 (Pred:0.014 VQ:0.290 Div:0.021 Eth:0.858 Cons:0.695) | Acc:100.0% TokPPX: 1.01 |  | 20 tok/s (255.0s) VRAM:0.1G
+        | ACT:2.51±0.54[ 0/51/47/ 2/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/11/85 PtrPPX: 2.0 Occ:35%) GWT[P:31 S:35 H:20 G:14] | Grad:0.28/0.5 Skips:0 LR:0.00075
+        | Syms:106/120 SymPPX: 79.4 VQCos:0.89 Drift:0.107 Top1: 4.2% Loop: 2.0% Rev:  0 Edges: 130(AdjPPX:  2.4) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.39 Bias:0.113 GGate:1.00 PndP:0.00045 Clip:0.99(24%) Pat:1/10]
+Ep 0825 [P3] | Loss:0.514 (Pred:0.050 VQ:0.310 Div:0.021 Eth:0.899 Cons:0.731) | Acc: 98.0% TokPPX: 1.05 |  | 17 tok/s (302.0s) VRAM:0.1G
+        | ACT:2.53±0.56[ 0/50/47/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/11/85 PtrPPX: 2.0 Occ:35%) GWT[P:32 S:34 H:20 G:14] | Grad:0.53/1.3 Skips:0 LR:0.00075
+        | Syms:106/120 SymPPX: 81.2 VQCos:0.88 Drift:0.094 Top1: 4.2% Loop: 4.1% Rev:  0 Edges: 130(AdjPPX:  2.5) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.39 Bias:0.111 GGate:1.00 PndP:0.00045 Clip:1.16(21%) Pat:2/10]
+Ep 0858 [P3] | Loss:0.466 (Pred:0.034 VQ:0.278 Div:0.021 Eth:0.907 Cons:0.737) | Acc: 98.0% TokPPX: 1.03 |  | 19 tok/s (258.1s) VRAM:0.1G
+        | ACT:2.54±0.54[ 0/48/50/ 2/ 0/ 0/ 0/ 0%] Stk: 0.3( 4/11/85 PtrPPX: 1.9 Occ:32%) GWT[P:32 S:34 H:20 G:13] | Grad:1.35/3.0 Skips:0 LR:0.00075
+        | Syms:103/120 SymPPX: 75.0 VQCos:0.89 Drift:0.119 Top1: 4.7% Loop: 2.7% Rev:  0 Edges: 130(AdjPPX:  2.5) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.110 GGate:1.00 PndP:0.00045 Clip:1.23(23%) Pat:3/10]
+Ep 0891 [P3] | Loss:0.458 (Pred:0.052 VQ:0.261 Div:0.022 Eth:0.837 Cons:0.740) | Acc: 98.0% TokPPX: 1.05 |  | 18 tok/s (283.0s) VRAM:0.1G
+        | ACT:2.51±0.54[ 0/51/47/ 2/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/10/86 PtrPPX: 2.0 Occ:34%) GWT[P:32 S:35 H:19 G:14] | Grad:0.68/1.6 Skips:0 LR:0.00075
+        | Syms:107/120 SymPPX: 78.9 VQCos:0.90 Drift:0.088 Top1: 5.0% Loop: 2.7% Rev:  0 Edges: 129(AdjPPX:  2.3) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.40 Bias:0.110 GGate:1.00 PndP:0.00045 Clip:1.22(19%) Pat:4/10]
+Ep 0924 [P3] | Loss:0.493 (Pred:0.057 VQ:0.286 Div:0.021 Eth:0.874 Cons:0.705) | Acc: 98.0% TokPPX: 1.06 |  | 24 tok/s (213.4s) VRAM:0.1G
+        | ACT:2.53±0.56[ 0/50/47/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/12/83 PtrPPX: 1.9 Occ:31%) GWT[P:32 S:34 H:21 G:14] | Grad:0.46/1.2 Skips:0 LR:0.00038
+        | Syms:111/120 SymPPX: 82.9 VQCos:0.89 Drift:0.112 Top1: 4.4% Loop: 2.7% Rev:  0 Edges: 130(AdjPPX:  2.4) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.111 GGate:1.00 PndP:0.00045 Clip:0.86(19%) Pat:5/10]
+Ep 0957 [P3] | Loss:0.427 (Pred:0.053 VQ:0.233 Div:0.022 Eth:0.798 Cons:0.767) | Acc: 98.0% TokPPX: 1.05 |  | 23 tok/s (215.2s) VRAM:0.1G
+        | ACT:2.54±0.55[ 0/49/49/ 3/ 0/ 0/ 0/ 0%] Stk: 0.3( 3/10/86 PtrPPX: 1.8 Occ:32%) GWT[P:31 S:35 H:20 G:14] | Grad:0.44/1.1 Skips:0 LR:0.00038
+        | Syms:102/120 SymPPX: 72.8 VQCos:0.91 Drift:0.112 Top1: 5.7% Loop: 4.7% Rev:  0 Edges: 130(AdjPPX:  2.2) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.106 GGate:1.00 PndP:0.00045 Clip:0.86(25%) Pat:6/10]
+Ep 0990 [P3] | Loss:0.418 (Pred:0.069 VQ:0.211 Div:0.022 Eth:0.774 Cons:0.760) | Acc: 97.4% TokPPX: 1.07 |  | 23 tok/s (213.5s) VRAM:0.1G
+        | ACT:2.47±0.54[ 0/55/43/ 2/ 0/ 0/ 0/ 0%] Stk: 0.4( 3/ 9/88 PtrPPX: 2.0 Occ:31%) GWT[P:31 S:34 H:21 G:14] | Grad:0.57/1.5 Skips:0 LR:0.00038
+        | Syms: 98/120 SymPPX: 65.2 VQCos:0.92 Drift:0.177 Top1: 6.7% Loop: 4.1% Rev:  0 Edges: 130(AdjPPX:  2.2) | Tune[Ready:100% DivW:0.15 Temp:0.46 Cmt:0.40 Alpha:0.40 Bias:0.115 GGate:1.00 PndP:0.00045 Clip:0.90(28%) Pat:7/10]
+Ep 1023 [P3] | Loss:0.373 (Pred:0.033 VQ:0.209 Div:0.021 Eth:0.733 Cons:0.711) | Acc: 99.3% TokPPX: 1.03 |  | 22 tok/s (232.4s) VRAM:0.1G
+        | ACT:2.51±0.54[ 0/51/47/ 2/ 0/ 0/ 0/ 0%] Stk: 0.5( 5/10/86 PtrPPX: 2.2 Occ:34%) GWT[P:32 S:34 H:19 G:14] | Grad:0.35/0.9 Skips:0 LR:0.00038
+        | Syms: 99/120 SymPPX: 75.4 VQCos:0.92 Drift:0.109 Top1: 4.5% Loop: 2.7% Rev:  0 Edges: 131(AdjPPX:  2.1) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.40 Bias:0.113 GGate:1.00 PndP:0.00045 Clip:0.75(26%) Pat:8/10]
+Ep 1056 [P3] | Loss:0.372 (Pred:0.018 VQ:0.218 Div:0.022 Eth:0.758 Cons:0.725) | Acc: 99.3% TokPPX: 1.02 |  | 20 tok/s (253.2s) VRAM:0.1G
+        | ACT:2.51±0.55[ 0/52/45/ 3/ 0/ 0/ 0/ 0%] Stk: 0.5( 4/10/86 PtrPPX: 2.2 Occ:36%) GWT[P:33 S:34 H:19 G:14] | Grad:0.37/1.0 Skips:0 LR:0.00038
+        | Syms:102/120 SymPPX: 78.4 VQCos:0.92 Drift:0.111 Top1: 5.0% Loop: 2.0% Rev:  0 Edges: 130(AdjPPX:  2.1) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.40 Bias:0.112 GGate:1.00 PndP:0.00045 Clip:0.77(26%) Pat:9/10]
+Ep 1089 [P3] | Loss:0.408 (Pred:0.053 VQ:0.214 Div:0.022 Eth:0.804 Cons:0.716) | Acc: 97.4% TokPPX: 1.05 |  | 20 tok/s (253.8s) VRAM:0.1G
+        | ACT:2.49±0.55[ 0/54/43/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/ 9/87 PtrPPX: 2.0 Occ:32%) GWT[P:32 S:35 H:20 G:13] | Grad:0.52/1.4 Skips:0 LR:0.00038
+        | Syms:100/120 SymPPX: 76.2 VQCos:0.92 Drift:0.105 Top1: 4.5% Loop: 2.0% Rev:  0 Edges: 130(AdjPPX:  2.2) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.112 GGate:1.00 PndP:0.00045 Clip:0.87(27%) Pat:10/10]
+Ep 1122 [P3] | Loss:0.463 (Pred:0.037 VQ:0.274 Div:0.022 Eth:0.900 Cons:0.695) | Acc: 97.4% TokPPX: 1.04 | *BEST* | 20 tok/s (254.1s) VRAM:0.1G
+        | ACT:2.55±0.57[ 0/49/47/ 4/ 0/ 0/ 0/ 0%] Stk: 0.5( 5/11/84 PtrPPX: 2.2 Occ:35%) GWT[P:32 S:34 H:20 G:13] | Grad:0.42/1.1 Skips:0 LR:0.00038
+        | Syms:109/120 SymPPX: 83.9 VQCos:0.90 Drift:0.145 Top1: 3.9% Loop: 1.4% Rev:  0 Edges: 129(AdjPPX:  2.5) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.40 Bias:0.109 GGate:1.00 PndP:0.00045 Clip:0.86(29%) Pat:0/10]
+Ep 1155 [P3] | Loss:0.432 (Pred:0.020 VQ:0.269 Div:0.022 Eth:0.826 Cons:0.677) | Acc: 99.3% TokPPX: 1.02 |  | 20 tok/s (254.9s) VRAM:0.1G
+        | ACT:2.51±0.56[ 0/52/45/ 3/ 0/ 0/ 0/ 0%] Stk: 0.5( 5/12/84 PtrPPX: 2.3 Occ:37%) GWT[P:33 S:34 H:20 G:13] | Grad:0.31/0.8 Skips:0 LR:0.00038
+        | Syms:108/120 SymPPX: 82.9 VQCos:0.90 Drift:0.141 Top1: 4.5% Loop: 2.0% Rev:  0 Edges: 129(AdjPPX:  2.3) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.114 GGate:1.00 PndP:0.00045 Clip:0.80(26%) Pat:1/10]
+Ep 1188 [P3] | Loss:0.428 (Pred:0.032 VQ:0.251 Div:0.022 Eth:0.831 Cons:0.693) | Acc: 98.7% TokPPX: 1.03 |  | 20 tok/s (254.5s) VRAM:0.1G
+        | ACT:2.55±0.57[ 0/49/47/ 4/ 0/ 0/ 0/ 0%] Stk: 0.6( 6/12/82 PtrPPX: 2.6 Occ:42%) GWT[P:33 S:34 H:20 G:14] | Grad:0.61/1.7 Skips:0 LR:0.00038
+        | Syms:109/120 SymPPX: 82.4 VQCos:0.90 Drift:0.158 Top1: 4.4% Loop: 2.0% Rev:  0 Edges: 127(AdjPPX:  2.3) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.112 GGate:1.00 PndP:0.00045 Clip:0.99(29%) Pat:2/10]
+Ep 1221 [P3] | Loss:0.420 (Pred:0.050 VQ:0.229 Div:0.022 Eth:0.806 Cons:0.697) | Acc: 98.0% TokPPX: 1.05 |  | 20 tok/s (254.9s) VRAM:0.1G
+        | ACT:2.52±0.58[ 0/53/43/ 5/ 0/ 0/ 0/ 0%] Stk: 0.5( 5/12/83 PtrPPX: 2.3 Occ:38%) GWT[P:33 S:34 H:20 G:14] | Grad:0.47/1.2 Skips:0 LR:0.00038
+        | Syms:109/120 SymPPX: 80.9 VQCos:0.91 Drift:0.101 Top1: 5.5% Loop: 2.7% Rev:  0 Edges: 126(AdjPPX:  2.2) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.40 Bias:0.112 GGate:1.00 PndP:0.00045 Clip:0.99(27%) Pat:3/10]
+Ep 1254 [P3] | Loss:0.448 (Pred:0.050 VQ:0.255 Div:0.022 Eth:0.823 Cons:0.683) | Acc: 97.4% TokPPX: 1.05 |  | 20 tok/s (252.9s) VRAM:0.1G
+        | ACT:2.54±0.56[ 0/49/47/ 3/ 0/ 0/ 0/ 0%] Stk: 0.4( 4/10/87 PtrPPX: 2.1 Occ:33%) GWT[P:32 S:34 H:20 G:14] | Grad:0.46/1.2 Skips:0 LR:0.00038
+        | Syms:110/120 SymPPX: 82.8 VQCos:0.90 Drift:0.098 Top1: 4.9% Loop: 2.7% Rev:  0 Edges: 127(AdjPPX:  2.3) | Tune[Ready:100% DivW:0.05 Temp:0.46 Cmt:0.40 Alpha:0.40 Bias:0.114 GGate:1.00 PndP:0.00045 Clip:0.93(24%) Pat:4/10]
+Ep 1287 [P3] | Loss:0.397 (Pred:0.051 VQ:0.211 Div:0.022 Eth:0.760 Cons:0.676) | Acc: 98.0% TokPPX: 1.05 |  | 20 tok/s (254.9s) VRAM:0.1G
+        | ACT:2.51±0.56[ 0/53/44/ 3/ 0/ 0/ 0/ 0%] Stk: 0.5( 4/10/86 PtrPPX: 2.2 Occ:35%) GWT[P:32 S:34 H:21 G:13] | Grad:0.39/1.0 Skips:0 LR:0.00019
+        | Syms:105/120 SymPPX: 77.6 VQCos:0.92 Drift:0.099 Top1: 5.2% Loop: 3.4% Rev:  0 Edges: 126(AdjPPX:  2.1) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.40 Bias:0.111 GGate:1.00 PndP:0.00045 Clip:0.89(26%) Pat:5/10]
+Ep 1320 [P3] | Loss:0.371 (Pred:0.038 VQ:0.207 Div:0.022 Eth:0.697 Cons:0.683) | Acc: 98.7% TokPPX: 1.04 |  | 20 tok/s (255.3s) VRAM:0.1G
+        | ACT:2.53±0.55[ 0/50/47/ 3/ 0/ 0/ 0/ 0%] Stk: 0.5( 4/10/85 PtrPPX: 2.2 Occ:36%) GWT[P:31 S:35 H:21 G:13] | Grad:0.43/1.2 Skips:0 LR:0.00019
+        | Syms:106/120 SymPPX: 80.2 VQCos:0.92 Drift:0.122 Top1: 4.4% Loop: 2.0% Rev:  0 Edges: 125(AdjPPX:  2.0) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.40 Bias:0.111 GGate:1.00 PndP:0.00045 Clip:0.77(24%) Pat:6/10]
+Ep 1347 [P3] | Loss:0.376 (Pred:0.048 VQ:0.201 Div:0.022 Eth:0.699 Cons:0.693) | Acc: 97.4% TokPPX: 1.05 |  | 20 tok/s (208.3s) VRAM:0.1G
+        | ACT:2.47±0.56[ 0/57/40/ 3/ 0/ 0/ 0/ 0%] Stk: 0.5( 4/10/85 PtrPPX: 2.3 Occ:37%) GWT[P:32 S:34 H:21 G:13] | Grad:0.47/1.2 Skips:0 LR:0.00019
+        | Syms:100/120 SymPPX: 74.0 VQCos:0.92 Drift:0.106 Top1: 5.1% Loop: 2.0% Rev:  0 Edges: 125(AdjPPX:  2.0) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.40 Bias:0.113 GGate:1.00 PndP:0.00045 Clip:0.88(30%) Pat:7/10]
+   Sample: 'True, without falsehood, certain and most true. \nThat which is above is like to that which'
+Restored best healthy checkpoint (Pred Loss (EMA): 0.0335 at Ep 1122).
+
+--- Saving Final Model to crsn_omni_model.pth ---
+Saved.
+
+--- Generating Diagnostics & Images ---
+Saved 1_semantic_topology.png
+Running Inference Scan...
+ACT Step Breakdown : 1 steps: 1%, 2 steps: 48%, 3 steps: 48%, 4 steps: 3%
+Stack Depth Range  : [0.00, 1.62]
+Generated          : True, world is here.
+Its force or power is entire if it be converted into earth. 
+That which is above is like to that which is below, 
+and that which is below is like to that which is above.
+The father 
+
+
+--- Extracting Explicit Logic Rules (1-Hop & 2-Hop Chains) ---
+
+[1-Hop Symbolic Rules] FROM             | TO               | COUNT  | AVG STEPS 
+------------------------------------------------------------
+S_6   (·above)   -> S_2   (·is)      | 3      | 2.00
+S_21  (·that)    -> S_111 (·which)   | 3      | 3.00
+S_111 (·which)   -> S_51  (·is)      | 3      | 3.00
+S_82  (,)        -> S_74  (i)        | 2      | 3.00
+S_59  (s)        -> S_73  (e)        | 2      | 3.00
+S_2   (·is)      -> S_51  (·is)      | 2      | 2.00
+S_51  (·is)      -> S_73  (e)        | 2      | 3.00
+S_73  (e)        -> S_76  (t)        | 2      | 2.00
+S_76  (t)        -> S_96  (o)        | 2      | 2.00
+S_96  (o)        -> S_21  (·that)    | 2      | 2.00
+S_51  (·is)      -> S_51  (·is)      | 2      | 2.00
+S_118 (·)        -> S_43  (·)        | 2      | 2.00
+S_35  (n)        -> S_74  (i)        | 2      | 3.00
+S_67  (n)        -> S_54  (·th)      | 2      | 2.50
+S_73  (e)        -> S_82  (,)        | 2      | 2.00
+
+[2-Hop Rule Chains]    S_A -> S_B -> S_C                                    | COUNT  | AVG STEPS 
+----------------------------------------------------------------------------
+S_21  (·that) -> S_111 (·which) -> S_51  (·is)       | 3      | 3.00
+S_6   (·above) -> S_2   (·is) -> S_51  (·is)         | 2      | 2.00
+S_2   (·is) -> S_51  (·is) -> S_73  (e)              | 2      | 3.00
+S_51  (·is) -> S_73  (e) -> S_76  (t)                | 2      | 2.00
+S_73  (e) -> S_76  (t) -> S_96  (o)                  | 2      | 2.00
+S_76  (t) -> S_96  (o) -> S_21  (·that)              | 2      | 2.00
+S_96  (o) -> S_21  (·that) -> S_111 (·which)         | 2      | 3.00
+S_111 (·which) -> S_51  (·is) -> S_51  (·is)         | 2      | 2.00
+
+--- Dream Mode (Entropy-Targeted Symbolic Walk) ---
+Dream Stats  : AvgTemp=0.87 | AvgBranchPPX=5.19 (Target=4.00) | GroundedSyms=57/60
+Dream Output : T be convre.
+Itse.
+Itt the..
+Theintire tio that which is beectionion in.e whoe fath
+and that
+
+
+--- Anomaly Detection Test ---
+Input: 'True, without falsehood, certain and most true. banana'
+Anomaly Stats: ValidPrefixMean=0.08 | TailMean=15.08 TailMax=20.47 (Contrast=270.80x) | [LM: 0.01->20.25 | SymEth: 0.25->0.85]
+Saved 5_anomaly_detection.png
+
+--- Context-Difficulty ACT Probe ---
+Val ACT Allocation: EasyTokens(NLL<=0.00)=2.623 steps | HardTokens(NLL>0.00)=2.468 steps

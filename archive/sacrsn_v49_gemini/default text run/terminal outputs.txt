@@ -1,0 +1,181 @@
+Hardware: cuda (NVIDIA GeForce RTX 5060 Ti, 15.9 GB VRAM) | BF16=True | TF32=True
+'data.txt' not found — using built-in default text.
+=== Auto-Configuration Summary (SACRSN v47 Unified) ===
+Corpus       : 274 chars (26 base chars, min_char_freq>=1) | Train=156 toks | Val=None (small text)
+Tokenizer    : Subword BPE | Vocab=60 (Used=47, ZipfPPX=36.6) | Merges=33/33 | Comp=1.76x
+Architecture : Dim=64 (2D=128) | Codebook=120 (~2.55x used vocab, TargetPPX=[31..66]) | Stack=16 | MaxDepth=5
+Schedule     : Streams=16x32 (Cap=155, TBPTT=8) | Epochs=250 (Phases: 0..25->KMeans->62->250, ~825.8x corpus passes)
+InitHyper    : LR=0.00150 (Plateau) | WD=1.0e-05 | AutoClipInit=1.00 | EthW=0.129 | ConsW=0.020 | ACT_Thresh=0.90
+Sample tokens: ['T', 'rue', ',', '·w', 'i', 'th', 'o', 'u', 't', '·fa', 'l', 's']
+=========================================================
+--- Training SACRSN v47 (BF16_AMP=False | FusedAdamW=True | TBPTT=8) ---
+Ep 0000 [P1] | Loss:4.856 (Pred:4.268 VQ:1.936 Div:0.141 Eth:4.638 Cons:0.334) | Acc:  2.0% TokPPX:71.40 | 137 tok/s (3.7s) VRAM:0.1G
+        | ACT:4.69±0.52[ 0/ 0/ 3/26/71%] Stk: 4.4(35/38/27 PtrPPX: 9.1 Occ:88%) GWT[P:24 S:24 H:26 G:26] | Grad:5.86/9.9 Skips:0 LR:0.00019
+        | Syms:119/120 SymPPX: 83.9 VQCos:0.23 Drift:0.337 Top1: 4.4% Loop: 4.8% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:1.20 Temp:0.21 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00042 Clip:2.00(100%) Pat:0/10]
+   Sample: 'TT wh whichTTs lisoTToooooovvvbb th li which which which which which which\n ero abvv th th which which l which th l which'
+Ep 0010 [P1] | Loss:3.235 (Pred:2.656 VQ:1.859 Div:0.142 Eth:4.638 Cons:0.391) | Acc: 31.2% TokPPX:14.23 | 161 tok/s (31.8s) VRAM:0.1G
+        | ACT:4.01±0.77[ 0/ 1/26/44/29%] Stk: 0.4(14/59/27 PtrPPX: 2.0 Occ:55%) GWT[P:26 S:26 H:20 G:28] | Grad:2.65/4.0 Skips:0 LR:0.00150
+        | Syms:116/120 SymPPX: 60.2 VQCos:0.23 Drift:0.202 Top1:13.5% Loop: 6.7% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:1.20 Temp:0.22 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00068 Clip:2.00(98%) Pat:0/10]
+Ep 0020 [P1] | Loss:1.254 (Pred:0.693 VQ:1.727 Div:0.139 Eth:4.638 Cons:0.566) | Acc: 89.5% TokPPX: 2.00 | 150 tok/s (34.2s) VRAM:0.1G
+        | ACT:3.76±0.74[ 0/ 1/38/44/17%] Stk: 0.6(16/46/37 PtrPPX: 2.5 Occ:57%) GWT[P:33 S:26 H:15 G:27] | Grad:1.62/2.4 Skips:0 LR:0.00150
+        | Syms:116/120 SymPPX: 86.4 VQCos:0.26 Drift:0.159 Top1: 2.9% Loop: 1.6% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:1.20 Temp:0.22 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00111 Clip:2.00(42%) Pat:0/10]
+   [End of Phase 1 Sample @ Ep 0024]: 'Tion in the whole world is here.\nIts force or power is entire if i'
+[Phase 2 Crystallization @ Ep 0025] Initialized VQ codebook via GPU K-Means.
+Ep 0030 [P2] | Loss:1.726 (Pred:0.246 VQ:1.182 Div:0.294 Eth:4.638 Cons:0.890) | Acc: 95.5% TokPPX: 1.28 | 120 tok/s (42.8s) VRAM:0.1G
+        | ACT:3.70±0.74[ 0/ 1/44/39/16%] Stk: 0.9(19/40/42 PtrPPX: 3.3 Occ:68%) GWT[P:33 S:26 H:14 G:27] | Grad:0.99/1.4 Skips:0 LR:0.00150
+        | Syms:117/120 SymPPX: 94.3 VQCos:0.53 Drift:0.186 Top1: 2.7% Loop: 2.8% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:0.64 Temp:0.33 Cmt:0.32 Alpha:0.05 Bias:0.000 GGate:0.00 PndP:0.00142 Clip:2.00( 5%) Pat:0/10]
+Ep 0040 [P2] | Loss:1.321 (Pred:0.127 VQ:1.081 Div:0.104 Eth:4.638 Cons:0.765) | Acc: 97.5% TokPPX: 1.14 | 130 tok/s (39.3s) VRAM:0.1G
+        | ACT:3.68±0.78[ 0/ 4/41/39/16%] Stk: 1.3(20/37/43 PtrPPX: 4.0 Occ:73%) GWT[P:33 S:26 H:14 G:27] | Grad:0.88/1.4 Skips:0 LR:0.00150
+        | Syms:116/120 SymPPX: 94.0 VQCos:0.58 Drift:0.068 Top1: 2.3% Loop: 2.4% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:0.22 Temp:0.36 Cmt:0.40 Alpha:0.13 Bias:0.000 GGate:0.00 PndP:0.00149 Clip:1.83( 2%) Pat:0/10]
+Ep 0050 [P2] | Loss:1.162 (Pred:0.126 VQ:0.986 Div:0.036 Eth:4.638 Cons:0.713) | Acc: 97.5% TokPPX: 1.13 | 167 tok/s (30.7s) VRAM:0.1G
+        | ACT:3.73±0.78[ 0/ 3/38/41/17%] Stk: 1.8(22/33/45 PtrPPX: 5.1 Occ:78%) GWT[P:31 S:26 H:16 G:27] | Grad:1.48/2.2 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 91.8 VQCos:0.60 Drift:0.063 Top1: 2.8% Loop: 3.2% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:0.08 Temp:0.37 Cmt:0.40 Alpha:0.21 Bias:0.000 GGate:0.00 PndP:0.00149 Clip:2.00( 8%) Pat:0/10]
+Ep 0060 [P2] | Loss:1.125 (Pred:0.146 VQ:0.941 Div:0.021 Eth:4.638 Cons:0.675) | Acc: 97.3% TokPPX: 1.16 | 169 tok/s (30.3s) VRAM:0.1G
+        | ACT:3.67±0.77[ 0/ 4/40/42/14%] Stk: 2.0(23/33/44 PtrPPX: 5.3 Occ:79%) GWT[P:30 S:25 H:18 G:27] | Grad:2.96/4.8 Skips:0 LR:0.00150
+        | Syms:115/120 SymPPX: 92.8 VQCos:0.62 Drift:0.063 Top1: 2.6% Loop: 4.4% Rev:  0 Edges:   0(AdjPPX:103.3) | Tune[Ready:  0% DivW:0.05 Temp:0.37 Cmt:0.40 Alpha:0.29 Bias:0.000 GGate:0.00 PndP:0.00149 Clip:2.00(30%) Pat:0/10]
+   [End of Phase 2 Sample @ Ep 0061]: 'Ton in the whole world is here.\nIts force or power is entire if il'
+[Phase 3 Reasoning @ Ep 0062] Unlocked Multi-Hop Graph Echo & Ethical Rules.
+Ep 0070 [P3] | Loss:1.125 (Pred:0.118 VQ:0.888 Div:0.021 Eth:4.311 Cons:0.625) | Acc: 97.7% TokPPX: 1.13 | 159 tok/s (32.1s) VRAM:0.1G
+        | ACT:3.61±0.83[ 0/ 7/41/36/16%] Stk: 2.1(23/33/45 PtrPPX: 5.1 Occ:76%) GWT[P:30 S:25 H:18 G:28] | Grad:1.46/2.3 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 92.0 VQCos:0.63 Drift:0.056 Top1: 2.4% Loop: 4.0% Rev:  0 Edges:   0(AdjPPX: 74.6) | Tune[Ready: 18% DivW:0.05 Temp:0.37 Cmt:0.40 Alpha:0.25 Bias:0.014 GGate:0.36 PndP:0.00149 Clip:2.00(50%) Pat:0/10]
+Ep 0080 [P3] | Loss:1.174 (Pred:0.083 VQ:0.777 Div:0.021 Eth:3.607 Cons:0.522) | Acc: 98.2% TokPPX: 1.09 | *BEST* | 163 tok/s (31.3s) VRAM:0.1G
+        | ACT:3.65±0.76[ 0/ 4/40/42/13%] Stk: 1.9(22/32/46 PtrPPX: 4.8 Occ:74%) GWT[P:29 S:25 H:17 G:29] | Grad:1.17/2.1 Skips:0 LR:0.00150
+        | Syms:115/120 SymPPX: 93.4 VQCos:0.68 Drift:0.042 Top1: 2.6% Loop: 3.4% Rev:  0 Edges:   0(AdjPPX: 36.9) | Tune[Ready: 64% DivW:0.05 Temp:0.40 Cmt:0.40 Alpha:0.26 Bias:0.059 GGate:0.76 PndP:0.00149 Clip:2.00(20%) Pat:0/10]
+   >>> *BEST* EPOCH 0080 | Pred Loss (EMA): 0.0925 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0080): 'Tontion in the whole world is here.\nIts force or power is entire'
+Ep 0090 [P3] | Loss:1.153 (Pred:0.066 VQ:0.728 Div:0.021 Eth:2.975 Cons:0.491) | Acc: 98.8% TokPPX: 1.07 | *BEST* | 159 tok/s (32.1s) VRAM:0.1G
+        | ACT:3.68±0.80[ 0/ 4/40/39/17%] Stk: 2.3(24/33/44 PtrPPX: 5.5 Occ:78%) GWT[P:30 S:25 H:18 G:28] | Grad:0.71/1.4 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 91.4 VQCos:0.70 Drift:0.052 Top1: 2.6% Loop: 3.4% Rev:  0 Edges:  21(AdjPPX: 19.6) | Tune[Ready: 86% DivW:0.05 Temp:0.40 Cmt:0.40 Alpha:0.27 Bias:0.083 GGate:1.00 PndP:0.00149 Clip:1.97( 8%) Pat:0/10]
+   >>> *BEST* EPOCH 0090 | Pred Loss (EMA): 0.0880 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0090): 'Tontion in the whole world is here.\nIts force or power is entire'
+Ep 0100 [P3] | Loss:1.096 (Pred:0.078 VQ:0.669 Div:0.021 Eth:2.534 Cons:0.500) | Acc: 97.5% TokPPX: 1.08 | *BEST* | 160 tok/s (32.0s) VRAM:0.1G
+        | ACT:3.57±0.76[ 0/ 5/45/39/12%] Stk: 2.0(22/33/45 PtrPPX: 4.9 Occ:76%) GWT[P:30 S:25 H:18 G:27] | Grad:0.98/2.4 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 93.0 VQCos:0.72 Drift:0.043 Top1: 2.5% Loop: 3.4% Rev:  0 Edges:  70(AdjPPX: 12.6) | Tune[Ready: 97% DivW:0.05 Temp:0.40 Cmt:0.40 Alpha:0.29 Bias:0.098 GGate:1.00 PndP:0.00149 Clip:1.90(15%) Pat:0/10]
+   >>> *BEST* EPOCH 0100 | Pred Loss (EMA): 0.0770 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0100): 'True, \nand that which is below is like to that which is above.\nThe father of all perfection in'
+Ep 0110 [P3] | Loss:1.042 (Pred:0.059 VQ:0.650 Div:0.021 Eth:2.324 Cons:0.478) | Acc: 98.4% TokPPX: 1.06 | *BEST* | 160 tok/s (32.0s) VRAM:0.1G
+        | ACT:3.61±0.84[ 0/ 8/40/37/16%] Stk: 1.9(22/35/43 PtrPPX: 4.5 Occ:74%) GWT[P:30 S:26 H:18 G:27] | Grad:0.99/1.8 Skips:0 LR:0.00150
+        | Syms:111/120 SymPPX: 91.8 VQCos:0.73 Drift:0.054 Top1: 2.4% Loop: 2.8% Rev:  0 Edges:  94(AdjPPX: 10.2) | Tune[Ready: 99% DivW:0.05 Temp:0.41 Cmt:0.40 Alpha:0.30 Bias:0.102 GGate:1.00 PndP:0.00149 Clip:2.00(15%) Pat:0/10]
+   >>> *BEST* EPOCH 0110 | Pred Loss (EMA): 0.0705 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0110): 'True, wThat which is above is like to that which is below, \nand that which is below is like to that which is above.\nThe father'
+Ep 0120 [P3] | Loss:0.992 (Pred:0.065 VQ:0.622 Div:0.021 Eth:2.094 Cons:0.487) | Acc: 98.4% TokPPX: 1.07 | Best:0.071@110 | 159 tok/s (32.2s) VRAM:0.1G
+        | ACT:3.52±0.79[ 0/ 8/44/38/11%] Stk: 1.7(21/35/44 PtrPPX: 4.3 Occ:72%) GWT[P:30 S:26 H:18 G:25] | Grad:0.79/1.7 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 91.3 VQCos:0.74 Drift:0.052 Top1: 2.5% Loop: 3.2% Rev:  0 Edges: 110(AdjPPX:  8.1) | Tune[Ready:100% DivW:0.05 Temp:0.42 Cmt:0.40 Alpha:0.30 Bias:0.103 GGate:1.00 PndP:0.00149 Clip:2.00(12%) Pat:1/10]
+Ep 0130 [P3] | Loss:0.979 (Pred:0.077 VQ:0.605 Div:0.021 Eth:2.022 Cons:0.498) | Acc: 97.5% TokPPX: 1.08 | Best:0.071@110 | 165 tok/s (31.1s) VRAM:0.1G
+        | ACT:3.54±0.80[ 0/ 7/44/37/12%] Stk: 2.2(22/33/45 PtrPPX: 5.0 Occ:75%) GWT[P:30 S:27 H:19 G:24] | Grad:1.64/4.1 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 91.4 VQCos:0.75 Drift:0.038 Top1: 2.6% Loop: 3.8% Rev:  0 Edges: 115(AdjPPX:  7.6) | Tune[Ready:100% DivW:0.05 Temp:0.42 Cmt:0.40 Alpha:0.31 Bias:0.103 GGate:1.00 PndP:0.00149 Clip:2.00(15%) Pat:2/10]
+Ep 0140 [P3] | Loss:0.936 (Pred:0.084 VQ:0.565 Div:0.021 Eth:1.946 Cons:0.505) | Acc: 97.3% TokPPX: 1.09 | Best:0.071@110 | 165 tok/s (31.0s) VRAM:0.1G
+        | ACT:3.51±0.79[ 0/ 7/45/36/12%] Stk: 2.5(23/33/44 PtrPPX: 5.3 Occ:75%) GWT[P:32 S:27 H:18 G:23] | Grad:0.74/2.0 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 91.4 VQCos:0.77 Drift:0.052 Top1: 2.8% Loop: 3.0% Rev:  0 Edges: 119(AdjPPX:  7.0) | Tune[Ready:100% DivW:0.05 Temp:0.42 Cmt:0.40 Alpha:0.32 Bias:0.104 GGate:1.00 PndP:0.00149 Clip:1.72(12%) Pat:3/10]
+Ep 0150 [P3] | Loss:0.876 (Pred:0.048 VQ:0.556 Div:0.021 Eth:1.836 Cons:0.487) | Acc: 98.6% TokPPX: 1.05 | *BEST* | 165 tok/s (31.0s) VRAM:0.1G
+        | ACT:3.54±0.78[ 0/ 8/41/41/11%] Stk: 2.3(23/33/44 PtrPPX: 5.0 Occ:76%) GWT[P:31 S:27 H:19 G:23] | Grad:0.83/1.6 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 91.3 VQCos:0.77 Drift:0.053 Top1: 2.5% Loop: 3.2% Rev:  0 Edges: 121(AdjPPX:  6.3) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.32 Bias:0.106 GGate:1.00 PndP:0.00149 Clip:1.82(20%) Pat:0/10]
+   >>> *BEST* EPOCH 0150 | Pred Loss (EMA): 0.0646 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0150): 'True, without falsehood, certain and most true. \nThat which is above is like to that which'
+Ep 0160 [P3] | Loss:0.883 (Pred:0.066 VQ:0.534 Div:0.021 Eth:1.909 Cons:0.481) | Acc: 97.7% TokPPX: 1.07 | Best:0.065@150 | 160 tok/s (32.1s) VRAM:0.1G
+        | ACT:3.50±0.84[ 0/11/39/38/12%] Stk: 2.7(23/30/46 PtrPPX: 5.7 Occ:78%) GWT[P:32 S:28 H:18 G:21] | Grad:1.02/2.0 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 91.1 VQCos:0.78 Drift:0.042 Top1: 2.6% Loop: 3.2% Rev:  0 Edges: 127(AdjPPX:  6.7) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.33 Bias:0.108 GGate:1.00 PndP:0.00149 Clip:1.82(15%) Pat:1/10]
+Ep 0170 [P3] | Loss:0.842 (Pred:0.062 VQ:0.517 Div:0.021 Eth:1.768 Cons:0.463) | Acc: 97.9% TokPPX: 1.06 | Best:0.065@150 | 165 tok/s (31.1s) VRAM:0.1G
+        | ACT:3.47±0.84[ 0/11/42/36/11%] Stk: 3.0(25/32/43 PtrPPX: 5.7 Occ:78%) GWT[P:32 S:29 H:18 G:21] | Grad:1.01/2.0 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 92.0 VQCos:0.79 Drift:0.043 Top1: 2.5% Loop: 3.2% Rev:  0 Edges: 126(AdjPPX:  5.9) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.33 Bias:0.109 GGate:1.00 PndP:0.00149 Clip:1.78(22%) Pat:2/10]
+Ep 0180 [P3] | Loss:0.811 (Pred:0.051 VQ:0.501 Div:0.021 Eth:1.735 Cons:0.460) | Acc: 98.2% TokPPX: 1.05 | Best:0.065@150 | 164 tok/s (31.1s) VRAM:0.1G
+        | ACT:3.45±0.86[ 0/13/42/33/12%] Stk: 2.8(25/32/42 PtrPPX: 5.5 Occ:76%) GWT[P:32 S:29 H:19 G:20] | Grad:0.62/1.4 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 92.0 VQCos:0.80 Drift:0.042 Top1: 2.6% Loop: 3.4% Rev:  0 Edges: 126(AdjPPX:  5.7) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.34 Bias:0.111 GGate:1.00 PndP:0.00149 Clip:1.52(12%) Pat:3/10]
+Ep 0190 [P3] | Loss:0.820 (Pred:0.047 VQ:0.502 Div:0.021 Eth:1.817 Cons:0.466) | Acc: 98.4% TokPPX: 1.05 | *BEST* | 165 tok/s (31.1s) VRAM:0.1G
+        | ACT:3.39±0.88[ 0/16/40/34/11%] Stk: 2.3(23/32/45 PtrPPX: 5.0 Occ:75%) GWT[P:32 S:29 H:20 G:20] | Grad:0.78/1.9 Skips:0 LR:0.00150
+        | Syms:112/120 SymPPX: 92.1 VQCos:0.80 Drift:0.047 Top1: 2.7% Loop: 1.6% Rev:  0 Edges: 129(AdjPPX:  6.2) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.34 Bias:0.110 GGate:1.00 PndP:0.00149 Clip:1.66(20%) Pat:0/10]
+   >>> *BEST* EPOCH 0190 | Pred Loss (EMA): 0.0619 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0190): 'True, without falsehood, certain and most true. \nThat which is above is like to that which'
+Ep 0200 [P3] | Loss:0.776 (Pred:0.070 VQ:0.466 Div:0.021 Eth:1.586 Cons:0.459) | Acc: 97.9% TokPPX: 1.07 | *BEST* | 159 tok/s (32.1s) VRAM:0.1G
+        | ACT:3.41±0.85[ 0/14/40/36/10%] Stk: 2.2(22/33/44 PtrPPX: 4.6 Occ:71%) GWT[P:33 S:30 H:18 G:19] | Grad:0.76/1.9 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 92.0 VQCos:0.81 Drift:0.055 Top1: 2.5% Loop: 2.6% Rev:  0 Edges: 133(AdjPPX:  4.9) | Tune[Ready:100% DivW:0.05 Temp:0.44 Cmt:0.40 Alpha:0.34 Bias:0.110 GGate:1.00 PndP:0.00149 Clip:1.61(18%) Pat:0/10]
+   >>> *BEST* EPOCH 0200 | Pred Loss (EMA): 0.0585 | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0200): 'True, certain and most true. \nThat which is above is like to that which is below, \nand that which is below'
+Ep 0210 [P3] | Loss:0.776 (Pred:0.063 VQ:0.465 Div:0.021 Eth:1.639 Cons:0.458) | Acc: 98.4% TokPPX: 1.07 | Best:0.058@200 | 160 tok/s (31.9s) VRAM:0.1G
+        | ACT:3.40±0.84[ 0/14/42/35/10%] Stk: 2.2(23/33/45 PtrPPX: 4.7 Occ:73%) GWT[P:33 S:30 H:19 G:19] | Grad:0.69/2.1 Skips:0 LR:0.00150
+        | Syms:110/120 SymPPX: 92.2 VQCos:0.81 Drift:0.038 Top1: 2.5% Loop: 2.4% Rev:  0 Edges: 138(AdjPPX:  5.1) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.35 Bias:0.112 GGate:1.00 PndP:0.00149 Clip:1.49(20%) Pat:1/10]
+Ep 0220 [P3] | Loss:0.787 (Pred:0.078 VQ:0.455 Div:0.021 Eth:1.686 Cons:0.443) | Acc: 97.9% TokPPX: 1.08 | Best:0.058@200 | 165 tok/s (31.0s) VRAM:0.1G
+        | ACT:3.50±0.86[ 0/11/41/34/13%] Stk: 2.5(23/33/43 PtrPPX: 4.9 Occ:74%) GWT[P:32 S:30 H:19 G:19] | Grad:0.88/2.0 Skips:0 LR:0.00150
+        | Syms:114/120 SymPPX: 91.9 VQCos:0.82 Drift:0.045 Top1: 2.6% Loop: 4.2% Rev:  0 Edges: 141(AdjPPX:  5.4) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.35 Bias:0.112 GGate:1.00 PndP:0.00149 Clip:2.00(28%) Pat:2/10]
+Ep 0230 [P3] | Loss:0.794 (Pred:0.056 VQ:0.476 Div:0.021 Eth:1.753 Cons:0.489) | Acc: 98.2% TokPPX: 1.06 | Best:0.058@200 | 165 tok/s (31.0s) VRAM:0.1G
+        | ACT:3.35±0.88[ 0/17/41/32/10%] Stk: 2.6(25/38/37 PtrPPX: 4.8 Occ:75%) GWT[P:33 S:30 H:20 G:17] | Grad:1.61/2.9 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 92.7 VQCos:0.81 Drift:0.046 Top1: 3.0% Loop: 2.6% Rev:  0 Edges: 147(AdjPPX:  5.8) | Tune[Ready:100% DivW:0.05 Temp:0.43 Cmt:0.40 Alpha:0.34 Bias:0.109 GGate:1.00 PndP:0.00149 Clip:2.00(18%) Pat:3/10]
+Ep 0240 [P3] | Loss:0.842 (Pred:0.094 VQ:0.477 Div:0.021 Eth:1.824 Cons:0.463) | Acc: 96.9% TokPPX: 1.10 | Best:0.058@200 | 165 tok/s (31.0s) VRAM:0.1G
+        | ACT:3.37±0.84[ 0/15/41/35/ 9%] Stk: 3.1(27/33/40 PtrPPX: 5.4 Occ:76%) GWT[P:35 S:30 H:18 G:17] | Grad:2.50/3.2 Skips:0 LR:0.00150
+        | Syms:113/120 SymPPX: 93.3 VQCos:0.81 Drift:0.052 Top1: 2.8% Loop: 4.8% Rev:  0 Edges: 152(AdjPPX:  6.2) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.35 Bias:0.112 GGate:1.00 PndP:0.00149 Clip:2.00(25%) Pat:4/10]
+Ep 0249 [P3] | Loss:0.814 (Pred:0.079 VQ:0.479 Div:0.021 Eth:1.707 Cons:0.469) | Acc: 97.1% TokPPX: 1.08 | Best:0.058@200 | 165 tok/s (28.0s) VRAM:0.1G
+        | ACT:3.34±0.86[ 0/17/42/33/ 9%] Stk: 2.6(24/35/41 PtrPPX: 4.9 Occ:74%) GWT[P:34 S:29 H:18 G:19] | Grad:1.85/6.2 Skips:0 LR:0.00075
+        | Syms:115/120 SymPPX: 94.1 VQCos:0.81 Drift:0.053 Top1: 2.8% Loop: 4.2% Rev:  0 Edges: 155(AdjPPX:  5.5) | Tune[Ready:100% DivW:0.05 Temp:0.45 Cmt:0.40 Alpha:0.34 Bias:0.112 GGate:1.00 PndP:0.00149 Clip:2.00(19%) Pat:5/10]
+   [End of Phase 3 Sample @ Ep 0249]: 'True, without falsehood, certain and most true. \nThat which is above is like to that which'
+Restored best healthy checkpoint (Pred Loss (EMA): 0.0585 at Ep 200).
+
+--- Saving Final Model to crsn_omni_model.pth ---
+Saved.
+
+--- Generating Diagnostics & Images ---
+Saved 1_semantic_topology.png
+Running Inference Scan...
+ACT Step Breakdown : 2 steps: 20%, 3 steps: 40%, 4 steps: 36%, 5 steps: 4%
+Stack Depth Range  : [0.01, 6.81]
+Generated          : True, without falsehood, certain and most true. 
+That which is above is like to that which is below, 
+and that which is below, 
+and that which is below is like to that which is above.
+The father of all perfecti
+
+
+--- Extracting Explicit Logic Rules (1-Hop & 2-Hop Chains) ---
+
+[1-Hop Symbolic Rules] FROM             | TO               | COUNT  | AVG STEPS 
+------------------------------------------------------------
+S_10  (·which)   -> S_58  (·is)      | 3      | 4.00
+S_107 (t)        -> S_87  (l)        | 2      | 2.50
+S_35  (a)        -> S_81  (s)        | 2      | 3.00
+S_118 (nd)       -> S_101 (·)        | 2      | 3.00
+S_13  (\n)       -> S_103 (Th)       | 2      | 2.50
+S_105 (at)       -> S_10  (·which)   | 2      | 4.00
+S_104 (·is)      -> S_27  (·lik)     | 2      | 2.00
+S_27  (·lik)     -> S_69  (e)        | 2      | 4.00
+S_69  (e)        -> S_59  (·t)       | 2      | 4.00
+S_59  (·t)       -> S_57  (o)        | 2      | 3.00
+S_57  (o)        -> S_60  (·that)    | 2      | 4.00
+S_60  (·that)    -> S_10  (·which)   | 2      | 4.00
+S_58  (·is)      -> S_77  (·be)      | 2      | 2.00
+S_77  (·be)      -> S_31  (l)        | 2      | 3.00
+S_31  (l)        -> S_7   (ow)       | 2      | 3.00
+S_7   (ow)       -> S_104 (·is)      | 2      | 4.00
+S_21  (f)        -> S_69  (e)        | 2      | 4.00
+S_107 (t)        -> S_117 (i)        | 2      | 4.00
+S_57  (o)        -> S_115 (n)        | 2      | 3.00
+S_67  (·i)       -> S_70  (n)        | 2      | 4.00
+
+[2-Hop Rule Chains]    S_A -> S_B -> S_C                                    | COUNT  | AVG STEPS 
+----------------------------------------------------------------------------
+S_104 (·is) -> S_27  (·lik) -> S_69  (e)             | 2      | 4.00
+S_27  (·lik) -> S_69  (e) -> S_59  (·t)              | 2      | 4.00
+S_69  (e) -> S_59  (·t) -> S_57  (o)                 | 2      | 3.00
+S_59  (·t) -> S_57  (o) -> S_60  (·that)             | 2      | 4.00
+S_57  (o) -> S_60  (·that) -> S_10  (·which)         | 2      | 4.00
+S_60  (·that) -> S_10  (·which) -> S_58  (·is)       | 2      | 4.00
+S_10  (·which) -> S_58  (·is) -> S_77  (·be)         | 2      | 2.00
+S_58  (·is) -> S_77  (·be) -> S_31  (l)              | 2      | 3.00
+S_77  (·be) -> S_31  (l) -> S_7   (ow)               | 2      | 3.00
+S_31  (l) -> S_7   (ow) -> S_104 (·is)               | 2      | 4.00
+
+--- Dream Mode (Entropy-Targeted Symbolic Walk) ---
+Dream Stats  : AvgTemp=0.73 | AvgBranchPPX=5.36 (Target=4.00) | GroundedSyms=59/60
+Dream Output : Trueor 
+asn in thn intirent forld iso that which is above.
+e father 
+are too that which is above is like to that which is beler, 
+
+
+--- Anomaly Detection Test ---
+Input: 'True, without falsehood, certain and most true. banana'
+Anomaly Stats: ValidPrefixMean=0.15 | TailMean=9.93 TailMax=15.85 (Contrast=105.36x) | [LM: 0.07->15.79 | SymEth: 0.32->0.86]
+Saved 5_anomaly_detection.png
+
+--- Context-Difficulty ACT Probe ---
+Val ACT Allocation: EasyTokens(NLL<=0.01)=3.429 steps | HardTokens(NLL>0.01)=3.325 steps
+
+Saved complete terminal output log to 'terminal outputs.txt'.

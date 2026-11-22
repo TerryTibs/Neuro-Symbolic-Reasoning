@@ -1,0 +1,270 @@
+Hardware: cuda (NVIDIA GeForce RTX 5060 Ti, 15.9 GB VRAM) | BF16=True | TF32=True
+[Notice] Working directory is inside OneDrive; checkpoint disk writes are deferred until milestones/finish.
+Loaded corpus from 'data.txt' (3,331,655 chars)
+=== Auto-Configuration Summary (SACRSN v56 Dual-Clock Polar + Macro-Packets) ===
+Corpus       : 3,331,655 chars (86 base chars, min_char_freq>=1) | Train=682,756 units | Val=10,165 units (8 slices)
+Tokenizer    : DualClock-Polar | Stems=4025 (Used=4022, ZipfPPX=720.1) | Morphs=96 | Edges=96 | Comp=4.81 chars/unit | Lossless=OK | MacroPkts=True
+Architecture : Dim=288 (2D=576) | Codebook=1024 (~0.25x used stems, TargetPPX=[461..768]) | RelOps=24 | Stack=24 | MaxDepth=4
+Schedule     : Streams=128x256 (Cap=32,768, TBPTT=16) | Epochs=600 (Phases: 0..60->KMeans->150->Macro->600, ~28.8x corpus passes)
+InitHyper    : LR=0.00071 (Plateau every 5ep, AdjMult=8.0x) | WD=3.0e-04 | Drop=0.10 | ClipMax=3.0 | EthW=0.181 | SymLMW=0.22 | StkBalW=0.08
+Sample units : ['First', 'Citizen:\\n', 'Before', 'we', 'proceed', 'any', 'further,·', 'hear', 'me', 'speak.\\n\\n', 'All:\\n', 'Speak,·']
+====================================================================================
+--- Training SACRSN v56 (BF16_AMP=True | FusedAdamW=True | TBPTT=16) ---
+Ep 0000 [P1] | Loss:18.611 BPC:5.154 (SymLM:8.439[ 0.0%] VQ:2.158 Div:0.006 Eth:6.931) | Acc(S/M/E): 0.0/ 9.8/ 6.8% | ValBPC:4.856 (S: 0.1% M:45.3% E:31.8% Gap:-0.30)  | 453 u/s (Tr:58.6s Va:13.7s Io:0.0s) VRAM:4.3G
+        | ACT:3.45±0.57[ 0/ 4/47/49%] Stk: 5.9(30/34/37 PtrPPX:10.0 Occ:89%) GWT[P:35 S:33 H:32 G: 0] SigRMS[0.66/0.10/0.32/0.00] CarryG:0.50±0.11 | Grad:69.12/352.8 Skips:0 LR:0.00005
+        | GradMod[Cell:2.08 Att:0.16 FFN:1.11 VQ:0.000 Op:0.002 Adj:0.000 Holo:1.40 Dec:1.11] | LossPct[Pr:92% SL: 2% VQ: 6% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1024/1024 SymPPX:570.6 VQCos:0.14 Ops:24/24 OpPPX:23.7 RelAcc: 0.1% Drift:0.362 Top1: 4.7% Loop:13.4% Rev:  0/ 0 Edges:   0(AdjPPX:1023.9) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:3.00(100%) Pat:0/10]
+   Sample: 'First SPECTATORS@DICAEOPOLIS\'ST-- \ninwail;Stem.\n\ncomp\'d:\n\nelizabething$disterribly,\n"demeter\'s- \nLIESING,\n"LOYAL\'D!\ncursed \'forthment--discounselloráInsoldier- \nCRAFTING!\ndisce-- \npeleusest,Unkeed. "SLAUGHTER\'DETH,\n"Womb\'dáQuarrel\'ll! RENOTICEDED- \nknightes "DER\'D:\n\''
+Ep 0015 [P1] | Loss:9.085 BPC:2.408 (SymLM:5.993[ 8.8%] VQ:2.071 Div:0.006 Eth:6.927) | Acc(S/M/E): 9.3/80.5/69.0% | ValBPC:2.466 (S: 9.9% M:82.4% E:69.8% Gap:+0.06)  | 550 u/s (Tr:877.7s Va:13.9s Io:0.0s) VRAM:4.3G
+        | ACT:1.84±0.43[19/79/ 2/ 0%] Stk:10.5(18/16/66 PtrPPX:14.3 Occ:88%) GWT[P:73 S:26 H: 1 G: 0] SigRMS[0.97/0.08/0.01/0.00] CarryG:0.26±0.15 | Grad:1.80/3.2 Skips:1 LR:0.00071
+        | GradMod[Cell:1.11 Att:0.11 FFN:0.62 VQ:0.004 Op:0.010 Adj:0.000 Holo:0.26 Dec:1.55] | LossPct[Pr:89% SL: 3% VQ: 8% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1007/1024 SymPPX:293.0 VQCos:0.17 Ops:24/24 OpPPX:21.3 RelAcc: 0.1% Drift:0.385 Top1: 7.5% Loop: 5.5% Rev:  0/ 0 Edges:   0(AdjPPX:1019.5) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:3.00(30%) Pat:0/10]
+Ep 0030 [P1] | Loss:8.330 BPC:2.254 (SymLM:5.618[10.4%] VQ:1.892 Div:0.008 Eth:6.920) | Acc(S/M/E):11.3/81.9/70.5% | ValBPC:2.323 (S:12.1% M:83.2% E:71.7% Gap:+0.07)  | 551 u/s (Tr:878.6s Va:14.0s Io:0.0s) VRAM:4.3G
+        | ACT:1.57±0.50[43/57/ 0/ 0%] Stk:16.3(29/17/53 PtrPPX: 9.1 Occ:90%) GWT[P:61 S:37 H: 3 G: 0] SigRMS[0.88/0.12/0.03/0.00] CarryG:0.26±0.17 | Grad:1.40/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:0.80 Att:0.08 FFN:0.36 VQ:0.001 Op:0.007 Adj:0.000 Holo:0.05 Dec:1.15] | LossPct[Pr:90% SL: 3% VQ: 7% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:989/1024 SymPPX:550.6 VQCos:0.24 Ops:24/24 OpPPX:19.9 RelAcc: 0.1% Drift:0.193 Top1: 1.4% Loop: 1.9% Rev:  0/ 0 Edges:   0(AdjPPX:1012.4) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:2.40( 1%) Pat:0/10]
+Ep 0045 [P1] | Loss:7.799 BPC:2.122 (SymLM:5.342[12.0%] VQ:1.718 Div:0.011 Eth:6.921) | Acc(S/M/E):13.3/82.7/70.9% | ValBPC:2.278 (S:13.3% M:83.4% E:72.0% Gap:+0.16)  | 756 u/s (Tr:641.7s Va:8.5s Io:0.0s) VRAM:4.3G
+        | ACT:1.46±0.50[54/45/ 0/ 0%] Stk:14.3(34/23/43 PtrPPX:10.0 Occ:90%) GWT[P:52 S:42 H: 6 G: 0] SigRMS[0.84/0.13/0.06/0.00] CarryG:0.27±0.20 | Grad:1.29/1.7 Skips:0 LR:0.00071
+        | GradMod[Cell:0.75 Att:0.09 FFN:0.34 VQ:0.001 Op:0.007 Adj:0.000 Holo:0.13 Dec:1.00] | LossPct[Pr:90% SL: 3% VQ: 6% Et: 0% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:974/1024 SymPPX:712.2 VQCos:0.31 Ops:23/24 OpPPX:19.8 RelAcc: 0.1% Drift:0.152 Top1: 0.8% Loop: 1.4% Rev:  0/ 0 Edges:   0(AdjPPX:1013.0) | Tune[Ready:  0% DivW:1.20 Temp:0.05 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0300 Consc:0.00 Clip:2.32( 0%) Pat:0/10]
+   [End of Phase 1 Sample @ Ep 0059]: 'First citizen:\nYour re crin kled in the midst of a crowthere is no more than they are bound by the '
+[Phase 2 Crystallization @ Ep 0060] Initialized VQ & RelOp codebooks via GPU K-Means.
+Ep 0060 [P2] | Loss:8.105 BPC:2.065 (SymLM:5.717[ 9.0%] VQ:0.855 Div:0.098 Eth:6.879) | Acc(S/M/E):13.8/82.4/71.7% | ValBPC:2.268 (S:13.6% M:82.8% E:72.5% Gap:+0.20)  | 897 u/s (Tr:538.2s Va:8.2s Io:0.0s) VRAM:4.3G
+        | ACT:1.38±0.49[62/38/ 0/ 0%] Stk:12.9(31/21/48 PtrPPX:12.7 Occ:90%) GWT[P:51 S:43 H: 6 G: 0] SigRMS[0.84/0.11/0.06/0.00] CarryG:0.28±0.21 | Grad:1.49/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:0.78 Att:0.10 FFN:0.33 VQ:0.001 Op:0.006 Adj:0.000 Holo:0.17 Dec:1.02] | LossPct[Pr:85% SL: 0% VQ:12% Et: 2% Cn: 0% St: 0% Pn: 0% Dv: 1%]
+        | Syms:1000/1024 SymPPX:625.1 VQCos:0.66 Ops:24/24 OpPPX:19.8 RelAcc: 0.8% Drift:0.469 Top1: 0.7% Loop: 1.6% Rev:  0/ 0 Edges:   0(AdjPPX:971.5) | Tune[Ready:  0% DivW:1.15 Temp:0.08 Cmt:0.26 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.0282 Consc:0.12 Clip:2.63( 0%) Pat:0/10]
+   Sample: 'First citizen:\nAll this is the world duke VINCENTIO:\nI had you with your eyes if thou wilt have been to do me for thee '
+Ep 0075 [P2] | Loss:8.080 BPC:2.038 (SymLM:5.316[12.2%] VQ:0.849 Div:0.045 Eth:5.580) | Acc(S/M/E):15.2/83.2/71.4% | ValBPC:2.244 (S:13.6% M:83.7% E:72.5% Gap:+0.21)  | 895 u/s (Tr:539.6s Va:8.3s Io:0.0s) VRAM:4.3G
+        | ACT:1.25±0.43[75/25/ 0/ 0%] Stk: 9.7(30/21/50 PtrPPX: 8.7 Occ:87%) GWT[P:49 S:45 H: 6 G: 0] SigRMS[0.84/0.13/0.06/0.00] CarryG:0.26±0.22 | Grad:1.44/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:0.82 Att:0.11 FFN:0.30 VQ:0.001 Op:0.004 Adj:0.001 Holo:0.20 Dec:1.07] | LossPct[Pr:84% SL: 3% VQ:11% Et: 2% Cn: 0% St: 0% Pn: 0% Dv: 1%]
+        | Syms:991/1024 SymPPX:653.2 VQCos:0.70 Ops:24/24 OpPPX:16.5 RelAcc: 8.6% Drift:0.092 Top1: 0.7% Loop: 1.8% Rev:  0/ 0 Edges: 135(AdjPPX:265.2) | Tune[Ready:  0% DivW:0.62 Temp:0.09 Cmt:0.40 Alpha:0.05 Bias:0.000 GGate:0.00 PndP:0.0126 Consc:0.12 Clip:2.57( 0%) Pat:0/10]
+Ep 0090 [P2] | Loss:8.043 BPC:1.977 (SymLM:5.106[13.5%] VQ:0.805 Div:0.029 Eth:5.291) | Acc(S/M/E):15.8/83.3/72.1% | ValBPC:2.236 (S:14.4% M:83.3% E:72.3% Gap:+0.26)  | 896 u/s (Tr:540.1s Va:8.8s Io:0.0s) VRAM:4.3G
+        | ACT:1.23±0.42[77/23/ 0/ 0%] Stk:13.9(37/24/39 PtrPPX:11.1 Occ:90%) GWT[P:46 S:46 H: 8 G: 0] SigRMS[0.83/0.14/0.08/0.00] CarryG:0.26±0.23 | Grad:1.44/1.6 Skips:0 LR:0.00071
+        | GradMod[Cell:0.81 Att:0.12 FFN:0.28 VQ:0.001 Op:0.007 Adj:0.001 Holo:0.20 Dec:1.06] | LossPct[Pr:82% SL: 5% VQ:10% Et: 2% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:999/1024 SymPPX:660.4 VQCos:0.71 Ops:24/24 OpPPX:17.3 RelAcc:10.5% Drift:0.074 Top1: 0.9% Loop: 1.5% Rev:  0/ 0 Edges: 323(AdjPPX:198.5) | Tune[Ready:  0% DivW:0.34 Temp:0.09 Cmt:0.40 Alpha:0.10 Bias:0.000 GGate:0.00 PndP:0.0050 Consc:0.12 Clip:2.62( 0%) Pat:0/10]
+Ep 0105 [P2] | Loss:8.105 BPC:1.942 (SymLM:4.927[14.7%] VQ:0.818 Div:0.024 Eth:5.098) | Acc(S/M/E):17.1/83.6/71.9% | ValBPC:2.234 (S:14.6% M:83.7% E:72.7% Gap:+0.29)  | 894 u/s (Tr:541.6s Va:8.4s Io:0.0s) VRAM:4.3G
+        | ACT:1.16±0.37[84/16/ 0/ 0%] Stk:10.8(34/23/44 PtrPPX:10.1 Occ:88%) GWT[P:47 S:44 H: 9 G: 0] SigRMS[0.83/0.13/0.09/0.00] CarryG:0.28±0.25 | Grad:1.52/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:0.88 Att:0.14 FFN:0.28 VQ:0.002 Op:0.010 Adj:0.001 Holo:0.24 Dec:1.09] | LossPct[Pr:79% SL: 7% VQ:11% Et: 3% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:998/1024 SymPPX:668.4 VQCos:0.71 Ops:24/24 OpPPX:17.7 RelAcc:12.7% Drift:0.075 Top1: 0.8% Loop: 1.7% Rev:  0/ 0 Edges: 439(AdjPPX:163.7) | Tune[Ready:  0% DivW:0.18 Temp:0.09 Cmt:0.40 Alpha:0.15 Bias:0.000 GGate:0.00 PndP:0.0020 Consc:0.12 Clip:2.72( 0%) Pat:0/10]
+Ep 0120 [P2] | Loss:8.236 BPC:1.896 (SymLM:4.800[15.2%] VQ:0.854 Div:0.022 Eth:4.975) | Acc(S/M/E):17.6/83.9/72.1% | ValBPC:2.257 (S:14.4% M:82.2% E:72.2% Gap:+0.36)  | 892 u/s (Tr:542.5s Va:8.6s Io:0.0s) VRAM:4.3G
+        | ACT:1.16±0.37[84/16/ 0/ 0%] Stk:16.7(40/23/37 PtrPPX: 7.1 Occ:90%) GWT[P:47 S:43 H: 9 G: 0] SigRMS[0.84/0.16/0.09/0.00] CarryG:0.29±0.26 | Grad:1.58/1.8 Skips:0 LR:0.00071
+        | GradMod[Cell:0.96 Att:0.17 FFN:0.28 VQ:0.002 Op:0.014 Adj:0.001 Holo:0.27 Dec:1.15] | LossPct[Pr:77% SL: 9% VQ:11% Et: 3% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:990/1024 SymPPX:682.1 VQCos:0.70 Ops:24/24 OpPPX:17.5 RelAcc:14.0% Drift:0.079 Top1: 0.8% Loop: 1.6% Rev:  0/ 0 Edges: 513(AdjPPX:144.7) | Tune[Ready:  0% DivW:0.15 Temp:0.08 Cmt:0.40 Alpha:0.20 Bias:0.000 GGate:0.00 PndP:0.0020 Consc:0.12 Clip:2.86( 0%) Pat:0/10]
+   Sample: "First citizen:\nWell thought it my dear, little pig Cario To the sausage SELLER I! don't know how well we do for you  Pithetaerus "
+Ep 0135 [P2] | Loss:8.415 BPC:1.895 (SymLM:4.683[16.4%] VQ:0.895 Div:0.023 Eth:4.858) | Acc(S/M/E):18.2/84.2/72.1% | ValBPC:2.253 (S:14.8% M:83.8% E:72.5% Gap:+0.36)  | 891 u/s (Tr:541.7s Va:8.6s Io:0.0s) VRAM:4.3G
+        | ACT:1.15±0.35[85/14/ 0/ 0%] Stk:12.4(37/25/38 PtrPPX: 9.6 Occ:88%) GWT[P:47 S:42 H:10 G: 0] SigRMS[0.84/0.13/0.11/0.00] CarryG:0.30±0.27 | Grad:1.68/1.9 Skips:0 LR:0.00071
+        | GradMod[Cell:1.05 Att:0.19 FFN:0.30 VQ:0.003 Op:0.020 Adj:0.001 Holo:0.30 Dec:1.19] | LossPct[Pr:74% SL:10% VQ:12% Et: 3% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1004/1024 SymPPX:689.4 VQCos:0.68 Ops:24/24 OpPPX:17.6 RelAcc:15.3% Drift:0.077 Top1: 0.7% Loop: 1.7% Rev:  0/ 0 Edges: 574(AdjPPX:128.8) | Tune[Ready:  0% DivW:0.15 Temp:0.08 Cmt:0.40 Alpha:0.25 Bias:0.000 GGate:0.00 PndP:0.0020 Consc:0.12 Clip:3.00( 0%) Pat:0/10]
+   [End of Phase 2 Sample @ Ep 0149]: 'First citizen Well sir sampson I, will be off a de pth y and asyou are in such an empty bellySTREPSIADES How '
+[Phase 3 Macro-Packets @ Ep 0150] Crystallized mastered phrases -> 1.03 units/pkt | Top: ['to the'(n=89,ACT=1.01), 'of the'(n=69,ACT=1.00), 'in the'(n=58,ACT=1.00), 'by the'(n=36,ACT=1.00)]
+Ep 0150 [P3M] | Loss:9.338 BPC:2.048 (SymLM:4.715[15.7%] VQ:0.990 Div:0.025 Eth:4.835) | Acc(S/M/E):17.3/83.5/71.9% | ValBPC:2.295 (S:14.1% M:83.6% E:72.6% Gap:+0.25)  | 855 u/s (Tr:565.5s Va:9.0s Io:0.0s) VRAM:4.6G
+        | ACT:1.14±0.35[86/13/ 0/ 0%] Stk:11.5(37/24/39 PtrPPX: 7.1 Occ:85%) GWT[P:37 S:28 H: 8 G:26] SigRMS[0.80/0.10/0.08/0.01] CarryG:0.30±0.27 | Grad:3.44/8.9 Skips:0 LR:0.00071
+        | GradMod[Cell:1.16 Att:0.22 FFN:0.32 VQ:0.004 Op:0.026 Adj:0.001 Holo:0.35 Dec:1.32] | LossPct[Pr:73% SL:11% VQ:12% Et: 3% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1001/1024 SymPPX:664.8 VQCos:0.65 Ops:24/24 OpPPX:17.4 RelAcc:15.7% Drift:0.100 Top1: 1.5% Loop: 2.6% Rev:  0/ 0 Edges: 594(AdjPPX:125.8) | Tune[Ready:  0% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.29 Bias:0.000 GGate:0.04 PndP:0.0020 Consc:0.08 Clip:3.00( 2%) Pat:0/10]
+Ep 0165 [P3M] | Loss:8.528 BPC:1.854 (SymLM:4.537[16.6%] VQ:0.912 Div:0.022 Eth:4.787) | Acc(S/M/E):19.7/84.5/72.3% | ValBPC:2.265 (S:15.4% M:83.3% E:72.8% Gap:+0.41)  | 869 u/s (Tr:571.2s Va:8.6s Io:0.0s) VRAM:4.7G
+        | ACT:1.19±0.44[83/16/ 1/ 0%] Stk:15.8(40/26/34 PtrPPX: 8.7 Occ:90%) GWT[P:43 S:36 H:10 G:11] SigRMS[0.82/0.12/0.10/0.06] CarryG:0.29±0.28 | Grad:1.76/2.0 Skips:0 LR:0.00071
+        | GradMod[Cell:1.12 Att:0.22 FFN:0.32 VQ:0.005 Op:0.032 Adj:0.002 Holo:0.34 Dec:1.21] | LossPct[Pr:72% SL:12% VQ:12% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1004/1024 SymPPX:688.6 VQCos:0.67 Ops:24/24 OpPPX:17.8 RelAcc:16.7% Drift:0.074 Top1: 0.6% Loop: 1.4% Rev:  0/ 0 Edges: 583(AdjPPX:120.0) | Tune[Ready: 40% DivW:0.15 Temp:0.08 Cmt:0.40 Alpha:0.24 Bias:0.021 GGate:0.64 PndP:0.0020 Consc:0.08 Clip:3.00( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0171 | Val BPC: 2.2507 (ValLoss: 7.386 StemAcc: 16.0%) | Cached best weights
+   Sample (*BEST* Ep 0171): 'First To bite them the boar other that they have heard of you and this man has exposed from the truth in a greek is no need '
+   >>> *BEST* EPOCH 0176 | Val BPC: 2.2450 (ValLoss: 7.368 StemAcc: 16.2%) | Cached best weights
+   Sample (*BEST* Ep 0176): 'First senator Patricians, by your advice And bring me the w rinks his life in all.\n\nEURIPIDES:\nWhence come you a very '
+   >>> *BEST* EPOCH 0179 | Val BPC: 2.2387 (ValLoss: 7.347 StemAcc: 15.9%) | Cached best weights
+   Sample (*BEST* Ep 0179): 'First senator:\nCome we come buy your, brave soldiers; Then take this land of all, our city and let us start off in the glass\n'
+Ep 0180 [P3M] | Loss:8.534 BPC:1.789 (SymLM:4.477[17.1%] VQ:0.926 Div:0.021 Eth:4.620) | Acc(S/M/E):20.9/86.0/73.5% | ValBPC:2.240 (S:16.0% M:84.7% E:72.7% Gap:+0.45) BestBPC:2.239@179 | 760 u/s (Tr:572.1s Va:87.3s Io:0.1s) VRAM:4.7G
+        | ACT:1.53±1.04[76/ 9/ 2/13%] Stk:15.4(39/26/35 PtrPPX: 8.4 Occ:90%) GWT[P:46 S:32 H:12 G:11] SigRMS[0.83/0.10/0.12/0.09] CarryG:0.30±0.28 | Grad:1.76/2.1 Skips:0 LR:0.00071
+        | GradMod[Cell:1.20 Att:0.24 FFN:0.35 VQ:0.006 Op:0.041 Adj:0.003 Holo:0.40 Dec:1.28] | LossPct[Pr:70% SL:11% VQ:13% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1000/1024 SymPPX:683.5 VQCos:0.67 Ops:24/24 OpPPX:18.1 RelAcc:18.6% Drift:0.076 Top1: 0.6% Loop: 1.5% Rev:  0/ 0 Edges: 577(AdjPPX:101.5) | Tune[Ready: 54% DivW:0.15 Temp:0.08 Cmt:0.40 Alpha:0.23 Bias:0.031 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 2%) Pat:0/10]
+   Sample: 'First gentleman:\nSay it of my life?\n\nBIONDELLO:\nNo i would not have been the best to be a house to morrow but a little '
+   >>> *BEST* EPOCH 0181 | Val BPC: 2.2359 (ValLoss: 7.338 StemAcc: 16.2%) | Cached best weights
+   Sample (*BEST* Ep 0181): 'First servingman:\nI see you sir but to my master?\n\nPETRUCHIO:\nWhy then tis a littleinbianca.\n\nTRANIO:\nI, am the mad man of come '
+   >>> *BEST* EPOCH 0183 | Val BPC: 2.2344 (ValLoss: 7.333 StemAcc: 16.2%) | Cached best weights
+   Sample (*BEST* Ep 0183): 'First Citizen:\nNay, if you please to make, my lord in your sight i will show thee the most un gabbotand '
+   >>> *BEST* EPOCH 0185 | Val BPC: 2.2238 (ValLoss: 7.298 StemAcc: 16.0%) | Cached best weights
+   Sample (*BEST* Ep 0185): 'First musician:\nI, know it is no better than you are going to pay your honour, and with him who would have live a man '
+   >>> *BEST* EPOCH 0187 | Val BPC: 2.2214 (ValLoss: 7.290 StemAcc: 16.7%) | Cached best weights
+   Sample (*BEST* Ep 0187): 'First citizen:\nWe do not meet you you are now with my legs and then you will have an old man as he was so '
+   >>> *BEST* EPOCH 0188 | Val BPC: 2.2181 (ValLoss: 7.280 StemAcc: 16.4%) | Cached best weights
+   Sample (*BEST* Ep 0188): 'First murderer:\nO a mostcruel death!\nI would not have been my sword to yourfriends,\nAnd he hath set his brother or of '
+   >>> *BEST* EPOCH 0194 | Val BPC: 2.2124 (ValLoss: 7.261 StemAcc: 16.4%) | Cached best weights
+   Sample (*BEST* Ep 0194): 'First gentleman:\nHe that he is it to his father he who was his master him with himselfhe will be a friend of what '
+Ep 0195 [P3M] | Loss:8.400 BPC:1.755 (SymLM:4.403[17.8%] VQ:0.939 Div:0.024 Eth:4.527) | Acc(S/M/E):22.1/88.0/72.8% | ValBPC:2.215 (S:16.4% M:87.1% E:72.4% Gap:+0.46) BestBPC:2.212@194 | 709 u/s (Tr:571.9s Va:130.5s Io:0.1s) VRAM:4.7G
+        | ACT:1.86±1.31[68/ 5/ 1/26%] Stk:15.8(40/27/33 PtrPPX: 8.6 Occ:91%) GWT[P:46 S:29 H:12 G:13] SigRMS[0.82/0.10/0.12/0.11] CarryG:0.31±0.29 | Grad:1.88/2.3 Skips:0 LR:0.00071
+        | GradMod[Cell:1.20 Att:0.24 FFN:0.37 VQ:0.008 Op:0.055 Adj:0.003 Holo:0.38 Dec:1.25] | LossPct[Pr:69% SL:11% VQ:14% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1001/1024 SymPPX:673.5 VQCos:0.66 Ops:24/24 OpPPX:18.4 RelAcc:19.2% Drift:0.082 Top1: 0.7% Loop: 1.6% Rev:  0/ 0 Edges: 569(AdjPPX: 92.5) | Tune[Ready: 54% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.23 Bias:0.031 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0196 | Val BPC: 2.2026 (ValLoss: 7.229 StemAcc: 16.4%) | Cached best weights
+   Sample (*BEST* Ep 0196): 'First servant:\nCome the best advise the tower, or else to give your house,\nThe people are to rome and you your daughter, proceed with such.\n\n'
+   >>> *BEST* EPOCH 0201 | Val BPC: 2.1995 (ValLoss: 7.218 StemAcc: 16.9%) | Cached best weights
+   Sample (*BEST* Ep 0201): 'First gentleman:\nI do thought of my command to rome.\n\nSECOND OLD WOMAN Yes by Posidon! You are like to you  tis so many a '
+Ep 0210 [P3M] | Loss:8.251 BPC:1.723 (SymLM:4.355[18.0%] VQ:0.949 Div:0.023 Eth:4.405) | Acc(S/M/E):23.0/88.4/73.4% | ValBPC:2.208 (S:16.9% M:87.4% E:72.7% Gap:+0.48) BestBPC:2.199@201 | 716 u/s (Tr:571.7s Va:130.1s Io:0.1s) VRAM:4.7G
+        | ACT:1.92±1.34[66/ 5/ 1/28%] Stk:13.7(39/30/31 PtrPPX: 9.8 Occ:90%) GWT[P:48 S:27 H:12 G:13] SigRMS[0.82/0.08/0.12/0.11] CarryG:0.31±0.29 | Grad:1.87/2.2 Skips:0 LR:0.00071
+        | GradMod[Cell:1.27 Att:0.25 FFN:0.40 VQ:0.009 Op:0.060 Adj:0.003 Holo:0.41 Dec:1.27] | LossPct[Pr:69% SL:12% VQ:14% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1008/1024 SymPPX:684.1 VQCos:0.66 Ops:24/24 OpPPX:18.8 RelAcc:21.3% Drift:0.075 Top1: 0.6% Loop: 1.4% Rev:  0/ 0 Edges: 569(AdjPPX: 81.8) | Tune[Ready: 52% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.23 Bias:0.029 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 2%) Pat:0/10]
+Ep 0225 [P3M] | Loss:7.985 BPC:1.637 (SymLM:4.240[18.7%] VQ:0.957 Div:0.022 Eth:4.212) | Acc(S/M/E):24.9/88.8/73.8% | ValBPC:2.214 (S:16.8% M:87.6% E:72.2% Gap:+0.58) BestBPC:2.199@201 | 718 u/s (Tr:572.2s Va:130.5s Io:0.0s) VRAM:4.7G
+        | ACT:1.98±1.37[64/ 5/ 1/30%] Stk:13.6(37/29/34 PtrPPX: 9.8 Occ:90%) GWT[P:47 S:27 H:13 G:12] SigRMS[0.82/0.08/0.13/0.11] CarryG:0.32±0.30 | Grad:2.12/5.0 Skips:0 LR:0.00071
+        | GradMod[Cell:1.29 Att:0.26 FFN:0.42 VQ:0.009 Op:0.063 Adj:0.003 Holo:0.42 Dec:1.26] | LossPct[Pr:68% SL:12% VQ:15% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1008/1024 SymPPX:669.5 VQCos:0.66 Ops:24/24 OpPPX:18.8 RelAcc:22.8% Drift:0.077 Top1: 1.0% Loop: 1.8% Rev:  0/ 0 Edges: 558(AdjPPX: 67.5) | Tune[Ready: 50% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.23 Bias:0.028 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 0%) Pat:0/10]
+   >>> *BEST* EPOCH 0233 | Val BPC: 2.1980 (ValLoss: 7.213 StemAcc: 17.4%) | Cached best weights
+   Sample (*BEST* Ep 0233): 'First lord:\nOf salisbury with whom he the had call your brother and his crown or s to win her lord.\nNorthumberland thou art a traitor '
+   >>> *BEST* EPOCH 0234 | Val BPC: 2.1940 (ValLoss: 7.200 StemAcc: 17.1%) | Cached best weights
+   Sample (*BEST* Ep 0234): 'First of:\nall that Were in your sight should not be able to live again to a c asket it was as much more '
+Ep 0240 [P3M] | Loss:7.877 BPC:1.618 (SymLM:4.189[19.9%] VQ:0.957 Div:0.023 Eth:4.126) | Acc(S/M/E):25.9/89.4/73.6% | ValBPC:2.195 (S:17.1% M:88.1% E:72.7% Gap:+0.58) BestBPC:2.194@234 | 715 u/s (Tr:572.8s Va:129.9s Io:0.1s) VRAM:4.7G
+        | ACT:2.04±1.40[63/ 4/ 1/33%] Stk:10.7(37/32/32 PtrPPX:10.8 Occ:90%) GWT[P:46 S:28 H:13 G:12] SigRMS[0.81/0.07/0.13/0.10] CarryG:0.32±0.30 | Grad:2.14/3.0 Skips:0 LR:0.00035
+        | GradMod[Cell:1.34 Att:0.27 FFN:0.46 VQ:0.010 Op:0.068 Adj:0.002 Holo:0.46 Dec:1.29] | LossPct[Pr:68% SL:12% VQ:15% Et: 5% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1015/1024 SymPPX:663.8 VQCos:0.66 Ops:24/24 OpPPX:19.5 RelAcc:24.1% Drift:0.074 Top1: 0.9% Loop: 1.8% Rev:  0/ 0 Edges: 549(AdjPPX: 61.9) | Tune[Ready: 49% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.027 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 1%) Pat:0/10]
+   Sample: 'First position:\nWhat the matter you are?\nYou have to deny your su?\n\nsybu lus? Aufidius may you not discover you marcius '
+   >>> *BEST* EPOCH 0241 | Val BPC: 2.1928 (ValLoss: 7.196 StemAcc: 17.3%) | Cached best weights
+   Sample (*BEST* Ep 0241): 'First senator Come you, say something great than. Any of all these things are here to the custom ary on the earthy of me at night '
+   >>> *BEST* EPOCH 0242 | Val BPC: 2.1899 (ValLoss: 7.186 StemAcc: 17.0%) | Cached best weights
+   Sample (*BEST* Ep 0242): 'First of:\nall the other that is all too well and the will\ni know how to usethis purpose as well for me so much '
+Ep 0255 [P3M] | Loss:7.682 BPC:1.573 (SymLM:4.081[20.5%] VQ:0.966 Div:0.023 Eth:4.073) | Acc(S/M/E):27.0/89.4/74.1% | ValBPC:2.209 (S:17.3% M:88.1% E:72.5% Gap:+0.64) BestBPC:2.190@242 | 716 u/s (Tr:570.9s Va:129.6s Io:0.1s) VRAM:4.7G
+        | ACT:1.94±1.37[66/ 3/ 0/30%] Stk:15.4(42/32/27 PtrPPX: 9.9 Occ:91%) GWT[P:48 S:27 H:14 G:11] SigRMS[0.82/0.08/0.14/0.10] CarryG:0.32±0.30 | Grad:2.06/2.7 Skips:0 LR:0.00035
+        | GradMod[Cell:1.43 Att:0.29 FFN:0.52 VQ:0.010 Op:0.071 Adj:0.002 Holo:0.52 Dec:1.30] | LossPct[Pr:68% SL:12% VQ:15% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1014/1024 SymPPX:669.9 VQCos:0.66 Ops:24/24 OpPPX:19.2 RelAcc:24.2% Drift:0.074 Top1: 1.0% Loop: 1.7% Rev:  0/ 0 Edges: 533(AdjPPX: 58.7) | Tune[Ready: 47% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.026 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 2%) Pat:0/10]
+Ep 0270 [P3M] | Loss:7.690 BPC:1.567 (SymLM:4.103[20.1%] VQ:0.974 Div:0.023 Eth:4.054) | Acc(S/M/E):27.1/89.8/74.0% | ValBPC:2.217 (S:17.0% M:88.1% E:72.5% Gap:+0.65) BestBPC:2.190@242 | 717 u/s (Tr:571.9s Va:131.1s Io:0.0s) VRAM:4.7G
+        | ACT:2.01±1.39[64/ 3/ 0/32%] Stk:10.6(38/34/28 PtrPPX:11.3 Occ:90%) GWT[P:48 S:26 H:15 G:11] SigRMS[0.82/0.07/0.15/0.10] CarryG:0.32±0.30 | Grad:2.46/4.6 Skips:0 LR:0.00018
+        | GradMod[Cell:1.50 Att:0.31 FFN:0.58 VQ:0.011 Op:0.076 Adj:0.002 Holo:0.55 Dec:1.37] | LossPct[Pr:68% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1007/1024 SymPPX:667.8 VQCos:0.65 Ops:24/24 OpPPX:19.4 RelAcc:24.8% Drift:0.068 Top1: 0.8% Loop: 1.6% Rev:  0/ 0 Edges: 542(AdjPPX: 57.6) | Tune[Ready: 46% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.025 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 2%) Pat:1/10]
+Ep 0285 [P3M] | Loss:7.622 BPC:1.558 (SymLM:4.085[20.1%] VQ:0.970 Div:0.023 Eth:4.020) | Acc(S/M/E):27.6/89.8/74.2% | ValBPC:2.215 (S:17.4% M:88.1% E:72.6% Gap:+0.66) BestBPC:2.190@242 | 718 u/s (Tr:572.3s Va:130.3s Io:0.0s) VRAM:4.7G
+        | ACT:1.97±1.38[66/ 3/ 0/31%] Stk:15.2(41/31/28 PtrPPX: 9.8 Occ:91%) GWT[P:48 S:26 H:15 G:11] SigRMS[0.82/0.07/0.14/0.10] CarryG:0.32±0.30 | Grad:2.31/3.2 Skips:0 LR:0.00018
+        | GradMod[Cell:1.53 Att:0.32 FFN:0.61 VQ:0.011 Op:0.079 Adj:0.002 Holo:0.57 Dec:1.34] | LossPct[Pr:68% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1015/1024 SymPPX:674.5 VQCos:0.65 Ops:24/24 OpPPX:19.3 RelAcc:25.4% Drift:0.071 Top1: 0.6% Loop: 1.1% Rev:  0/ 0 Edges: 550(AdjPPX: 55.7) | Tune[Ready: 45% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.024 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 2%) Pat:2/10]
+Ep 0300 [P3M] | Loss:7.516 BPC:1.525 (SymLM:4.040[20.7%] VQ:0.974 Div:0.023 Eth:3.998) | Acc(S/M/E):28.3/90.1/74.5% | ValBPC:2.216 (S:17.6% M:88.0% E:72.5% Gap:+0.69) BestBPC:2.190@242 | 720 u/s (Tr:570.7s Va:129.5s Io:0.0s) VRAM:4.7G
+        | ACT:1.98±1.38[65/ 3/ 0/31%] Stk:14.4(40/31/29 PtrPPX:10.4 Occ:91%) GWT[P:48 S:26 H:16 G:11] SigRMS[0.81/0.07/0.15/0.09] CarryG:0.32±0.30 | Grad:2.46/4.4 Skips:0 LR:0.00009
+        | GradMod[Cell:1.59 Att:0.33 FFN:0.66 VQ:0.011 Op:0.082 Adj:0.002 Holo:0.61 Dec:1.37] | LossPct[Pr:68% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1015/1024 SymPPX:674.4 VQCos:0.65 Ops:24/24 OpPPX:19.5 RelAcc:25.6% Drift:0.068 Top1: 0.6% Loop: 1.2% Rev:  0/ 0 Edges: 552(AdjPPX: 54.5) | Tune[Ready: 44% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.024 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 6%) Pat:3/10]
+   Sample: 'First he:\ndieted by one in the street, and he will be to be afraid of our intent. Come here we are made with '
+Ep 0315 [P3M] | Loss:7.519 BPC:1.519 (SymLM:4.050[20.5%] VQ:0.992 Div:0.022 Eth:4.049) | Acc(S/M/E):28.6/89.7/74.7% | ValBPC:2.225 (S:17.4% M:88.0% E:72.4% Gap:+0.71) BestBPC:2.190@242 | 718 u/s (Tr:571.2s Va:129.8s Io:0.0s) VRAM:4.7G
+        | ACT:1.93±1.37[67/ 3/ 0/30%] Stk:14.3(40/31/29 PtrPPX:10.6 Occ:91%) GWT[P:47 S:27 H:16 G:10] SigRMS[0.81/0.07/0.15/0.09] CarryG:0.33±0.30 | Grad:2.57/3.5 Skips:0 LR:0.00009
+        | GradMod[Cell:1.63 Att:0.34 FFN:0.69 VQ:0.011 Op:0.084 Adj:0.002 Holo:0.63 Dec:1.37] | LossPct[Pr:67% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1014/1024 SymPPX:677.8 VQCos:0.65 Ops:24/24 OpPPX:19.4 RelAcc:24.7% Drift:0.075 Top1: 0.5% Loop: 0.7% Rev:  0/ 0 Edges: 547(AdjPPX: 57.4) | Tune[Ready: 43% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.024 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 5%) Pat:4/10]
+Ep 0330 [P3M] | Loss:7.457 BPC:1.515 (SymLM:3.987[21.6%] VQ:0.986 Div:0.023 Eth:4.020) | Acc(S/M/E):29.3/89.3/74.6% | ValBPC:2.226 (S:17.6% M:88.1% E:72.4% Gap:+0.71) BestBPC:2.190@242 | 719 u/s (Tr:571.8s Va:129.4s Io:0.0s) VRAM:4.7G
+        | ACT:1.94±1.37[67/ 3/ 0/30%] Stk:14.5(41/32/27 PtrPPX:10.1 Occ:91%) GWT[P:47 S:26 H:16 G:10] SigRMS[0.81/0.07/0.16/0.09] CarryG:0.33±0.30 | Grad:7.57/83.2 Skips:0 LR:0.00004
+        | GradMod[Cell:1.68 Att:0.35 FFN:0.72 VQ:0.011 Op:0.086 Adj:0.002 Holo:0.68 Dec:1.39] | LossPct[Pr:67% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1011/1024 SymPPX:677.6 VQCos:0.65 Ops:24/24 OpPPX:19.3 RelAcc:24.9% Drift:0.069 Top1: 0.6% Loop: 1.4% Rev:  0/ 0 Edges: 549(AdjPPX: 55.7) | Tune[Ready: 43% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.023 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 9%) Pat:5/10]
+Ep 0345 [P3M] | Loss:7.439 BPC:1.507 (SymLM:4.001[21.2%] VQ:0.992 Div:0.023 Eth:3.989) | Acc(S/M/E):29.7/89.9/75.1% | ValBPC:2.227 (S:17.5% M:88.0% E:72.3% Gap:+0.72) BestBPC:2.190@242 | 716 u/s (Tr:573.2s Va:130.5s Io:0.0s) VRAM:4.7G
+        | ACT:1.93±1.37[67/ 3/ 0/30%] Stk:14.6(41/32/27 PtrPPX:10.3 Occ:91%) GWT[P:48 S:26 H:16 G:10] SigRMS[0.81/0.07/0.16/0.09] CarryG:0.33±0.30 | Grad:2.58/4.6 Skips:0 LR:0.00002
+        | GradMod[Cell:1.68 Att:0.35 FFN:0.73 VQ:0.011 Op:0.086 Adj:0.002 Holo:0.67 Dec:1.38] | LossPct[Pr:67% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1017/1024 SymPPX:677.1 VQCos:0.65 Ops:24/24 OpPPX:19.5 RelAcc:25.2% Drift:0.067 Top1: 0.6% Loop: 1.3% Rev:  0/ 0 Edges: 545(AdjPPX: 54.0) | Tune[Ready: 43% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.023 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 8%) Pat:6/10]
+Ep 0360 [P3M] | Loss:7.407 BPC:1.493 (SymLM:3.979[20.9%] VQ:0.985 Div:0.023 Eth:3.990) | Acc(S/M/E):29.6/90.3/74.7% | ValBPC:2.229 (S:17.6% M:88.0% E:72.3% Gap:+0.74) BestBPC:2.190@242 | 718 u/s (Tr:572.4s Va:129.7s Io:0.0s) VRAM:4.7G
+        | ACT:1.94±1.37[67/ 3/ 0/30%] Stk:14.9(41/32/27 PtrPPX: 9.7 Occ:91%) GWT[P:47 S:26 H:16 G:10] SigRMS[0.81/0.07/0.16/0.09] CarryG:0.33±0.30 | Grad:2.44/2.9 Skips:0 LR:0.00002
+        | GradMod[Cell:1.68 Att:0.35 FFN:0.74 VQ:0.011 Op:0.088 Adj:0.002 Holo:0.68 Dec:1.39] | LossPct[Pr:67% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1016/1024 SymPPX:671.5 VQCos:0.65 Ops:24/24 OpPPX:19.5 RelAcc:25.3% Drift:0.070 Top1: 0.7% Loop: 1.3% Rev:  0/ 0 Edges: 544(AdjPPX: 54.0) | Tune[Ready: 42% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.023 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 8%) Pat:7/10]
+   Sample: 'First to:\nbeget to call\nthe Wax and am bition. \nthey did not cease waiting for that day of old,\nThan cypris made the way '
+Ep 0375 [P3M] | Loss:7.439 BPC:1.499 (SymLM:3.992[21.1%] VQ:0.986 Div:0.023 Eth:4.031) | Acc(S/M/E):29.2/89.8/74.8% | ValBPC:2.231 (S:17.4% M:88.0% E:72.3% Gap:+0.73) BestBPC:2.190@242 | 717 u/s (Tr:572.4s Va:130.0s Io:0.0s) VRAM:4.7G
+        | ACT:1.91±1.36[68/ 3/ 0/29%] Stk:15.1(42/31/27 PtrPPX:10.0 Occ:91%) GWT[P:48 S:26 H:16 G:10] SigRMS[0.81/0.07/0.16/0.09] CarryG:0.33±0.30 | Grad:2.47/3.0 Skips:0 LR:0.00002
+        | GradMod[Cell:1.70 Att:0.35 FFN:0.75 VQ:0.011 Op:0.087 Adj:0.002 Holo:0.67 Dec:1.39] | LossPct[Pr:67% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1014/1024 SymPPX:681.7 VQCos:0.65 Ops:24/24 OpPPX:19.5 RelAcc:24.5% Drift:0.071 Top1: 0.6% Loop: 0.8% Rev:  0/ 0 Edges: 541(AdjPPX: 56.3) | Tune[Ready: 42% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.023 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00( 9%) Pat:8/10]
+Ep 0390 [P3M] | Loss:7.316 BPC:1.468 (SymLM:3.923[22.0%] VQ:0.986 Div:0.022 Eth:3.993) | Acc(S/M/E):30.6/89.8/75.0% | ValBPC:2.232 (S:17.5% M:88.1% E:72.3% Gap:+0.76) BestBPC:2.190@242 | 553 u/s (Tr:743.0s Va:167.9s Io:0.0s) VRAM:4.7G
+        | ACT:1.93±1.37[67/ 3/ 0/30%] Stk:14.6(41/32/27 PtrPPX:10.2 Occ:91%) GWT[P:47 S:26 H:17 G:10] SigRMS[0.81/0.07/0.16/0.09] CarryG:0.33±0.30 | Grad:2.50/3.4 Skips:0 LR:0.00002
+        | GradMod[Cell:1.71 Att:0.35 FFN:0.76 VQ:0.011 Op:0.089 Adj:0.002 Holo:0.69 Dec:1.40] | LossPct[Pr:67% SL:12% VQ:17% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1010/1024 SymPPX:669.8 VQCos:0.65 Ops:24/24 OpPPX:19.7 RelAcc:25.4% Drift:0.072 Top1: 0.8% Loop: 1.6% Rev:  0/ 0 Edges: 545(AdjPPX: 54.2) | Tune[Ready: 42% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.023 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00(11%) Pat:9/10]
+Ep 0405 [P3M] | Loss:7.328 BPC:1.477 (SymLM:3.958[21.4%] VQ:0.979 Div:0.022 Eth:4.009) | Acc(S/M/E):29.8/90.5/75.3% | ValBPC:2.234 (S:17.3% M:88.0% E:72.2% Gap:+0.76) BestBPC:2.190@242 | 559 u/s (Tr:731.5s Va:171.1s Io:0.0s) VRAM:4.7G
+        | ACT:1.93±1.37[67/ 3/ 0/30%] Stk:14.9(41/32/27 PtrPPX:10.1 Occ:91%) GWT[P:48 S:26 H:16 G:10] SigRMS[0.81/0.07/0.16/0.09] CarryG:0.33±0.30 | Grad:2.54/3.4 Skips:0 LR:0.00002
+        | GradMod[Cell:1.72 Att:0.35 FFN:0.76 VQ:0.011 Op:0.089 Adj:0.002 Holo:0.70 Dec:1.40] | LossPct[Pr:67% SL:12% VQ:16% Et: 4% Cn: 0% St: 0% Pn: 0% Dv: 0%]
+        | Syms:1016/1024 SymPPX:677.3 VQCos:0.65 Ops:24/24 OpPPX:19.6 RelAcc:25.4% Drift:0.066 Top1: 0.6% Loop: 0.8% Rev:  0/ 0 Edges: 543(AdjPPX: 55.1) | Tune[Ready: 43% DivW:0.15 Temp:0.07 Cmt:0.40 Alpha:0.22 Bias:0.023 GGate:1.00 PndP:0.0020 Consc:0.08 Clip:3.00(10%) Pat:10/10]
+
+--- EARLY STOPPING (LR converged & plateaued for 10 checks) ---
+   [End of Phase 3 Sample @ Ep 0405]: 'First with all i the consul ship of p apht us from its top most bo ughs for his summonsexit close '
+Restored best healthy checkpoint (Val BPC: 2.1899 at Ep 242).
+
+--- Saving Final Model to crsn_omni_model.pth ---
+Saved.
+Saved 0_training_dynamics.png
+
+--- Generating Diagnostics & Images ---
+Codebook Health : Active=826/1024 | Top10%Share=61.4% | MedianHits=7 | AvgStemPurity=64.1%
+   Hub S_555  (hits=779 , purity= 1.4%, dom_op=R_20): ['stand'(11), 'well'(11), 'rather'(7)]
+   Hub S_937  (hits=578 , purity= 2.9%, dom_op=R_2): ['you'(17), 'us'(13), 'him'(12)]
+   Hub S_123  (hits=570 , purity= 2.3%, dom_op=R_6): ['people'(13), 't'(6), 'mind'(5)]
+   Hub S_196  (hits=518 , purity= 3.9%, dom_op=R_18): ['sir'(20), 'well'(15), 'them'(12)]
+   Hub S_948  (hits=416 , purity= 5.3%, dom_op=R_1): ['marcius'(22), 'citizen'(14), 'senator'(12)]
+Saved 1_semantic_topology.png
+Running Inference Scan...
+ACT Step Breakdown : 1 steps: 53%, 3 steps: 2%, 4 steps: 44%
+Stack Depth Range  : [0.36, 6.28] | Avg Gen PktLen=1.00
+Generated          : First senator Then your dig nianicesaff rights,
+but all these things appear the whole of them is inthat same manner and all about the origin as though he be not long to day which is natural in 
+
+Saved 2_stack_mri.png
+Saved 3_act_profile.png
+Saved 4_phase_plot.png
+
+--- Extracting Explicit Logic Rules (Relational Operator + Dual-Clock Edge Triples) ---
+
+[1-Hop Relational Rules] FROM             | OP | EDGE      | TO               | COUNT  | AVG STEPS
+--------------------------------------------------------------------------------
+S_937 (you)      --[R_1 |:\n  ]--> S_249 (menenius) | 236    | 1.11 (op  99%)
+S_937 (you)      --[R_9 |·    ]--> S_991 (first)    | 72     | 1.40 (op  56%)
+S_555 (stand)    --[R_19|·    ]--> S_476 (to)       | 67     | 1.00 (op  96%)
+S_937 (you)      --[R_1 |:\n  ]--> S_356 (coriola…) | 64     | 1.00 (op  98%)
+S_555 (stand)    --[R_20|·    ]--> S_555 (stand)    | 54     | 3.83 (op  94%)
+S_937 (you)      --[R_1 |:\n  ]--> S_464 (third)    | 51     | 1.00 (op  69%)
+S_196 (sir)      --[R_22|·    ]--> S_973 (and)      | 50     | 1.00 (op  90%)
+S_555 (stand)    --[R_10|·    ]--> S_633 (of)       | 41     | 1.00 (op  93%)
+S_937 (you)      --[R_1 |:\n  ]--> S_465 (cominius) | 41     | 1.00 (op  93%)
+S_123 (people)   --[R_22|·    ]--> S_114 (and)      | 39     | 1.00 (op  90%)
+S_991 (first)    --[R_1 |:\n  ]--> S_400 (citizen)  | 37     | 1.00 (op 100%)
+S_123 (people)   --[R_19|·    ]--> S_455 (to)       | 36     | 1.00 (op 100%)
+S_555 (stand)    --[R_2 |.\n\n]--> S_937 (you)      | 35     | 4.00 (op 100%)
+S_937 (you)      --[R_1 |:\n  ]--> S_948 (marcius)  | 33     | 3.76 (op 100%)
+S_555 (stand)    --[R_1 |,\n  ]--> S_948 (marcius)  | 31     | 3.71 (op  68%)
+S_555 (stand)    --[R_18|,·   ]--> S_196 (sir)      | 29     | 4.00 (op 100%)
+S_476 (to)       --[R_20|·    ]--> S_158 (see)      | 28     | 4.00 (op 100%)
+S_196 (sir)      --[R_18|,·   ]--> S_196 (sir)      | 26     | 3.58 (op  92%)
+S_123 (people)   --[R_20|·    ]--> S_555 (stand)    | 26     | 3.88 (op  96%)
+S_246 (r)        --[R_20|·    ]--> S_420 (s)        | 26     | 4.00 (op  81%)
+S_555 (stand)    --[R_22|·    ]--> S_973 (and)      | 25     | 1.00 (op  92%)
+S_158 (see)      --[R_8 |·    ]--> S_839 (the)      | 25     | 1.00 (op  92%)
+S_555 (stand)    --[R_0 |·    ]--> S_715 (with)     | 24     | 1.00 (op 100%)
+S_948 (marcius)  --[R_13|·    ]--> S_953 (i)        | 24     | 1.00 (op  88%)
+S_123 (people)   --[R_0 |·    ]--> S_118 (that)     | 24     | 1.00 (op  96%)
+
+[2-Hop Concept Chains] S_A -> S_B -> S_C                                    | COUNT  | AVG STEPS
+----------------------------------------------------------------------------
+S_937 (you) -> S_991 (first) -> S_400 (citizen)      | 33     | 1.00
+S_988 (<SEP>) -> S_988 (<SEP>) -> S_988 (<SEP>)      | 20     | 3.25
+S_937 (you) -> S_991 (first) -> S_948 (marcius)      | 18     | 2.94
+S_937 (you) -> S_249 (menenius) -> S_936 (marcius)   | 18     | 1.06
+S_937 (you) -> S_249 (menenius) -> S_953 (i)         | 15     | 1.00
+S_937 (you) -> S_991 (first) -> S_249 (menenius)     | 14     | 1.29
+S_839 (the) -> S_937 (you) -> S_249 (menenius)       | 12     | 1.33
+S_555 (stand) -> S_476 (to) -> S_251 (the)           | 10     | 1.00
+S_555 (stand) -> S_937 (you) -> S_249 (menenius)     | 10     | 1.20
+S_937 (you) -> S_249 (menenius) -> S_486 (you)       | 10     | 1.00
+
+--- Dream Mode (Relational Operator Conceptual Walk) ---
+Dream Stats  : AvgTemp=0.47 | AvgBranchPPX=4.04 (Target=4.00) | GroundedSyms=43/50
+Dream Output : First fruit:
+The, one who he carries act bound back bound back lie and matheythrew their own ers or      ------------------------it-- why--then what kind le uslookact upon your form 
+
+
+--- Anomaly Detection Test (With Warmup Context) ---
+Warmup: 'noble and good is' | Test: 'not something different from saving and being banana'
+Anomaly Stats: ValidPrefixMean=14.55 | TailMean=19.48 TailMax=28.81 (Contrast=1.98x) | [LM: 8.54->20.26 (2.37x) | RelSymEth: 3.01->8.37 (2.78x) | ACT: 3.29->2.50]
+Saved 5_anomaly_detection.png
+
+--- Context-Difficulty ACT Probe ---
+Val ACT (Aligned Stem NLL) : Easy(NLL<=5.00)=2.309 steps | Hard(NLL>5.00)=2.051 steps
+Val ACT (Model Entropy)    : LowEnt(H<=4.54)=2.441 steps | HighEnt(H>4.54)=1.918 steps
+Val ACT (Input Surprisal)  : EasyIn(NLL<=5.00)=1.891 steps | HardIn(NLL>5.00)=2.472 steps
+
+--- Split Module Ablation Probe (Val Set, BPC Scorecard) ---
+Configuration         | BPC     | Loss    | StemAcc | dBPC vs Full
+--------------------------------------------------------------------
+Full Model            | 2.1899  | 7.1864  |   17.0% |    +0.0000
+- No Stack (Both)     | 2.4754  | 8.1232  |   12.1% |    +0.2855
+- No Stack Attn       | 2.4738  | 8.1181  |   12.0% |    +0.2839
+- No Stack Read       | 2.2336  | 7.3295  |   16.7% |    +0.0437
+- No HoloMem          | 2.2521  | 7.3908  |   16.6% |    +0.0622
+- No GraphEcho        | 2.4340  | 7.9865  |   13.6% |    +0.2441
+- No RelOp Bind       | 2.3466  | 7.7001  |   14.6% |    +0.1567
+- No DualClock Edge   | 2.3693  | 7.7755  |   15.5% |    +0.1795
+- No Morph Phase      | 2.2150  | 7.2690  |   16.7% |    +0.0252
+- No VQ Feedback      | 2.3491  | 7.7089  |   15.0% |    +0.1592
+- No Rec Carry        | 2.5260  | 8.2904  |    9.0% |    +0.3361
+- Fixed ACT (1x)      | 2.3921  | 7.8492  |   14.3% |    +0.2022
+- Unpacked (L=1)      | 2.1933  | 7.1798  |   15.1% |    +0.0034
+Saved 6_codebook_and_ablation.png
+
+Saved complete terminal output log to 'terminal outputs.txt'.

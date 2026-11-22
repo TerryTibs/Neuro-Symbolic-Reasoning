@@ -1,0 +1,302 @@
+Hardware: cuda (NVIDIA GeForce RTX 5060 Ti, 15.9 GB VRAM) | BF16=True | TF32=True
+Loaded corpus from 'data.txt' (3,331,655 chars)
+=== Auto-Configuration Summary (SACRSN v47 Unified) ===
+Corpus       : 3,331,655 chars (86 base chars, min_char_freq>=5) | Train=1,350,429 toks | Val=9,944 toks
+Tokenizer    : Subword BPE | Vocab=956 (Used=946, ZipfPPX=352.8) | Merges=874/2048 | Comp=2.45x
+Architecture : Dim=288 (2D=576) | Codebook=2048 (~2.16x used vocab, TargetPPX=[300..635]) | Stack=24 | MaxDepth=4
+Schedule     : Streams=640x64 (Cap=40,960, TBPTT=8) | Epochs=600 (Phases: 0..60->KMeans->150->600, ~18.2x corpus passes)
+InitHyper    : LR=0.00071 (Plateau) | WD=1.0e-04 | AutoClipInit=2.12 | EthW=0.162 | ConsW=0.020 | ACT_Thresh=0.90
+Sample tokens: ['First', '·C', 'it', 'iz', 'en', ':', '\\n', 'Be', 'fore', '·we', '·pro', 'ce']
+=========================================================
+--- Training SACRSN v47 (BF16_AMP=True | FusedAdamW=True | TBPTT=8) ---
+Ep 0000 [P1] | Loss:7.627 (Pred:7.013 VQ:2.141 Div:0.144 Eth:7.505 Cons:0.251) | Acc:  0.2% TokPPX:1111.52 | Val:6.973 ( 0.2% PPX:1067.5 Gap:-0.04)  | 5,086 tok/s (8.1s) VRAM:8.4G
+        | ACT:3.72±0.46[ 0/ 1/26/73%] Stk:10.0(35/30/35 PtrPPX: 9.0 Occ:87%) GWT[P:26 S:24 H:25 G:24] | Grad:1.16/2.2 Skips:0 LR:0.00005
+        | Syms:2047/2048 SymPPX:1033.2 VQCos:0.14 Drift:0.429 Top1: 1.7% Loop: 7.7% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:1.20 Temp:0.10 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:2.00(12%) Pat:0/10]
+   Sample: 'First ret clllowORUShes no than why why why shall comesotherWhyant saldittIt/alitt frombeitt hadittitt had lifeitt had life'
+Ep 0015 [P1] | Loss:5.760 (Pred:5.183 VQ:1.926 Div:0.147 Eth:7.505 Cons:0.362) | Acc: 11.0% TokPPX:178.28 | Val:5.150 (10.4% PPX:172.4 Gap:-0.03)  | 7,138 tok/s (86.1s) VRAM:8.5G
+        | ACT:2.06±0.27[ 0/95/ 4/ 1%] Stk: 5.3( 8/ 2/90 PtrPPX: 8.6 Occ:62%) GWT[P:69 S:15 H: 6 G: 9] | Grad:0.66/0.8 Skips:0 LR:0.00071
+        | Syms:1545/2048 SymPPX:  9.2 VQCos:0.19 Drift:0.359 Top1:60.5% Loop:55.5% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:1.20 Temp:0.10 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:1.67(27%) Pat:0/10]
+Ep 0030 [P1] | Loss:4.792 (Pred:4.255 VQ:1.737 Div:0.144 Eth:7.505 Cons:0.652) | Acc: 18.9% TokPPX:70.47 | Val:4.194 (19.8% PPX: 66.3 Gap:-0.06)  | 7,215 tok/s (85.2s) VRAM:8.5G
+        | ACT:2.04±0.20[ 0/96/ 3/ 0%] Stk: 0.6( 3/ 9/88 PtrPPX: 2.7 Occ:27%) GWT[P:70 S:14 H: 5 G:11] | Grad:0.65/0.8 Skips:0 LR:0.00071
+        | Syms:1728/2048 SymPPX: 46.4 VQCos:0.21 Drift:0.180 Top1:45.0% Loop:31.0% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:1.20 Temp:0.10 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:1.35( 0%) Pat:0/10]
+Ep 0045 [P1] | Loss:4.340 (Pred:3.864 VQ:1.489 Div:0.139 Eth:7.505 Cons:1.406) | Acc: 22.7% TokPPX:47.68 | Val:3.888 (21.7% PPX: 48.8 Gap:+0.02)  | 7,269 tok/s (84.5s) VRAM:8.5G
+        | ACT:2.04±0.19[ 0/96/ 4/ 0%] Stk: 0.3( 3/11/86 PtrPPX: 1.9 Occ:21%) GWT[P:66 S:15 H: 5 G:14] | Grad:0.82/1.0 Skips:0 LR:0.00071
+        | Syms:1423/2048 SymPPX:119.0 VQCos:0.29 Drift:0.155 Top1:22.7% Loop: 8.4% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:1.20 Temp:0.11 Cmt:0.25 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:1.53( 0%) Pat:0/10]
+   [End of Phase 1 Sample @ Ep 0059]: 'First Senator:\nThere is the\nbut of the market of the\nplasion of the\nplasion of'
+[Phase 2 Crystallization @ Ep 0060] Initialized VQ codebook via GPU K-Means.
+Ep 0060 [P2] | Loss:5.141 (Pred:3.689 VQ:0.986 Div:0.499 Eth:7.505 Cons:2.743) | Acc: 25.1% TokPPX:40.02 | Val:3.749 (23.5% PPX: 42.5 Gap:+0.06)  | 7,222 tok/s (85.1s) VRAM:8.5G
+        | ACT:2.03±0.17[ 0/97/ 3/ 0%] Stk: 0.2( 2/12/86 PtrPPX: 1.7 Occ:19%) GWT[P:60 S:18 H: 6 G:16] | Grad:0.76/0.8 Skips:0 LR:0.00071
+        | Syms:1978/2048 SymPPX:997.9 VQCos:0.60 Drift:0.827 Top1: 1.8% Loop: 0.8% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:1.08 Temp:0.21 Cmt:0.26 Alpha:0.00 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:1.49( 0%) Pat:0/10]
+   Sample: "First Senator:\nI'll tell you,\nI'll tell thee, and the besty, and the besty, and the"
+Ep 0075 [P2] | Loss:4.429 (Pred:3.607 VQ:0.738 Div:0.109 Eth:7.505 Cons:1.923) | Acc: 25.8% TokPPX:36.86 | Val:3.650 (24.4% PPX: 38.5 Gap:+0.04)  | 7,198 tok/s (85.4s) VRAM:8.5G
+        | ACT:2.03±0.16[ 0/97/ 3/ 0%] Stk: 0.3( 2/11/87 PtrPPX: 1.8 Occ:18%) GWT[P:53 S:21 H: 8 G:19] | Grad:0.78/0.9 Skips:0 LR:0.00071
+        | Syms:1837/2048 SymPPX:751.3 VQCos:0.70 Drift:0.120 Top1: 2.0% Loop: 0.9% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:0.22 Temp:0.24 Cmt:0.38 Alpha:0.05 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:1.64( 0%) Pat:0/10]
+Ep 0090 [P2] | Loss:4.118 (Pred:3.506 VQ:0.607 Div:0.023 Eth:7.505 Cons:1.692) | Acc: 27.6% TokPPX:33.32 | Val:3.596 (25.6% PPX: 36.5 Gap:+0.09)  | 7,254 tok/s (84.7s) VRAM:8.5G
+        | ACT:2.03±0.17[ 0/97/ 3/ 0%] Stk: 0.2( 2/11/87 PtrPPX: 1.7 Occ:17%) GWT[P:46 S:24 H: 9 G:21] | Grad:0.96/1.1 Skips:0 LR:0.00071
+        | Syms:1755/2048 SymPPX:686.6 VQCos:0.75 Drift:0.068 Top1: 3.4% Loop: 1.2% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:0.05 Temp:0.26 Cmt:0.38 Alpha:0.10 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:1.94( 0%) Pat:0/10]
+Ep 0105 [P2] | Loss:3.994 (Pred:3.439 VQ:0.544 Div:0.022 Eth:7.505 Cons:1.566) | Acc: 28.2% TokPPX:31.16 | Val:3.549 (26.4% PPX: 34.8 Gap:+0.11)  | 7,281 tok/s (84.4s) VRAM:8.5G
+        | ACT:2.02±0.15[ 0/98/ 2/ 0%] Stk: 0.3( 2/11/87 PtrPPX: 1.9 Occ:18%) GWT[P:42 S:26 H:10 G:22] | Grad:0.97/1.1 Skips:0 LR:0.00071
+        | Syms:1730/2048 SymPPX:673.4 VQCos:0.78 Drift:0.060 Top1: 4.3% Loop: 0.8% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:0.05 Temp:0.27 Cmt:0.38 Alpha:0.15 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:2.00( 0%) Pat:0/10]
+Ep 0120 [P2] | Loss:3.921 (Pred:3.400 VQ:0.504 Div:0.022 Eth:7.505 Cons:1.498) | Acc: 28.8% TokPPX:29.97 | Val:3.534 (26.4% PPX: 34.3 Gap:+0.13)  | 7,263 tok/s (84.6s) VRAM:8.5G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.4( 2/11/86 PtrPPX: 2.0 Occ:19%) GWT[P:37 S:27 H:12 G:24] | Grad:1.14/1.4 Skips:0 LR:0.00071
+        | Syms:1684/2048 SymPPX:678.3 VQCos:0.79 Drift:0.055 Top1: 4.2% Loop: 1.1% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:0.05 Temp:0.26 Cmt:0.38 Alpha:0.20 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:2.00( 0%) Pat:0/10]
+   Sample: "First Senator:\nI'll tell you,\nI do not be able to be able to\nmyself,\nAnd I will"
+Ep 0135 [P2] | Loss:3.903 (Pred:3.394 VQ:0.486 Div:0.022 Eth:7.505 Cons:1.509) | Acc: 29.1% TokPPX:29.79 | Val:3.500 (26.6% PPX: 33.1 Gap:+0.11)  | 7,235 tok/s (84.9s) VRAM:8.5G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.3( 2/13/85 PtrPPX: 1.8 Occ:18%) GWT[P:37 S:27 H:14 G:23] | Grad:1.12/1.3 Skips:0 LR:0.00071
+        | Syms:1669/2048 SymPPX:694.2 VQCos:0.80 Drift:0.056 Top1: 3.9% Loop: 1.1% Rev:  0 Edges:   0(AdjPPX:1818.0) | Tune[Ready:  0% DivW:0.05 Temp:0.26 Cmt:0.38 Alpha:0.25 Bias:0.000 GGate:0.00 PndP:0.00025 Clip:2.00( 0%) Pat:0/10]
+   [End of Phase 2 Sample @ Ep 0149]: "First Senator:\nI'll not be able to be able to be able to be able to be able to be able"
+[Phase 3 Reasoning @ Ep 0150] Unlocked Multi-Hop Graph Echo & Ethical Rules.
+Ep 0150 [P3] | Loss:3.893 (Pred:3.391 VQ:0.474 Div:0.022 Eth:7.505 Cons:1.486) | Acc: 28.5% TokPPX:29.69 | Val:3.461 (27.8% PPX: 31.9 Gap:+0.07)  | 7,203 tok/s (85.3s) VRAM:9.0G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.4( 2/13/85 PtrPPX: 1.9 Occ:18%) GWT[P:33 S:27 H:16 G:24] | Grad:1.19/1.5 Skips:0 LR:0.00071
+        | Syms:1655/2048 SymPPX:698.7 VQCos:0.80 Drift:0.056 Top1: 3.6% Loop: 0.8% Rev:  0 Edges:   0(AdjPPX:1817.3) | Tune[Ready:  1% DivW:0.05 Temp:0.27 Cmt:0.38 Alpha:0.31 Bias:0.000 GGate:0.04 PndP:0.00025 Clip:2.00( 1%) Pat:0/10]
+   >>> *BEST* EPOCH 0162 | Val Loss: 3.4805 (Acc: 27.2% PPX:  32.5) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0162): "First Senator:\nI'll be able to be able to be able to be able to be able to be able to"
+Ep 0165 [P3] | Loss:4.463 (Pred:3.362 VQ:0.463 Div:0.022 Eth:5.763 Cons:1.275) | Acc: 29.0% TokPPX:28.85 | Val:3.459 (27.8% PPX: 31.8 Gap:+0.10) *BEST* | 6,537 tok/s (94.0s) VRAM:9.1G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.4( 3/14/83 PtrPPX: 2.0 Occ:20%) GWT[P:30 S:30 H:18 G:22] | Grad:1.35/1.5 Skips:0 LR:0.00071
+        | Syms:1655/2048 SymPPX:705.1 VQCos:0.81 Drift:0.053 Top1: 3.2% Loop: 0.8% Rev:  0 Edges:   0(AdjPPX:318.3) | Tune[Ready: 71% DivW:0.05 Temp:0.26 Cmt:0.38 Alpha:0.34 Bias:0.041 GGate:0.64 PndP:0.00025 Clip:2.00( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0165 | Val Loss: 3.4589 (Acc: 27.8% PPX:  31.8) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0165): 'First Senator:\nThen, and the\nshoppers, and the\nshoppers, and the\nsho'
+   >>> *BEST* EPOCH 0168 | Val Loss: 3.4490 (Acc: 27.9% PPX:  31.5) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0168): 'First Senator:\nTherefore, my lord,\nAnd, my lord, my lord,\nAnd, my lord, my lord,\nAnd'
+   >>> *BEST* EPOCH 0175 | Val Loss: 3.4398 (Acc: 28.6% PPX:  31.2) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0175): "First Servingman:\nAy, and the birds,\nAnd I'll be able to be able to be able to be"
+Ep 0180 [P3] | Loss:4.532 (Pred:3.297 VQ:0.459 Div:0.022 Eth:4.760 Cons:1.328) | Acc: 30.1% TokPPX:27.02 | Val:3.467 (27.7% PPX: 32.0 Gap:+0.17) Best:3.440@175 | 5,342 tok/s (115.0s) VRAM:9.1G
+        | ACT:2.01±0.12[ 0/98/ 2/ 0%] Stk: 0.5( 4/14/82 PtrPPX: 2.3 Occ:24%) GWT[P:28 S:44 H:18 G:10] | Grad:1.35/1.5 Skips:0 LR:0.00071
+        | Syms:1621/2048 SymPPX:700.3 VQCos:0.81 Drift:0.057 Top1: 2.9% Loop: 1.2% Rev:312 Edges:  16(AdjPPX:116.7) | Tune[Ready: 88% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.063 GGate:1.00 PndP:0.00025 Clip:2.00( 1%) Pat:0/10]
+   Sample: 'First Mencus, the birds of the\nspirits of the\nspirits of the\nspirits'
+   >>> *BEST* EPOCH 0190 | Val Loss: 3.4305 (Acc: 28.4% PPX:  30.9) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0190): "First Senator:\nAy, my lord,\nAnd, my lord,\nAnd, my lord,\nAnd, my lord, I'll"
+Ep 0195 [P3] | Loss:4.496 (Pred:3.300 VQ:0.461 Div:0.022 Eth:4.384 Cons:1.549) | Acc: 30.1% TokPPX:27.11 | Val:3.429 (27.9% PPX: 30.8 Gap:+0.13) *BEST* | 5,362 tok/s (114.6s) VRAM:9.2G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.5( 4/13/83 PtrPPX: 2.2 Occ:24%) GWT[P:26 S:44 H:21 G: 8] | Grad:1.47/1.9 Skips:0 LR:0.00071
+        | Syms:1837/2048 SymPPX:740.5 VQCos:0.81 Drift:0.054 Top1: 2.7% Loop: 0.8% Rev:  0 Edges:  64(AdjPPX: 80.2) | Tune[Ready: 99% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.064 GGate:1.00 PndP:0.00025 Clip:2.00( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0195 | Val Loss: 3.4286 (Acc: 27.9% PPX:  30.8) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0195): 'First Servant:\nAy, sir, I will not be able to be able to\nthem. \n\nCHREMYLUS That'
+   >>> *BEST* EPOCH 0196 | Val Loss: 3.4229 (Acc: 28.3% PPX:  30.7) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0196): "First Servant:\nI'll take my sight,\nAnd I'll take my sight,\nAnd I'll take my sight"
+   >>> *BEST* EPOCH 0203 | Val Loss: 3.4203 (Acc: 28.7% PPX:  30.6) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0203): 'First Senator:\nSir, I am going to the\npray, and the cause of the\npray, and the'
+   >>> *BEST* EPOCH 0206 | Val Loss: 3.4092 (Acc: 28.7% PPX:  30.2) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0206): 'First Senator:\nI am I will not be able to be able to be able to be\ncompe, and to the'
+Ep 0210 [P3] | Loss:4.447 (Pred:3.265 VQ:0.460 Div:0.021 Eth:4.227 Cons:1.753) | Acc: 30.8% TokPPX:26.18 | Val:3.420 (28.9% PPX: 30.6 Gap:+0.16) Best:3.409@206 | 5,293 tok/s (116.1s) VRAM:9.2G
+        | ACT:2.01±0.12[ 0/98/ 1/ 0%] Stk: 0.4( 4/15/81 PtrPPX: 2.2 Occ:24%) GWT[P:27 S:44 H:21 G: 8] | Grad:1.41/1.9 Skips:0 LR:0.00071
+        | Syms:1813/2048 SymPPX:748.0 VQCos:0.81 Drift:0.056 Top1: 2.4% Loop: 0.6% Rev:  0 Edges: 142(AdjPPX: 68.5) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 4%) Pat:0/10]
+   >>> *BEST* EPOCH 0211 | Val Loss: 3.4070 (Acc: 28.5% PPX:  30.2) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0211): 'First Servingman:\nAy, and the Lion\n\nA Fox, and the Lion\n\nA Fox, and the'
+   >>> *BEST* EPOCH 0216 | Val Loss: 3.4023 (Acc: 28.5% PPX:  30.0) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0216): 'First Servant:\nAy, my lord,\nAnd I am going to be able to be able to be able to be\n'
+   >>> *BEST* EPOCH 0219 | Val Loss: 3.3932 (Acc: 28.9% PPX:  29.8) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0219): 'First, and the cause of the\nship, and the cause of the\nship, and the cause of the\nship'
+Ep 0225 [P3] | Loss:4.416 (Pred:3.252 VQ:0.456 Div:0.022 Eth:4.147 Cons:1.615) | Acc: 30.7% TokPPX:25.84 | Val:3.417 (28.4% PPX: 30.5 Gap:+0.17) Best:3.393@219 | 4,368 tok/s (140.6s) VRAM:9.2G
+        | ACT:2.01±0.12[ 0/99/ 1/ 0%] Stk: 0.5( 4/15/81 PtrPPX: 2.2 Occ:25%) GWT[P:26 S:43 H:24 G: 8] | Grad:1.71/2.3 Skips:0 LR:0.00071
+        | Syms:1812/2048 SymPPX:754.0 VQCos:0.81 Drift:0.055 Top1: 2.2% Loop: 0.8% Rev:  0 Edges: 270(AdjPPX: 63.2) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.062 GGate:1.00 PndP:0.00025 Clip:2.00( 6%) Pat:0/10]
+   >>> *BEST* EPOCH 0232 | Val Loss: 3.3894 (Acc: 28.7% PPX:  29.6) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0232): 'First, and the\ncompanions." \n\nThe Fox and the Fox\n\nAn Ass and the F'
+Ep 0240 [P3] | Loss:4.341 (Pred:3.196 VQ:0.447 Div:0.022 Eth:4.075 Cons:1.632) | Acc: 31.6% TokPPX:24.44 | Val:3.409 (29.0% PPX: 30.2 Gap:+0.21) Best:3.389@232 | 4,491 tok/s (136.8s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.4( 3/14/83 PtrPPX: 2.0 Occ:22%) GWT[P:25 S:43 H:25 G: 7] | Grad:1.41/1.6 Skips:0 LR:0.00071
+        | Syms:1797/2048 SymPPX:751.8 VQCos:0.82 Drift:0.054 Top1: 2.0% Loop: 0.7% Rev:  0 Edges: 388(AdjPPX: 58.9) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.062 GGate:1.00 PndP:0.00025 Clip:2.00( 1%) Pat:0/10]
+   Sample: 'First Murderer:\nAy, sir, sir, sir, I am going to be able to be able to be\nfe'
+   >>> *BEST* EPOCH 0241 | Val Loss: 3.3855 (Acc: 29.6% PPX:  29.5) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0241): 'First Servingman:\nAy, but I will not be able to be able to be\nprovost of the\nplay'
+Ep 0255 [P3] | Loss:4.365 (Pred:3.222 VQ:0.447 Div:0.021 Eth:4.055 Cons:1.679) | Acc: 31.3% TokPPX:25.08 | Val:3.409 (28.1% PPX: 30.2 Gap:+0.19) Best:3.386@241 | 4,404 tok/s (139.5s) VRAM:9.2G
+        | ACT:2.01±0.12[ 0/99/ 1/ 0%] Stk: 0.5( 4/13/82 PtrPPX: 2.4 Occ:26%) GWT[P:25 S:43 H:24 G: 8] | Grad:1.45/1.8 Skips:0 LR:0.00071
+        | Syms:1784/2048 SymPPX:755.2 VQCos:0.82 Drift:0.050 Top1: 1.9% Loop: 0.7% Rev:  0 Edges: 492(AdjPPX: 57.7) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 2%) Pat:0/10]
+   >>> *BEST* EPOCH 0257 | Val Loss: 3.3794 (Acc: 29.0% PPX:  29.4) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0257): 'First, and the best of the\nshould be brought to the\nspirit of the\nspirators, and the b'
+   >>> *BEST* EPOCH 0262 | Val Loss: 3.3782 (Acc: 28.4% PPX:  29.3) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0262): "First.\n\nPETRUCHIO:\nI'll tell you, sir, I will not give you\nwill be able to be a"
+   >>> *BEST* EPOCH 0265 | Val Loss: 3.3689 (Acc: 29.6% PPX:  29.0) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0265): 'First, and to the mouth of the\nshould be satisfied, and the\nspeaks of the field of'
+Ep 0270 [P3] | Loss:4.341 (Pred:3.196 VQ:0.446 Div:0.021 Eth:4.070 Cons:1.604) | Acc: 31.6% TokPPX:24.44 | Val:3.386 (30.2% PPX: 29.5 Gap:+0.19) Best:3.369@265 | 4,401 tok/s (139.6s) VRAM:9.2G
+        | ACT:2.01±0.12[ 0/99/ 1/ 0%] Stk: 0.5( 4/14/82 PtrPPX: 2.3 Occ:25%) GWT[P:25 S:43 H:25 G: 7] | Grad:1.64/2.0 Skips:0 LR:0.00071
+        | Syms:1785/2048 SymPPX:763.6 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.4% Rev:  0 Edges: 575(AdjPPX: 58.5) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.063 GGate:1.00 PndP:0.00025 Clip:2.00( 4%) Pat:0/10]
+   >>> *BEST* EPOCH 0271 | Val Loss: 3.3651 (Acc: 29.9% PPX:  28.9) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0271): 'First, and the birds of the\nplays of the gods, and the\nplanging the birds of the gods,'
+   >>> *BEST* EPOCH 0274 | Val Loss: 3.3491 (Acc: 30.0% PPX:  28.5) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0274): 'First, and the\nships of the market-place, and the\nson of the market-place,'
+Ep 0285 [P3] | Loss:4.298 (Pred:3.163 VQ:0.444 Div:0.021 Eth:4.020 Cons:1.607) | Acc: 32.4% TokPPX:23.63 | Val:3.356 (29.6% PPX: 28.7 Gap:+0.19) Best:3.349@274 | 3,442 tok/s (178.5s) VRAM:9.2G
+        | ACT:2.01±0.09[ 0/99/ 1/ 0%] Stk: 0.5( 4/14/82 PtrPPX: 2.2 Occ:24%) GWT[P:24 S:43 H:26 G: 7] | Grad:1.51/1.8 Skips:0 LR:0.00071
+        | Syms:1766/2048 SymPPX:758.4 VQCos:0.82 Drift:0.053 Top1: 1.9% Loop: 0.6% Rev:  0 Edges: 635(AdjPPX: 55.7) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 5%) Pat:0/10]
+   >>> *BEST* EPOCH 0293 | Val Loss: 3.3462 (Acc: 29.8% PPX:  28.4) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0293): "First.\n\nLUCIO:\nI'll not be able to be able to be able to be able to\nspring"
+Ep 0300 [P3] | Loss:4.300 (Pred:3.163 VQ:0.443 Div:0.021 Eth:4.025 Cons:1.725) | Acc: 32.1% TokPPX:23.64 | Val:3.375 (29.5% PPX: 29.2 Gap:+0.21) Best:3.346@293 | 4,438 tok/s (138.4s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.4( 4/14/82 PtrPPX: 2.2 Occ:24%) GWT[P:24 S:42 H:26 G: 8] | Grad:1.44/1.6 Skips:0 LR:0.00071
+        | Syms:1761/2048 SymPPX:761.7 VQCos:0.82 Drift:0.052 Top1: 1.9% Loop: 0.6% Rev:  0 Edges: 681(AdjPPX: 56.0) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.060 GGate:1.00 PndP:0.00025 Clip:2.00( 6%) Pat:0/10]
+   Sample: 'First.\n\nKING RICHARD II:\nWe are not to be able to be\ncompany, and the body'
+   >>> *BEST* EPOCH 0305 | Val Loss: 3.3298 (Acc: 30.2% PPX:  27.9) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0305): 'First, and the middle of the\nspring, and the\nspeaks, and the others of the\nspr'
+Ep 0315 [P3] | Loss:4.286 (Pred:3.154 VQ:0.440 Div:0.021 Eth:4.020 Cons:1.597) | Acc: 32.2% TokPPX:23.42 | Val:3.339 (30.2% PPX: 28.2 Gap:+0.19) Best:3.330@305 | 3,970 tok/s (154.8s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.4( 3/14/83 PtrPPX: 2.1 Occ:23%) GWT[P:24 S:41 H:28 G: 8] | Grad:1.46/1.5 Skips:0 LR:0.00071
+        | Syms:1757/2048 SymPPX:760.8 VQCos:0.82 Drift:0.053 Top1: 1.9% Loop: 0.7% Rev:  0 Edges: 724(AdjPPX: 55.7) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 5%) Pat:0/10]
+   >>> *BEST* EPOCH 0325 | Val Loss: 3.3256 (Acc: 31.0% PPX:  27.8) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0325): 'First, and the cause of the\nshoulders, and the cause of the\nshrodite of the\nshrodite'
+Ep 0330 [P3] | Loss:4.293 (Pred:3.149 VQ:0.444 Div:0.021 Eth:4.049 Cons:1.704) | Acc: 32.5% TokPPX:23.31 | Val:3.347 (29.9% PPX: 28.4 Gap:+0.20) Best:3.326@325 | 3,857 tok/s (159.3s) VRAM:9.2G
+        | ACT:2.01±0.12[ 0/99/ 1/ 0%] Stk: 0.4( 4/14/82 PtrPPX: 2.2 Occ:24%) GWT[P:23 S:40 H:29 G: 8] | Grad:1.61/1.9 Skips:0 LR:0.00071
+        | Syms:1760/2048 SymPPX:772.2 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.7% Rev:  0 Edges: 761(AdjPPX: 57.3) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.062 GGate:1.00 PndP:0.00025 Clip:2.00( 6%) Pat:0/10]
+Ep 0345 [P3] | Loss:4.269 (Pred:3.138 VQ:0.440 Div:0.021 Eth:3.988 Cons:1.698) | Acc: 32.7% TokPPX:23.06 | Val:3.336 (30.6% PPX: 28.1 Gap:+0.20) Best:3.326@325 | 4,467 tok/s (137.5s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.5( 4/13/83 PtrPPX: 2.3 Occ:25%) GWT[P:23 S:41 H:28 G: 9] | Grad:1.71/2.6 Skips:0 LR:0.00071
+        | Syms:1759/2048 SymPPX:765.0 VQCos:0.82 Drift:0.054 Top1: 1.8% Loop: 0.9% Rev:  0 Edges: 781(AdjPPX: 54.0) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.060 GGate:1.00 PndP:0.00025 Clip:2.00( 8%) Pat:1/10]
+   >>> *BEST* EPOCH 0351 | Val Loss: 3.3168 (Acc: 30.9% PPX:  27.6) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0351): 'First!\n\nGLOUCESTER:\nI will not be able to be able to be able to be able to be able to'
+Ep 0360 [P3] | Loss:4.261 (Pred:3.130 VQ:0.437 Div:0.021 Eth:4.025 Cons:1.524) | Acc: 32.3% TokPPX:22.87 | Val:3.336 (29.9% PPX: 28.1 Gap:+0.21) Best:3.317@351 | 4,429 tok/s (138.7s) VRAM:9.2G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.3( 3/16/81 PtrPPX: 1.8 Occ:21%) GWT[P:23 S:39 H:30 G: 8] | Grad:1.67/2.2 Skips:0 LR:0.00071
+        | Syms:1748/2048 SymPPX:767.5 VQCos:0.82 Drift:0.054 Top1: 1.8% Loop: 0.8% Rev:  0 Edges: 817(AdjPPX: 56.0) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 8%) Pat:0/10]
+   Sample: "First Senator:\nI'll have you, sir, I will not be able to be able to be able to be able to"
+Ep 0375 [P3] | Loss:4.252 (Pred:3.129 VQ:0.435 Div:0.021 Eth:3.973 Cons:1.557) | Acc: 32.7% TokPPX:22.85 | Val:3.356 (29.3% PPX: 28.7 Gap:+0.23) Best:3.317@351 | 4,465 tok/s (137.6s) VRAM:9.2G
+        | ACT:2.01±0.09[ 0/99/ 1/ 0%] Stk: 0.4( 3/13/84 PtrPPX: 2.1 Occ:22%) GWT[P:23 S:40 H:29 G: 9] | Grad:1.55/1.9 Skips:0 LR:0.00071
+        | Syms:1738/2048 SymPPX:757.3 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.8% Rev:  0 Edges: 846(AdjPPX: 53.2) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 9%) Pat:1/10]
+   >>> *BEST* EPOCH 0386 | Val Loss: 3.3102 (Acc: 31.4% PPX:  27.4) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0386): 'First, and the Lion\n\nAn the birds of the gods, and the birds of the gods, \nAnd, as the gods'
+Ep 0390 [P3] | Loss:4.177 (Pred:3.058 VQ:0.438 Div:0.021 Eth:3.925 Cons:1.585) | Acc: 34.2% TokPPX:21.29 | Val:3.324 (30.8% PPX: 27.8 Gap:+0.27) Best:3.310@386 | 4,448 tok/s (138.1s) VRAM:9.2G
+        | ACT:2.01±0.10[ 0/99/ 1/ 0%] Stk: 0.4( 4/15/81 PtrPPX: 2.0 Occ:23%) GWT[P:24 S:37 H:30 G: 9] | Grad:1.71/2.0 Skips:0 LR:0.00071
+        | Syms:1744/2048 SymPPX:765.6 VQCos:0.82 Drift:0.056 Top1: 1.9% Loop: 1.2% Rev:  0 Edges: 853(AdjPPX: 50.6) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.062 GGate:1.00 PndP:0.00025 Clip:2.00( 5%) Pat:0/10]
+   >>> *BEST* EPOCH 0395 | Val Loss: 3.3070 (Acc: 31.1% PPX:  27.3) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0395): 'First, and the cause of the\nsinging)  (to the SERVANT)  \n\nCHORUS  (singing) Oh'
+Ep 0405 [P3] | Loss:4.214 (Pred:3.080 VQ:0.443 Div:0.021 Eth:3.973 Cons:1.701) | Acc: 33.8% TokPPX:21.75 | Val:3.333 (30.2% PPX: 28.0 Gap:+0.25) Best:3.307@395 | 4,423 tok/s (138.9s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.3( 3/14/83 PtrPPX: 1.9 Occ:22%) GWT[P:24 S:38 H:30 G: 9] | Grad:1.66/1.9 Skips:0 LR:0.00071
+        | Syms:1754/2048 SymPPX:773.0 VQCos:0.82 Drift:0.052 Top1: 1.9% Loop: 0.8% Rev:  0 Edges: 881(AdjPPX: 53.2) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.062 GGate:1.00 PndP:0.00025 Clip:2.00(11%) Pat:0/10]
+   >>> *BEST* EPOCH 0410 | Val Loss: 3.2995 (Acc: 30.6% PPX:  27.1) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0410): 'First! \n\nSAUSAGE-SELLER And I will not be able to be able to be able to be able to'
+Ep 0420 [P3] | Loss:4.218 (Pred:3.088 VQ:0.436 Div:0.021 Eth:4.003 Cons:1.533) | Acc: 33.3% TokPPX:21.92 | Val:3.314 (30.4% PPX: 27.5 Gap:+0.23) Best:3.300@410 | 4,434 tok/s (138.6s) VRAM:9.2G
+        | ACT:2.02±0.13[ 0/98/ 2/ 0%] Stk: 0.4( 3/13/84 PtrPPX: 2.1 Occ:23%) GWT[P:22 S:38 H:31 G: 9] | Grad:1.51/1.7 Skips:0 LR:0.00071
+        | Syms:1742/2048 SymPPX:766.8 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.6% Rev:  0 Edges: 899(AdjPPX: 54.8) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(17%) Pat:0/10]
+   Sample: 'First, and the State, and the Stagle,\nthey are not the same to be able to be able to be\nof'
+Ep 0435 [P3] | Loss:4.207 (Pred:3.082 VQ:0.437 Div:0.021 Eth:3.954 Cons:1.553) | Acc: 33.3% TokPPX:21.81 | Val:3.312 (30.7% PPX: 27.4 Gap:+0.23) Best:3.300@410 | 4,455 tok/s (137.9s) VRAM:9.2G
+        | ACT:2.01±0.09[ 0/99/ 1/ 0%] Stk: 0.4( 3/13/84 PtrPPX: 2.0 Occ:21%) GWT[P:22 S:37 H:32 G:10] | Grad:1.69/2.0 Skips:0 LR:0.00071
+        | Syms:1739/2048 SymPPX:770.6 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.8% Rev:  0 Edges: 915(AdjPPX: 52.1) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.062 GGate:1.00 PndP:0.00025 Clip:2.00(11%) Pat:1/10]
+   >>> *BEST* EPOCH 0442 | Val Loss: 3.2899 (Acc: 31.1% PPX:  26.8) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0442): "First!\n\nKING RICHARD III:\nAy, my lord, I'll not be able to be able to be able"
+   >>> *BEST* EPOCH 0443 | Val Loss: 3.2788 (Acc: 30.9% PPX:  26.5) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0443): 'First, and the body of the\nshould be a man, and the other\nshould be a man, whose certain is'
+Ep 0450 [P3] | Loss:4.158 (Pred:3.042 VQ:0.432 Div:0.021 Eth:3.930 Cons:1.547) | Acc: 33.8% TokPPX:20.95 | Val:3.296 (31.1% PPX: 27.0 Gap:+0.25) Best:3.279@443 | 4,431 tok/s (138.6s) VRAM:9.2G
+        | ACT:2.01±0.10[ 0/99/ 1/ 0%] Stk: 0.4( 3/12/85 PtrPPX: 2.2 Occ:23%) GWT[P:22 S:37 H:32 G:10] | Grad:1.64/2.0 Skips:0 LR:0.00071
+        | Syms:1746/2048 SymPPX:768.5 VQCos:0.82 Drift:0.052 Top1: 1.9% Loop: 1.3% Rev:  0 Edges: 929(AdjPPX: 50.9) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(10%) Pat:0/10]
+Ep 0465 [P3] | Loss:4.206 (Pred:3.068 VQ:0.440 Div:0.021 Eth:3.987 Cons:1.725) | Acc: 33.5% TokPPX:21.51 | Val:3.302 (31.4% PPX: 27.2 Gap:+0.23) Best:3.279@443 | 4,431 tok/s (138.7s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.4( 4/14/82 PtrPPX: 2.1 Occ:23%) GWT[P:23 S:37 H:31 G: 9] | Grad:1.63/1.8 Skips:0 LR:0.00071
+        | Syms:1739/2048 SymPPX:770.9 VQCos:0.82 Drift:0.053 Top1: 2.0% Loop: 0.7% Rev:  0 Edges: 955(AdjPPX: 53.9) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(14%) Pat:1/10]
+Ep 0480 [P3] | Loss:4.179 (Pred:3.045 VQ:0.439 Div:0.021 Eth:3.976 Cons:1.600) | Acc: 34.1% TokPPX:21.02 | Val:3.314 (30.0% PPX: 27.5 Gap:+0.27) Best:3.279@443 | 4,504 tok/s (136.4s) VRAM:9.2G
+        | ACT:2.01±0.09[ 0/99/ 1/ 0%] Stk: 0.4( 3/13/83 PtrPPX: 2.1 Occ:22%) GWT[P:22 S:35 H:33 G:10] | Grad:1.74/2.1 Skips:0 LR:0.00071
+        | Syms:1734/2048 SymPPX:772.0 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.6% Rev:  0 Edges: 967(AdjPPX: 53.3) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(17%) Pat:2/10]
+   Sample: "First Keeper:\nAy, my lord,\nI'll not be able to be able to be able to be able to"
+Ep 0495 [P3] | Loss:4.171 (Pred:3.034 VQ:0.439 Div:0.021 Eth:3.986 Cons:1.609) | Acc: 34.3% TokPPX:20.79 | Val:3.320 (30.0% PPX: 27.7 Gap:+0.29) Best:3.279@443 | 4,452 tok/s (138.0s) VRAM:9.2G
+        | ACT:2.01±0.12[ 0/99/ 1/ 0%] Stk: 0.4( 3/12/84 PtrPPX: 2.1 Occ:22%) GWT[P:21 S:35 H:35 G:10] | Grad:1.63/1.8 Skips:0 LR:0.00071
+        | Syms:1737/2048 SymPPX:773.6 VQCos:0.82 Drift:0.053 Top1: 1.9% Loop: 0.8% Rev:  0 Edges: 977(AdjPPX: 53.9) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.060 GGate:1.00 PndP:0.00025 Clip:2.00(16%) Pat:3/10]
+Ep 0510 [P3] | Loss:4.161 (Pred:3.038 VQ:0.434 Div:0.021 Eth:3.932 Cons:1.587) | Acc: 33.8% TokPPX:20.86 | Val:3.304 (31.6% PPX: 27.2 Gap:+0.27) Best:3.279@443 | 4,459 tok/s (137.8s) VRAM:9.2G
+        | ACT:2.01±0.11[ 0/99/ 1/ 0%] Stk: 0.3( 3/13/84 PtrPPX: 2.0 Occ:21%) GWT[P:22 S:34 H:33 G:10] | Grad:1.69/1.9 Skips:0 LR:0.00071
+        | Syms:1733/2048 SymPPX:768.4 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 1.0% Rev:  0 Edges: 986(AdjPPX: 51.0) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(10%) Pat:4/10]
+   >>> *BEST* EPOCH 0522 | Val Loss: 3.2728 (Acc: 31.4% PPX:  26.4) | Saved checkpoint -> crsn_omni_model.pth
+   Sample (*BEST* Ep 0522): 'First!\n\nPETRUCHIO:\nI am a bitter to the gods.\n\nPETRUCHIO:\nI am'
+Ep 0525 [P3] | Loss:4.146 (Pred:3.015 VQ:0.438 Div:0.021 Eth:3.950 Cons:1.604) | Acc: 34.3% TokPPX:20.38 | Val:3.323 (30.9% PPX: 27.7 Gap:+0.31) Best:3.273@522 | 4,443 tok/s (138.3s) VRAM:9.2G
+        | ACT:2.01±0.10[ 0/99/ 1/ 0%] Stk: 0.3( 3/13/84 PtrPPX: 1.9 Occ:22%) GWT[P:22 S:33 H:34 G:11] | Grad:1.78/2.5 Skips:0 LR:0.00071
+        | Syms:1724/2048 SymPPX:774.1 VQCos:0.82 Drift:0.053 Top1: 1.9% Loop: 0.8% Rev:  0 Edges: 999(AdjPPX: 51.9) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.060 GGate:1.00 PndP:0.00025 Clip:2.00(21%) Pat:0/10]
+Ep 0540 [P3] | Loss:4.166 (Pred:3.030 VQ:0.437 Div:0.021 Eth:3.980 Cons:1.609) | Acc: 33.9% TokPPX:20.70 | Val:3.291 (31.0% PPX: 26.9 Gap:+0.26) Best:3.273@522 | 4,470 tok/s (137.4s) VRAM:9.2G
+        | ACT:2.01±0.10[ 0/99/ 1/ 0%] Stk: 0.4( 3/11/85 PtrPPX: 2.2 Occ:23%) GWT[P:22 S:35 H:34 G:10] | Grad:1.66/2.2 Skips:0 LR:0.00071
+        | Syms:1732/2048 SymPPX:766.6 VQCos:0.82 Drift:0.054 Top1: 2.0% Loop: 0.5% Rev:  0 Edges:1001(AdjPPX: 53.5) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(18%) Pat:1/10]
+   Sample: 'First, and the body of the\nshalts of the gods, and the\ncharms of the gods, and the b'
+Ep 0555 [P3] | Loss:4.152 (Pred:3.012 VQ:0.438 Div:0.021 Eth:3.993 Cons:1.625) | Acc: 34.6% TokPPX:20.34 | Val:3.327 (30.2% PPX: 27.8 Gap:+0.31) Best:3.273@522 | 4,462 tok/s (137.7s) VRAM:9.2G
+        | ACT:2.01±0.10[ 0/99/ 1/ 0%] Stk: 0.3( 3/12/85 PtrPPX: 1.9 Occ:21%) GWT[P:21 S:35 H:34 G:10] | Grad:1.68/2.1 Skips:0 LR:0.00071
+        | Syms:1733/2048 SymPPX:775.1 VQCos:0.82 Drift:0.054 Top1: 1.9% Loop: 0.6% Rev:  0 Edges:1014(AdjPPX: 54.2) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00( 9%) Pat:2/10]
+Ep 0570 [P3] | Loss:4.134 (Pred:3.006 VQ:0.437 Div:0.021 Eth:3.922 Cons:1.634) | Acc: 34.6% TokPPX:20.21 | Val:3.308 (30.9% PPX: 27.3 Gap:+0.30) Best:3.273@522 | 4,442 tok/s (138.3s) VRAM:9.2G
+        | ACT:2.01±0.09[ 0/99/ 1/ 0%] Stk: 0.3( 3/13/84 PtrPPX: 2.0 Occ:21%) GWT[P:21 S:34 H:35 G:10] | Grad:1.97/3.8 Skips:0 LR:0.00071
+        | Syms:1735/2048 SymPPX:779.0 VQCos:0.82 Drift:0.057 Top1: 1.9% Loop: 1.0% Rev:  0 Edges:1022(AdjPPX: 50.5) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(13%) Pat:3/10]
+Ep 0585 [P3] | Loss:4.115 (Pred:2.982 VQ:0.438 Div:0.021 Eth:3.945 Cons:1.591) | Acc: 34.6% TokPPX:19.73 | Val:3.310 (30.3% PPX: 27.4 Gap:+0.33) Best:3.273@522 | 4,461 tok/s (137.7s) VRAM:9.2G
+        | ACT:2.01±0.09[ 0/99/ 1/ 0%] Stk: 0.3( 3/13/84 PtrPPX: 1.9 Occ:21%) GWT[P:21 S:33 H:35 G:11] | Grad:1.67/2.1 Skips:0 LR:0.00071
+        | Syms:1753/2048 SymPPX:773.1 VQCos:0.82 Drift:0.053 Top1: 1.9% Loop: 0.8% Rev:  0 Edges:1033(AdjPPX: 51.7) | Tune[Ready:100% DivW:0.05 Temp:0.25 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(17%) Pat:4/10]
+Ep 0599 [P3] | Loss:4.095 (Pred:2.963 VQ:0.440 Div:0.021 Eth:3.927 Cons:1.588) | Acc: 35.1% TokPPX:19.36 | Val:3.276 (31.7% PPX: 26.5 Gap:+0.31) Best:3.273@522 | 4,458 tok/s (128.6s) VRAM:9.2G
+        | ACT:2.01±0.08[ 0/99/ 1/ 0%] Stk: 0.3( 3/14/83 PtrPPX: 1.8 Occ:20%) GWT[P:21 S:32 H:36 G:11] | Grad:1.99/4.2 Skips:0 LR:0.00035
+        | Syms:1740/2048 SymPPX:781.4 VQCos:0.82 Drift:0.053 Top1: 1.9% Loop: 0.8% Rev:  0 Edges:1034(AdjPPX: 50.8) | Tune[Ready:100% DivW:0.05 Temp:0.24 Cmt:0.38 Alpha:0.35 Bias:0.061 GGate:1.00 PndP:0.00025 Clip:2.00(13%) Pat:5/10]
+   [End of Phase 3 Sample @ Ep 0599]: "First,\nI'll have no more than to be able to be able to be able to be able to\ncomplish to"
+Restored best healthy checkpoint (Val Loss: 3.2728 at Ep 522).
+
+--- Saving Final Model to crsn_omni_model.pth ---
+Saved.
+
+--- Generating Diagnostics & Images ---
+Saved 1_semantic_topology.png
+Running Inference Scan...
+ACT Step Breakdown : 2 steps: 100%
+Stack Depth Range  : [0.05, 1.52]
+Generated          : First to use the caimes more of what to delicate
+this child man." 
+
+The Old man get Cyrtasians at the bidding all carved off without alleggleus to Apoeleted preyed Harched r
+
+
+--- Extracting Explicit Logic Rules (1-Hop & 2-Hop Chains) ---
+
+[1-Hop Symbolic Rules] FROM             | TO               | COUNT  | AVG STEPS 
+------------------------------------------------------------
+S_942 (:)        -> S_903 (\n)       | 370    | 2.00
+S_903 (\n)       -> S_860 (\n)       | 328    | 2.00
+S_1827(.)        -> S_903 (\n)       | 268    | 2.00
+S_1523(,)        -> S_1106(\n)       | 185    | 2.00
+S_1106(\n)       -> S_2047(First)    | 160    | 2.00
+S_337 (IUS)      -> S_942 (:)        | 158    | 2.00
+S_903 (\n)       -> S_2047(First)    | 90     | 2.00
+S_860 (\n)       -> S_1922(M)        | 90     | 2.00
+S_1242(')        -> S_972 (s)        | 74     | 2.00
+S_847 (s)        -> S_1523(,)        | 71     | 2.00
+S_1157(·him)     -> S_1523(,)        | 70     | 2.00
+S_1237(?)        -> S_903 (\n)       | 66     | 2.00
+S_1879(A)        -> S_942 (:)        | 59     | 2.00
+S_860 (\n)       -> S_232 (V)        | 58     | 2.00
+S_631 (!)        -> S_903 (\n)       | 56     | 2.00
+S_1242(')        -> S_765 (d)        | 50     | 2.00
+S_63  (ci)       -> S_598 (us)       | 47     | 2.00
+S_980 (i)        -> S_598 (us)       | 46     | 2.00
+S_1299(IN)       -> S_337 (IUS)      | 46     | 2.00
+S_22  (ar)       -> S_63  (ci)       | 45     | 2.00
+S_903 (\n)       -> S_764 (I)        | 45     | 2.00
+S_1922(M)        -> S_1955(EN)       | 45     | 2.00
+S_1955(EN)       -> S_1955(EN)       | 45     | 2.00
+S_1955(EN)       -> S_337 (IUS)      | 45     | 2.00
+S_1106(\n)       -> S_1154(And)      | 45     | 2.00
+
+[2-Hop Rule Chains]    S_A -> S_B -> S_C                                    | COUNT  | AVG STEPS 
+----------------------------------------------------------------------------
+S_1827(.) -> S_903 (\n) -> S_860 (\n)                | 227    | 2.00
+S_337 (IUS) -> S_942 (:) -> S_903 (\n)               | 158    | 2.00
+S_903 (\n) -> S_860 (\n) -> S_1922(M)                | 90     | 2.00
+S_1879(A) -> S_942 (:) -> S_903 (\n)                 | 59     | 2.00
+S_1237(?) -> S_903 (\n) -> S_860 (\n)                | 58     | 2.00
+S_903 (\n) -> S_860 (\n) -> S_232 (V)                | 57     | 2.00
+S_942 (:) -> S_903 (\n) -> S_2047(First)             | 56     | 2.00
+S_1523(,) -> S_1106(\n) -> S_2047(First)             | 55     | 2.00
+S_1299(IN) -> S_337 (IUS) -> S_942 (:)               | 46     | 2.00
+S_22  (ar) -> S_63  (ci) -> S_598 (us)               | 45     | 2.00
+S_1922(M) -> S_1955(EN) -> S_1955(EN)                | 45     | 2.00
+S_1955(EN) -> S_1955(EN) -> S_337 (IUS)              | 45     | 2.00
+S_1955(EN) -> S_337 (IUS) -> S_942 (:)               | 45     | 2.00
+S_860 (\n) -> S_1922(M) -> S_1955(EN)                | 43     | 2.00
+S_903 (\n) -> S_860 (\n) -> S_2047(First)            | 42     | 2.00
+
+--- Dream Mode (Entropy-Targeted Symbolic Walk) ---
+Dream Stats  : AvgTemp=0.51 | AvgBranchPPX=4.00 (Target=4.00) | GroundedSyms=51/60
+Dream Output : First, 
+I'd,
+
+Part:
+
+PHave you.
+
+PE:
+
+MENROGUS:
+
+PUESTIO:
+
+Pro:
+
+ProvUMUSTUS:
+
+BION
+
+
+--- Anomaly Detection Test ---
+Input: 'some bronze vase, survey the ceiling, admire banana'
+Anomaly Stats: ValidPrefixMean=4.64 | TailMean=6.29 TailMax=7.25 (Contrast=1.56x) | [LM: 4.46->6.91 | SymEth: 0.74->1.79]
+Saved 5_anomaly_detection.png
+
+--- Context-Difficulty ACT Probe ---
+Val ACT Allocation: EasyTokens(NLL<=3.01)=2.002 steps | HardTokens(NLL>3.01)=2.006 steps
+
+Saved complete terminal output log to 'terminal outputs.txt'.
